@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "django-rest"
+version = "0.1.0"
+description = "Template for django rest application."
+authors = ["Fakhriddin <fahriddin3040@gmail.com>"]
+package-mode = false
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+asgiref = "3.8.1"
+attrs = "23.2.0"
+django = "5.0.7"
+djangorestframework = "3.15.2"
+djangorestframework-simplejwt = "5.3.1"
+drf-spectacular = "0.27.2"
+inflection = "0.5.1"
+jsonschema = "4.23.0"
+jsonschema-specifications = "2023.12.1"
+pyjwt = "2.8.0"
+pyyaml = "6.0.1"
+referencing = "0.35.1"
+rpds-py = "0.19.0"
+sqlparse = "0.5.1"
+uritemplate = "4.1.1"
+pillow = "^10.4.0"
+python-dotenv = "^1.0.1"
+ruff = "^0.5.4"
+black = "^24.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
