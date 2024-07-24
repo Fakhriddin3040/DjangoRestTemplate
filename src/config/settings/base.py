@@ -71,8 +71,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "src.config.settings.wsgi.application"
-ASGI_APPLICATION = "src.config.settings.asgi.application"
+WSGI_APPLICATION = "src.config.wsgi.application"
+ASGI_APPLICATION = "src.config.asgi.application"
 ROOT_URLCONF = "src.config.urls"
 
 DATABASES = {
@@ -112,13 +112,14 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "UPDATE_LAST_LOGIN": True,
-    "ALGORITHM": "SHA256",
+    "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
     "AUTH_HEADER_NAME": "AUTHORIZATION",
     "TOKEN_OBTAIN_SERIALIZER": None,
@@ -127,4 +128,11 @@ SIMPLE_JWT = {
     "TOKEN_BLACKLIST_SERIALIZER": None,
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": None,
     "SLIDING_TOKEN_REFRESH_SERIALIZER": None,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Your API",
+    "DESCRIPTION": "API schema",
+    "VERSION": "1.0.0",
+    "SERVE_PUBLIC": True,
 }

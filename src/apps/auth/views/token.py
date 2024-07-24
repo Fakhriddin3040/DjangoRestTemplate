@@ -6,8 +6,10 @@ from ..serializers.token import (
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
-    _serializer_class = CustomTokenObtainPairSerializer
+    _serializer_class = None
+    serializer_class = CustomTokenObtainPairSerializer
 
 
 class CustomTokenRefreshView(TokenRefreshView):
-    _serializer_class = CustomTokenRefreshSerializer
+    _serializer_class = None
+    serializer_class = CustomTokenRefreshSerializer
