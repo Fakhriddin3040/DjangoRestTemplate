@@ -1,6 +1,8 @@
 from http import HTTPMethod
+
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+
 from src.apps.auth.models.user import User
 from src.apps.auth.serializers.user import UserCreateSerializer, UserListSerializer
 
