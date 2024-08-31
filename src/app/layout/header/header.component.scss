@@ -1,30 +1,69 @@
+/* Base styles for the header block */
+.header {
+  display: flex;
+  flex-direction: column;
 
+  &__banner {
+    display: flex;
+    /* Other styles for banner */
+    
+    &-item {
+      /* Common styles for banner items */
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    width: 100%;
-    margin: 0;
-  
-    nav ul {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-  
-      li {
-        margin-right: 20px;
-  
-        a {
-          color: white;
-          text-decoration: none;
-  
-          &:hover {
-            text-decoration: underline;
-          }
-        }
+      &--image {
+        /* Specific styles for the image banner item */
+      }
+
+      &--text {
+        /* Specific styles for the text banner item */
       }
     }
   }
-  
+
+  &__options {
+    display: flex;
+    /* Other styles for options */
+    
+    &__language {
+      /* Styles for language option */
+    }
+
+    &__currency {
+      /* Styles for currency option */
+    }
+
+    &__additional-options {
+      /* Styles for additional options */
+    }
+  }
+
+  &__utilities {
+    display: flex;
+    /* Other styles for utilities */
+    
+    &__logo {
+      /* Styles for logo */
+    }
+
+    &__search-form {
+      /* Styles for search form */
+    }
+
+    &__login {
+      /* Styles for login */
+    }
+
+    &__registration {
+      /* Styles for registration */
+    }
+  }
+
+  &__menu {
+    display: flex;
+    /* Other styles for menu */
+    
+    &__menu-section {
+      /* Styles for menu sections */
+    }
+  }
+}
