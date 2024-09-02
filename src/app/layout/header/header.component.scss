@@ -1,4 +1,3 @@
-/* Base styles for the header block */
 .header {
   display: flex;
   flex-direction: column;
@@ -10,14 +9,11 @@
     background-image: url("../../../assets/images/promo/partent-top.jpg");
     background-size: cover;
     background-position: center;
-    
 
-    &-item {
+    &__item {
       position: relative;
-      /* Общие стили для элементов баннера */
 
       &--image {
-        
         flex: 1 1 50%;
 
         img {
@@ -28,8 +24,8 @@
       }
 
       &--text {
-        
         flex: 1 1 50%;
+
         img {
           width: 100%;
           height: auto;
@@ -41,24 +37,22 @@
 
   &__options {
     display: flex;
-    /* Другие стили для options */
+    justify-content: space-between;
+    border: 4px solid rgb(0, 255, 149);
 
-    &__language {
-      /* Стили для языковой опции */
+    &__title {  
+      border: 4px solid blue;
     }
 
     &__currency {
-      /* Стили для валютной опции */
-    }
-
-    &__additional-options {
-      /* Стили для дополнительных опций */
+      display: flex;
+      justify-content: space-between;
+      border: 4px solid rgb(128, 0, 6);
     }
   }
 
   &__utilities {
     display: flex;
-    /* Другие стили для utilities */
 
     &__logo {
       /* Стили для логотипа */
@@ -79,7 +73,6 @@
 
   &__menu {
     display: flex;
-    /* Другие стили для menu */
 
     &__menu-section {
       /* Стили для секций меню */
