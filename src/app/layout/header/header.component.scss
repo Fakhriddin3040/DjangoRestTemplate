@@ -2,68 +2,87 @@
 .header {
   display: flex;
   flex-direction: column;
+  height: 35%;
 
   &__banner {
+    height: auto;
     display: flex;
-    /* Other styles for banner */
+    background-image: url("../../../assets/images/promo/partent-top.jpg");
+    background-size: cover;
+    background-position: center;
     
+
     &-item {
-      /* Common styles for banner items */
+      position: relative;
+      /* Общие стили для элементов баннера */
 
       &--image {
-        /* Specific styles for the image banner item */
+        
+        flex: 1 1 50%;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
       }
 
       &--text {
-        /* Specific styles for the text banner item */
+        
+        flex: 1 1 50%;
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
       }
     }
   }
 
   &__options {
     display: flex;
-    /* Other styles for options */
-    
+    /* Другие стили для options */
+
     &__language {
-      /* Styles for language option */
+      /* Стили для языковой опции */
     }
 
     &__currency {
-      /* Styles for currency option */
+      /* Стили для валютной опции */
     }
 
     &__additional-options {
-      /* Styles for additional options */
+      /* Стили для дополнительных опций */
     }
   }
 
   &__utilities {
     display: flex;
-    /* Other styles for utilities */
-    
+    /* Другие стили для utilities */
+
     &__logo {
-      /* Styles for logo */
+      /* Стили для логотипа */
     }
 
     &__search-form {
-      /* Styles for search form */
+      /* Стили для формы поиска */
     }
 
     &__login {
-      /* Styles for login */
+      /* Стили для входа */
     }
 
     &__registration {
-      /* Styles for registration */
+      /* Стили для регистрации */
     }
   }
 
   &__menu {
     display: flex;
-    /* Other styles for menu */
-    
+    /* Другие стили для menu */
+
     &__menu-section {
-      /* Styles for menu sections */
+      /* Стили для секций меню */
     }
   }
 }
