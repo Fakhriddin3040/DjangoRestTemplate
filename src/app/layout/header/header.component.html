@@ -1,28 +1,28 @@
 <header class="header">
   <div class="header__banner">
     <div class="header__banner-item header__banner-item--image">
-      <img [src]="imageUrl" alt="discount banner">
+      <img [src]="imageUrl" alt="discount banner" />
     </div>
     <div class="header__banner-item header__banner-item--text">
-      <img [src]="imageUrl2" alt="discount banner">
+      <img [src]="imageUrl2" alt="discount banner" />
     </div>
   </div>
-  <div class="header__options">
-
-    <div class="header__title">
+  <div class="header-options">
+    <div class="header-options__title">
       <p>Welcome to Martfury Online Store!</p>
     </div>
-    
-    <div class="header__currency">
-      <div>
+
+    <div class="header-options__currency">
+      <div class="header-options__currency-location">
         <a href="#">Store Location</a>
       </div>
-      <div>
+
+      <div class="header-options__currency-track">
         <a href="#">Track Order</a>
       </div>
 
       <!-- Кнопка для выбора валюты -->
-      <div class="currency">
+      <div class="header-options__currency-select">
         <button mat-button [matMenuTriggerFor]="currencyMenu">Currency</button>
         <mat-menu #currencyMenu="matMenu">
           <button mat-menu-item>USD</button>
@@ -32,7 +32,7 @@
       </div>
 
       <!-- Кнопка для выбора языка -->
-      <div class="language">
+      <div class="header-options__language-select">
         <button mat-button [matMenuTriggerFor]="languageMenu">Language</button>
         <mat-menu #languageMenu="matMenu">
           <button mat-menu-item>English</button>
@@ -40,10 +40,9 @@
           <button mat-menu-item>French</button>
         </mat-menu>
       </div>
-      
     </div>
-    
   </div>
+
   <div class="header__utilities">
     <div class="header__logo">Logo</div>
     <div class="header__search-form">Search Form</div>

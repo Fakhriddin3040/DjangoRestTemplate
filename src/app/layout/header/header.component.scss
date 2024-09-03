@@ -1,81 +1,105 @@
-.header {
+/* Стили для блока header__banner */
+.header__banner {
+  height: auto;
   display: flex;
-  flex-direction: column;
-  height: 35%;
+  justify-content: space-between;
+  background-image: url("../../../assets/images/promo/partent-top.jpg");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
 
-  &__banner {
-    height: auto;
-    display: flex;
-    background-image: url("../../../assets/images/promo/partent-top.jpg");
-    background-size: cover;
-    background-position: center;
+  &__item {
+    position: relative;
 
-    &__item {
-      position: relative;
+    &--image {
+      flex: 1 1 50%;
 
-      &--image {
-        flex: 1 1 50%;
-
-        img {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
+    }
 
-      &--text {
-        flex: 1 1 50%;
+    &--text {
+      flex: 1 1 50%;
 
-        img {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
     }
   }
+}
 
-  &__options {
+.header-options {
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid red;
+
+  &__title {
+    border: 4px solid rgb(0, 255, 85);
+    flex: 0 0 40%;
+  }
+
+  &__currency {
     display: flex;
     justify-content: space-between;
-    border: 4px solid rgb(0, 255, 149);
-
-    &__title {  
-      border: 4px solid blue;
+    align-items: center;
+    border: 4px solid rgb(128, 0, 6);
+    color: black;
+    flex: 0 0 40%;
+    a {
+      text-decoration: none;
+      color: black;
     }
 
-    &__currency {
-      display: flex;
-      justify-content: space-between;
-      border: 4px solid rgb(128, 0, 6);
-    }
-  }
-
-  &__utilities {
-    display: flex;
-
-    &__logo {
-      /* Стили для логотипа */
+    &-location {
+      /* Стили для ссылки "Store Location" */
     }
 
-    &__search-form {
-      /* Стили для формы поиска */
+    &-track {
+      /* Стили для ссылки "Track Order" */
     }
 
-    &__login {
-      /* Стили для входа */
-    }
-
-    &__registration {
-      /* Стили для регистрации */
+    &-select {
+      /* Стили для кнопки выбора валюты */
     }
   }
 
-  &__menu {
-    display: flex;
+  &__language-select {
+    /* Стили для кнопки выбора языка */
+  }
+}
 
-    &__menu-section {
-      /* Стили для секций меню */
-    }
+
+/* Стили для блока header__utilities */
+.header__utilities {
+  display: flex;
+
+  &__logo {
+    /* Стили для логотипа */
+  }
+
+  &__search-form {
+    /* Стили для формы поиска */
+  }
+
+  &__login {
+    /* Стили для входа */
+  }
+
+  &__registration {
+    /* Стили для регистрации */
+  }
+}
+
+/* Стили для блока header__menu */
+.header__menu {
+  display: flex;
+
+  &__menu-section {
+    /* Стили для секций меню */
   }
 }
