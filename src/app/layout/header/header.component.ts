@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ContainerComponent } from '../../shared/container/container.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatIconModule,
     ContainerComponent,
     MatFormFieldModule, 
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
