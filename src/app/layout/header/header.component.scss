@@ -3,7 +3,7 @@
   height: auto;
   display: flex;
   justify-content: space-between;
-  background-image: url("../../../assets/images/promo/partent-top.jpg");
+  
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -37,10 +37,15 @@
   display: flex;
   justify-content: space-between;
   border: 4px solid red;
+  
 
   &__title {
+    display: flex;
+    align-items: center;
     border: 4px solid rgb(0, 255, 85);
     flex: 0 0 40%;
+    
+    
   }
 
   &__currency {
@@ -102,4 +107,10 @@
   &__menu-section {
     /* Стили для секций меню */
   }
+}
+
+
+::ng-deep app-container {
+  
+  background-image: url("../../../assets/images/promo/partent-top.jpg");
 }

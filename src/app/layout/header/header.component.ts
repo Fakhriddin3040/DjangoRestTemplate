@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { ContainerComponent } from '../../shared/container/container.component';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     MatButtonModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    ContainerComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
