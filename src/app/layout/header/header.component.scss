@@ -1,4 +1,4 @@
-@import "../../../assets/styles/variables.scss";
+@import 'variables.scss';
 
 /* Стили для блока header__banner */
 .header__banner {
@@ -134,8 +134,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
     > .bi {
       font-size: 35px;
+      cursor: pointer;
+      &:hover {
+        color: $menu-hover-text-color;
+        text-shadow:
+          1px 1px 0 $menu-hover-text-border,
+          -1px -1px 0 $menu-hover-text-border,
+          1px -1px 0 $menu-hover-text-border,
+          -1px 1px 0 $menu-hover-text-border;
+      }
     }
     > div {
       display: flex;
