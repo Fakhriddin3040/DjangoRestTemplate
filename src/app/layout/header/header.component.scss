@@ -202,9 +202,15 @@
   }
 }
 
+.wrapperHeader__menu {
+  border: 1px solid grey;
+  margin-top: 20px;
+}
 .header__menu {
   display: flex;
-  margin-top: 20px;
+  justify-content: space-between;
+  
+  
   &__menu-section {
   }
 }
