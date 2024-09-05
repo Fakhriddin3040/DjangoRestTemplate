@@ -150,7 +150,7 @@
     display: flex;
     align-items: start;
     flex-direction: column;
-
+    
     > div {
       margin: 0;
       padding: 0;
@@ -159,6 +159,8 @@
       justify-content: center;
     }
 
+
+
     a {
       color: black;
       font-size: small;
@@ -166,10 +168,26 @@
       margin: 0;
       padding: 0;
       display: inline-block;
+      &:hover {
+        color: $menu-hover-text-color;
+        text-shadow:
+          1px 1px 0 $menu-hover-text-border,
+          -1px -1px 0 $menu-hover-text-border,
+          1px -1px 0 $menu-hover-text-border,
+          -1px 1px 0 $menu-hover-text-border;
+      }
     }
 
     > div:nth-child(2) > a {
       color: grey;
+      &:hover {
+        color: $menu-hover-text-color;
+        text-shadow:
+          1px 1px 0 $menu-hover-text-border,
+          -1px -1px 0 $menu-hover-text-border,
+          1px -1px 0 $menu-hover-text-border,
+          -1px 1px 0 $menu-hover-text-border;
+      }
     }
   }
 }
