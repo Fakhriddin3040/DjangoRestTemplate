@@ -1,0 +1,55 @@
+@import "variables.scss";
+
+.our-advantages {
+    margin-top: 20px;
+    &__content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px; // Расстояние между элементами
+    }
+  
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 280px; // Можно изменить в зависимости от вашего дизайна
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+  
+      .our-advantages__icon {
+        
+        flex-shrink: 0;
+        font-size: 34px;
+        color: $menu-hover-text-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px; // Можно настроить в зависимости от дизайна
+        height: 48px; // Можно настроить в зависимости от дизайна
+        border-radius: 50%; // Сделать иконку круглой
+      }
+  
+      &__title {
+        display: flex;
+        flex-direction: column;
+        gap: 4px; // Расстояние между строками
+        text-align: left;
+  
+        &__title-row1 {
+          font-weight: bold;
+          font-size: 18px;
+          color: #000;
+        }
+  
+        &__title-row2 {
+          font-size: 14px;
+          color: #666;
+        }
+      }
+    }
+  }
+  
