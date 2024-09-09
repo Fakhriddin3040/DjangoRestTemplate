@@ -10,6 +10,6 @@ import { ContainerComponent } from '../../../shared/container/container.componen
   templateUrl: './section3-sale.component.html',
   styleUrl: './section3-sale.component.scss'
 })
-export class Section2SaleComponent {
+export class Section3SaleComponent {
 
 }

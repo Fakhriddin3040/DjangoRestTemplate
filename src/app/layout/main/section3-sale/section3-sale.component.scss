@@ -1,0 +1,39 @@
+@import "variables.scss";
+
+.sale-content {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid red;
+    margin-top: 20px;
+
+    &__item {
+        flex: 0 0 30%;
+        border: 2px solid rgb(7, 7, 7);
+        &:nth-of-type(1) {            
+            background: url('../../../../assets/images/catalog/03-bn.jpg');
+        }
+
+        &:nth-of-type(2) {            
+            background: url('../../../../assets/images/catalog/02-bn.jpg');
+        }
+        &:nth-of-type(3) {            
+            background: url('../../../../assets/images/catalog/03-bn.jpg');
+        }
+    }
+
+    &__title {
+        // Стили для элемента sale-content__title
+    }
+
+    &__product-name {
+        // Стили для элемента sale-content__product-name
+    }
+
+    &__description {
+        // Стили для элемента sale-content__description
+    }
+
+    &__img {
+      
+    }    
+}
