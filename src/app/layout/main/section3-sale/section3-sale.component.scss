@@ -2,22 +2,32 @@
 
 .sale-content {
     display: flex;
-    justify-content: space-between;
-    border: 2px solid red;
+    justify-content: space-between;   
     margin-top: 20px;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto; 
 
     &__item {
         flex: 0 0 30%;
-        border: 2px solid rgb(7, 7, 7);
-        &:nth-of-type(1) {            
-            background: url('../../../../assets/images/catalog/03-bn.jpg');
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        &:nth-of-type(1) {
+            background: url("../../../../assets/images/catalog/03-bn.jpg");
+            background-size: contain;  /* Подстраивает фон, сохраняя пропорции */
+            aspect-ratio: 16/9; /* Соотношение сторон для адаптации высоты */
         }
 
-        &:nth-of-type(2) {            
-            background: url('../../../../assets/images/catalog/02-bn.jpg');
+        &:nth-of-type(2) {
+            background: url("../../../../assets/images/catalog/02-bn.jpg");
+            background-size: contain;  /* Подстраивает фон, сохраняя пропорции */
+            aspect-ratio: 16/9; /* Соотношение сторон для адаптации высоты */
         }
-        &:nth-of-type(3) {            
-            background: url('../../../../assets/images/catalog/03-bn.jpg');
+        &:nth-of-type(3) {
+            background: url("../../../../assets/images/catalog/03-bn.jpg");
+            background-size: contain;  /* Подстраивает фон, сохраняя пропорции */
+            aspect-ratio: 16/9; /* Соотношение сторон для адаптации высоты */
         }
     }
 
@@ -34,6 +44,5 @@
     }
 
     &__img {
-      
-    }    
+    }
 }
