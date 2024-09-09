@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ContainerComponent } from '../../shared/container/container.component';
 import { Section1ProductSlideComponent } from "./section1-product-slide/section1-product-slide.component";
 import { Section2OurAdvantagesComponent } from "./section2-our-advantages/section2-our-advantages.component";
+import { Section2SaleComponent } from "./section3-sale/section3-sale.component";
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,8 @@ import { Section2OurAdvantagesComponent } from "./section2-our-advantages/sectio
   imports: [
     ContainerComponent,
     Section1ProductSlideComponent,
-    Section2OurAdvantagesComponent
+    Section2OurAdvantagesComponent,
+    Section2SaleComponent
 ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
