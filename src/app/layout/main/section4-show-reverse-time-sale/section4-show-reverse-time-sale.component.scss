@@ -1,6 +1,10 @@
-
+@import "variables.scss";
 .date-sale-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $border-color;
 }
