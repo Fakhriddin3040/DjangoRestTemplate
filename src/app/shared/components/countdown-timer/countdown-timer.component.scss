@@ -1,0 +1,13 @@
+.wrapperTime {
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+.wrapperTime div {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    width: 100px;
+}
