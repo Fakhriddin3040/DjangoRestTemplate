@@ -3,6 +3,7 @@ import { ContainerComponent } from '../../shared/container/container.component';
 import { Section1ProductSlideComponent } from "./section1-product-slide/section1-product-slide.component";
 import { Section2OurAdvantagesComponent } from "./section2-our-advantages/section2-our-advantages.component";
 import { Section3SaleComponent } from "./section3-sale/section3-sale.component";
+import { Section4ShowReverseTimeSaleComponent } from "./section4-show-reverse-time-sale/section4-show-reverse-time-sale.component";
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,8 @@ import { Section3SaleComponent } from "./section3-sale/section3-sale.component";
     ContainerComponent,
     Section1ProductSlideComponent,
     Section2OurAdvantagesComponent,
-    Section3SaleComponent
+    Section3SaleComponent,
+    Section4ShowReverseTimeSaleComponent
 ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
