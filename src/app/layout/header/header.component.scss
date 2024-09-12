@@ -1,21 +1,17 @@
-@import 'variables.scss';
+@import "variables.scss";
 
-/* Стили для блока header__banner */
 .header__banner {
   height: auto;
   display: flex;
   justify-content: space-between;
-
   background-size: cover;
   background-position: center;
   cursor: pointer;
 
-  &__item {
-    position: relative;
-
+  .header__banner-item {
     &--image {
       flex: 1 1 50%;
-
+      
       img {
         width: 100%;
         height: auto;
@@ -25,11 +21,12 @@
 
     &--text {
       flex: 1 1 50%;
-
+      
       img {
         width: 100%;
         height: auto;
         display: block;
+        
       }
     }
   }
@@ -62,11 +59,10 @@
 
       cursor: pointer;
       &:nth-child(-n + 3) {
-        border-right: 1px solid black; /* Черная правая граница */
+        border-right: 1px solid black;
       }
     }
     &-select {
-
       mat-select {
         &:hover {
           color: $menu-hover-text-color;
@@ -77,10 +73,7 @@
             -1px 1px 0 $menu-hover-text-border;
         }
       }
-      
     }
-
-
 
     a {
       text-decoration: none;
@@ -110,7 +103,6 @@
   }
 }
 
-/* Стили для блока header__utilities */
 .header__utilities {
   display: flex;
   justify-content: space-between;
@@ -126,7 +118,7 @@
     flex: 0 0 50%;
 
     &-input-group {
-      margin-bottom: 0 !important; /* Переопределение отступа */
+      margin-bottom: 0 !important;
     }
   }
 
@@ -134,7 +126,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     > .bi {
       font-size: 35px;
       cursor: pointer;
@@ -160,7 +152,7 @@
     display: flex;
     align-items: start;
     flex-direction: column;
-    
+
     > div {
       margin: 0;
       padding: 0;
@@ -168,8 +160,6 @@
       align-items: center;
       justify-content: center;
     }
-
-
 
     a {
       color: black;
@@ -209,8 +199,7 @@
 .header__menu {
   display: flex;
   justify-content: space-between;
-  
-  
+
   &__menu-section {
   }
 }
