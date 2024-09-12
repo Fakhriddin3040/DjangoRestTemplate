@@ -1,5 +1,85 @@
 @import "variables.scss";
 
-.clothingApparel {
+.section6-container {
     background: $background-color;
+    margin-top: 20px;
+}
+
+.clothing-apparel {
+    display: flex;
+    justify-content: space-between;
+
+    &__menu-banner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__menu-list {
+        display: block;
+        flex-direction: column;
+        border: 1px solid red;
+        a {
+            display: flex;
+
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            margin: 4px;
+            border: 1px solid red;
+        }
+    }
+
+    &__menu-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    &__menu-link {
+        color: #333;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__banner {
+        background: url("../../../../assets/images/catalog/Promotions-01-2x.jpg");
+        background-size: cover;
+        width: 300px; /* Ширина блока по размеру изображения */
+        height: 600px; /* Высота блока по размеру изображения */
+    }
+
+    &__product-cards {
+        
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid red;
+    }
+
+    &__product-card {
+        
+    }
+}
+
+/*-----------------slide--------------------------*/
+
+.swiper {
+    
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: calc((100% - 30px) / 2) !important; /* Высота слайда для двух рядов */
+
+    /* Центрирование текста внутри слайда */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red; /* Добавлено для наглядности, удалите если не нужно */
 }
