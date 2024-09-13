@@ -52,7 +52,7 @@ export class Section6ClothingApparelComponent implements OnInit, AfterViewInit {
         grid: {
           rows: 2,
         },
-        spaceBetween: 5,
+        
         pagination: {
           el: ".swiper-pagination",
           clickable: true,

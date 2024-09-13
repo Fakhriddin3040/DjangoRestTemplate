@@ -2,13 +2,21 @@
 
 .section6-container {
     background: $background-color;
-    margin-top: 20px;
+    
+    border: 2px solid transparent;
+    .container-section6-container{        
+        margin-top: 40px;
+        
+        
+    }
 }
+
 
 .clothing-apparel {
     display: flex;
     justify-content: space-between;
-
+    
+    background:  white;
     &__menu-banner {
         display: flex;
         justify-content: space-between;
@@ -17,7 +25,7 @@
     &__menu-list {
         display: block;
         flex-direction: column;
-        border: 1px solid red;
+        
         a {
             display: flex;
 
@@ -46,19 +54,19 @@
     &__banner {
         background: url("../../../../assets/images/catalog/Promotions-01-2x.jpg");
         background-size: cover;
-        width: 300px; /* Ширина блока по размеру изображения */
-        height: 600px; /* Высота блока по размеру изображения */
+        width: 300px;
+        height: 600px;
     }
 
     &__product-cards {
         
         display: flex;
         flex-wrap: wrap;
-        border: 2px solid red;
+        
     }
 
     &__product-card {
-        
+       
     }
 }
 
@@ -75,11 +83,55 @@
     text-align: center;
     font-size: 18px;
     background: #fff;
-    height: calc((100% - 30px) / 2) !important; /* Высота слайда для двух рядов */
+    height: calc((100% - 30px) / 2) !important; 
 
-    /* Центрирование текста внутри слайда */
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red; /* Добавлено для наглядности, удалите если не нужно */
+    border: 1px solid $background-color;
 }
+
+
+.swiper-wrapper {
+   
+    .swiper-slide:nth-child(1) .product-card_foto {
+     background: url('../../../../assets/images/layout05/s03.jpg');
+     background-size: cover;
+     height: 100%;
+     width: 100%;
+     flex: 1 1 70%;
+
+     border: 2px solid green;
+    }
+    .swiper-slide:nth-child(1) {
+        
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        
+        .product-card_info {
+            width: 100%;
+            border: 2px solid green;
+            flex: 1 1 30%;
+        }
+       }
+  
+    .swiper-slide:nth-child(2) .product-card_foto {
+      
+    }
+  
+    .swiper-slide:nth-child(3) .product-card_foto {
+      
+    }
+  
+    .swiper-slide:nth-child(4) .product-card_foto {
+      
+    }
+  
+    
+    .swiper-slide:nth-child(5) .product-card_foto {
+      
+    }
+  }
