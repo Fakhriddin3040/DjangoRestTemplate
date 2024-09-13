@@ -28,7 +28,6 @@
         
         a {
             display: flex;
-
             margin-bottom: 10px;
             text-decoration: none;
             color: #333;
@@ -58,11 +57,9 @@
         height: 600px;
     }
 
-    &__product-cards {
-        
+    &__product-cards {        
         display: flex;
-        flex-wrap: wrap;
-        
+        flex-wrap: wrap;        
     }
 
     &__product-card {
