@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from
 import { isPlatformBrowser } from '@angular/common';
 import { ContainerComponent } from "../../../shared/container/container.component";
 
+
 @Component({
   selector: 'app-section6-clothing-apparel',
   standalone: true,
@@ -41,6 +42,13 @@ export class Section6ClothingApparelComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.scriptLoaded) {
       this.initializeSwiper();
+    }
+
+    if (isPlatformBrowser(this.platformId)) {
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new (window as any).bootstrap.Tooltip(tooltipTriggerEl);
+      });
     }
   }
 
