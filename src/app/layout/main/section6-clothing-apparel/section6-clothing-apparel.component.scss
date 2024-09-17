@@ -99,7 +99,7 @@
      width: 100%;
      flex: 1 1 70%;
 
-     border: 2px solid green;
+     
     }
     .swiper-slide:nth-child(1) {
         
@@ -110,8 +110,16 @@
         
         .product-card_info {
             width: 100%;
-            border: 2px solid green;
+            
             flex: 1 1 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            padding: 5px;
+           
+        }
+        .product-card_info > *{
+            margin-top: 3px;
         }
        }
   
