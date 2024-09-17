@@ -1,21 +1,18 @@
-from http import HTTPMethod
-
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
-
-from src.apps.auth.models.user import User
-from src.apps.auth.serializers.user import UserCreateSerializer, UserListSerializer
+from src.base.views import use_case_generics
+from ..serializers import user as user_serializers
+from ..use_cases import user_use_cases
+from ..params import params
 
 
-class UserAPIView(viewsets.ModelViewSet):
-    model = User
-    queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
+class UserLoginAPIView(use_case_generics.UseCaseCreateAPIView):
+    create_serializer_class = user_serializers.UserLoginSerializer
+    create_params_class = params.UserLoginParams
+    create_use_case_class = user_use_cases.UserLoginUseCase
+    list_serializer_class = user_serializers.UserLoginResponseSerializer
 
-    create_serializer = UserCreateSerializer
-    list_serializer = UserListSerializer
 
-    def get_serializer_class(self):
-        if self.request.method == HTTPMethod.GET:
-            return self.list_serializer
-        return self.create_serializer
+class UserRegisterAPIView(use_case_generics.UseCaseCreateAPIView):
+    create_serializer_class = user_serializers.UserRegisterSerializer
+    create_params_class = params.UserRegister
+    create_use_case_class = user_use_cases.UserRegisterUseCase
+    list_serializer_class = user_serializers.UserListSerializer

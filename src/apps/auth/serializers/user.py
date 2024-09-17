@@ -1,33 +1,44 @@
 from rest_framework import serializers
 
-from src.apps.auth.models.user import User
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
 
 
-class UserListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = (
-            "username",
-            "email",
-            "first_name",
-            "last_name",
-        )
+class UserRegisterSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
+    phone_number = serializers.CharField(required=False)
+    birth_date = serializers.DateField(required=False)
 
 
-class UserCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = (
-            "username",
-            "email",
-            "first_name",
-            "last_name",
-            "password",
-        )
+class UserChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField()
+    new_password = serializers.CharField()
+    confirm_password = serializers.CharField()
 
-    def create(self, validated_data):
-        password = validated_data.pop("password")
-        user: User = super().create(validated_data)
-        user.set_password(password)
-        user.save()
-        return user
+
+class UserUpdateSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=False)
+    password = serializers.CharField(required=False)
+    phone_number = serializers.CharField(required=False)
+    username = serializers.CharField(required=False)
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
+
+
+class UserListSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    email = serializers.EmailField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    phone_number = serializers.CharField()
+    birth_date = serializers.DateField()
+
+
+class UserLoginResponseSerializer(serializers.Serializer):
+    refresh = serializers.CharField(source="__str__")
+    access = serializers.CharField(source="access_token")

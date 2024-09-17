@@ -6,27 +6,43 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+#! ========== STATIC FILES ==========
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+STATIC_URL = "static/"
+MEDIA_URL = "media/"
+STATIC_ROOT = BASE_DIR / STATIC_URL
+MEDIA_ROOT = BASE_DIR / MEDIA_URL
+
+
+#! ========== ENV VARIABLES ==========
+
+#! ENVIRONMENT = development | testing | production
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-
-DEBUG = True
-
+ENVIRONMENT = os.getenv("ENVIRONMENT")
+DEBUG = ENVIRONMENT in ["development", "testing"]
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
+#! ========== LOCALIZATION ==========
+
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
-STATIC_URL = "static/"
 
+#! ========== CORS ==========
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS").split(",")
+
+
+#! ========== DJANGO SETTINGS ==========
+WSGI_APPLICATION = "src.config.wsgi.application"
+ASGI_APPLICATION = "src.config.asgi.application"
+ROOT_URLCONF = "src.config.urls"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 AUTH_USER_MODEL = "authorization.User"
+
+#! ========== APPLICATIONS ==========
 
 
 INSTALLED_APPS = [
@@ -41,20 +57,28 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "django",
     "rest_framework_simplejwt",
+    "corsheaders",
     # Local apps
     "src.apps.auth",
     "src.apps.api",
 ]
+
+
+#! ========== MIDDLEWARE ==========
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 TEMPLATES = [
     {
@@ -72,9 +96,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "src.config.wsgi.application"
-ASGI_APPLICATION = "src.config.asgi.application"
-ROOT_URLCONF = "src.config.urls"
+
+#! ========== DATABASES ==========
+
 
 DATABASES = {
     "default": {
@@ -98,6 +122,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+#! ========== INTERNATIONALIZATION ==========
+
+
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
@@ -116,7 +144,12 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
+
+#! ========== AUTHENTICATION ==========
+
+
 SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("Bearer",),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "UPDATE_LAST_LOGIN": True,
@@ -128,7 +161,12 @@ SIMPLE_JWT = {
     "TOKEN_BLACKLIST_SERIALIZER": None,
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": None,
     "SLIDING_TOKEN_REFRESH_SERIALIZER": None,
+    "ISSUER": "http://localhost:8080/realms/master",
 }
+
+
+#! ========== DOCS ==========
+
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Your API",
