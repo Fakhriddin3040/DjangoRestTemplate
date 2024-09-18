@@ -1,12 +1,13 @@
 import { Component, OnInit, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ContainerComponent } from "../../../shared/container/container.component";
+import { ButtonShopNowComponent } from "../../../shared/components/buttons/button-shop-now/button-shop-now.component";
 
 
 @Component({
   selector: 'app-section7-computer-techologies',
   standalone: true,
-  imports: [ContainerComponent],
+  imports: [ContainerComponent, ButtonShopNowComponent],
   templateUrl: './section7-computer-techologies.component.html',
   styleUrl: './section7-computer-techologies.component.scss'
 })
