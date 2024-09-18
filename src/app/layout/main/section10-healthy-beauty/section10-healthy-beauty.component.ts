@@ -4,13 +4,13 @@ import { ContainerComponent } from '../../../shared/container/container.componen
 import { ButtonShopNowComponent } from '../../../shared/components/buttons/button-shop-now/button-shop-now.component';
 
 @Component({
-  selector: 'app-section9-home-garden-kitchen',
+  selector: 'app-section10-healthy-beauty',
   standalone: true,
   imports: [ContainerComponent, ButtonShopNowComponent],
-  templateUrl: './section9-home-garden-kitchen.component.html',
-  styleUrl: './section9-home-garden-kitchen.component.scss'
+  templateUrl: './section10-healthy-beauty.component.html',
+  styleUrl: './section10-healthy-beauty.component.scss'
 })
-export class Section9HomeGardenKitchenComponent implements OnInit, AfterViewInit {
+export class Section10HealthyBeautyComponent implements OnInit, AfterViewInit {
   private scriptLoaded = false;
 
   constructor(

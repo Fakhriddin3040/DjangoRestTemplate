@@ -9,6 +9,7 @@ import { Section6ClothingApparelComponent } from "./section6-clothing-apparel/se
 import { Section7ComputerTechologiesComponent } from "./section7-computer-techologies/section7-computer-techologies.component";
 import { Section8ConsumerElectricComponent } from "./section8-consumer-electric/section8-consumer-electric.component";
 import { Section9HomeGardenKitchenComponent } from "./section9-home-garden-kitchen/section9-home-garden-kitchen.component";
+import { Section10HealthyBeautyComponent } from "./section10-healthy-beauty/section10-healthy-beauty.component";
 
 @Component({
   selector: 'app-main',
@@ -23,7 +24,8 @@ import { Section9HomeGardenKitchenComponent } from "./section9-home-garden-kitch
     Section6ClothingApparelComponent,
     Section7ComputerTechologiesComponent,
     Section8ConsumerElectricComponent,
-    Section9HomeGardenKitchenComponent
+    Section9HomeGardenKitchenComponent,
+    Section10HealthyBeautyComponent
 ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
