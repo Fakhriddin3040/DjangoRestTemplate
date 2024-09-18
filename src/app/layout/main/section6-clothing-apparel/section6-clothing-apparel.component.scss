@@ -24,6 +24,10 @@
         flex-direction: column;        
         justify-content: flex-start;
         position: relative;
+        cursor: pointer;
+        > div p:hover, a:hover {
+            color: $menu-hover-text-color;
+        }
         div:nth-child(1) {
             margin-top: 20px;
             margin-bottom: 20px;
@@ -155,6 +159,9 @@
             padding: 5px;
 
             .rating > .bi {
+                color: $menu-hover-text-color;
+            }
+            p:hover {
                 color: $menu-hover-text-color;
             }
         }

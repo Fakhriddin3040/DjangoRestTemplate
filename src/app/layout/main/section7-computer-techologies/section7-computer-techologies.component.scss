@@ -4,8 +4,8 @@
     background: $background-color;
 
     border: 2px solid transparent;
-    .container-section6-container {
-        margin-top: 40px;
+    .container-section7-container {
+    margin-top: 40px;
     }
 }
 
@@ -21,15 +21,20 @@
 
     &__menu-list {
         display: flex;
-        flex-direction: column;        
+        flex-direction: column;
         justify-content: flex-start;
         position: relative;
+        cursor: pointer;
+        > div p:hover,
+        a:hover {
+            color: $menu-hover-text-color;
+        }
         div:nth-child(1) {
             margin-top: 20px;
             margin-bottom: 20px;
         }
         div:last-child {
-            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-family: Georgia, "Times New Roman", Times, serif;
             margin-top: auto;
             a {
                 color: blue;
@@ -155,6 +160,9 @@
             padding: 5px;
 
             .rating > .bi {
+                color: $menu-hover-text-color;
+            }
+            p:hover {
                 color: $menu-hover-text-color;
             }
         }
