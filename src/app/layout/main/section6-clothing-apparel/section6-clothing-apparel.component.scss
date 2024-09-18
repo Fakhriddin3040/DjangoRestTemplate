@@ -24,6 +24,7 @@
         flex-direction: column;        
         justify-content: flex-start;
         position: relative;
+        width: 200px;
         cursor: pointer;
         > div p:hover, a:hover {
             color: $menu-hover-text-color;
@@ -36,7 +37,7 @@
             font-family:Georgia, 'Times New Roman', Times, serif;
             margin-top: auto;
             a {
-                color: blue;
+                color: grey;
             }
         }
         > * {

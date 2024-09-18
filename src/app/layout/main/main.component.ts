@@ -7,6 +7,7 @@ import { Section4ShowReverseTimeSaleComponent } from "./section4-show-reverse-ti
 import { Section5SlideSaleComponent } from "./section5-slide-sale/section5-slide-sale.component";
 import { Section6ClothingApparelComponent } from "./section6-clothing-apparel/section6-clothing-apparel.component";
 import { Section7ComputerTechologiesComponent } from "./section7-computer-techologies/section7-computer-techologies.component";
+import { Section8ConsumerElectricComponent } from "./section8-consumer-electric/section8-consumer-electric.component";
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,8 @@ import { Section7ComputerTechologiesComponent } from "./section7-computer-techol
     Section4ShowReverseTimeSaleComponent,
     Section5SlideSaleComponent,
     Section6ClothingApparelComponent,
-    Section7ComputerTechologiesComponent
+    Section7ComputerTechologiesComponent,
+    Section8ConsumerElectricComponent
 ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
