@@ -5,7 +5,7 @@
 
     border: 2px solid transparent;
     .container-section7-container {
-    margin-top: 40px;
+        margin-top: 40px;
     }
 }
 
@@ -75,6 +75,51 @@
         align-items: end;
         justify-content: center;
         padding-bottom: 20%;
+        position: relative;
+        cursor: pointer;
+      
+        
+        button {
+          position: relative;
+          z-index: 3;
+        }
+      
+        // Плёнка 1 (сверху вниз по диагонали)
+        .overlay1 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5); // Полупрозрачная плёнка
+          z-index: 1;
+          transform: scale(0); // Скрыт по умолчанию
+          transform-origin: top left; // Точка начала анимации (сверху слева)
+          transition: transform 0.5s ease; // Плавная анимация
+        }
+      
+        // Плёнка 2 (снизу вверх по диагонали)
+        .overlay2 {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(255, 255, 255, 0.3); // Полупрозрачная белая плёнка
+          z-index: 2;
+          transform: scale(0); // Скрыт по умолчанию
+          transform-origin: bottom right; // Точка начала анимации (снизу справа)
+          transition: transform 0.5s ease; // Плавная анимация
+        }
+      
+        // Эффект при наведении
+        &:hover .overlay1 {
+          transform: scale(1); // При наведении первая плёнка появляется
+        }
+      
+        &:hover .overlay2 {
+          transform: scale(1); // При наведении вторая плёнка появляется
+        }
     }
 
     &__product-cards {
