@@ -1,0 +1,1 @@
+declare module '@abacritt/angularx-social-login';
