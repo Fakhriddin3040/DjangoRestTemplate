@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Output, ViewChild, AfterViewInit   } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { ContainerComponent } from '../../shared/container/container.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';  // Подключение NgbModal
-import { LoginComponent } from '../../auth/login/login.component';  // Импорт компонента входа
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // Подключение NgbModal
+import { LoginComponent } from '../../auth/login/login.component';
+import { InfoUserComponent } from "../../user/info-user/info-user.component"; // Импорт компонента входа
+import { CommonModule } from '@angular/common'; // Импорт CommonModule
 
-
+import { AuthService } from '../../core/services/auth.service'; 
 
 @Component({
   selector: 'app-header',
@@ -21,16 +23,17 @@ import { LoginComponent } from '../../auth/login/login.component';  // Импо�
     MatMenuModule,
     MatIconModule,
     ContainerComponent,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    LoginComponent
+    LoginComponent,
+    InfoUserComponent,
+    CommonModule // Добавляем CommonModule сюда
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   
   imageUrl = 'assets/images/promo/promo1.png';
   imageUrl2 = 'assets/images/promo/promo2.png';
@@ -39,14 +42,26 @@ export class HeaderComponent {
   @ViewChild('loginModal') loginModal: any;
   @Output() loginClick = new EventEmitter<void>();
 
-   constructor(private modalService: NgbModal, private router: Router) {}  // Добавляем NgbModal
+   constructor(
+    private modalService: NgbModal, 
+    private router: Router,
+    private authService: AuthService // исправление ошибки, добавив модификатор private
+    ) {}  
 
-  
   navigateToLogin() {
     console.log('navigateToLogin method called');
     const loginComponent = document.getElementById('content');
     if (loginComponent) {
       this.modalService.open(loginComponent, { centered: true });
     }
+  }
+
+  isUserLoggedIn = false;
+
+  ngOnInit(): void {
+    // Подписываемся на изменения состояния авторизации
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isUserLoggedIn = loggedIn;
+    });
   }
 }

@@ -75,8 +75,8 @@
         <div class="header__utilities-user">
           <i class="header__utilities-icon bi bi-person"></i>
           <div class="header__utilities-user-actions">      
-              
-              <app-login></app-login>
+            <app-info-user *ngIf="isUserLoggedIn"></app-info-user>
+            <app-login *ngIf="!isUserLoggedIn" (click)="navigateToLogin()"></app-login>
             <div class="header__utilities-  ">
               <a href="#">Register</a>
             </div>

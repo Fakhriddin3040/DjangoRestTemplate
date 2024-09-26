@@ -7,10 +7,11 @@ import {
   OnInit,
   inject,
   PLATFORM_ID,
+  
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,11 +22,11 @@ import { isPlatformBrowser } from '@angular/common';
 export class LoginComponent implements AfterViewInit, OnInit {
 
   private platformId = inject(PLATFORM_ID);
-  private router = inject(Router);
+  
 
   @ViewChild('content') content!: TemplateRef<any>;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private authService: AuthService) {}
 
   ngAfterViewInit() {
     // Проверка, что шаблон инициализирован
@@ -63,7 +64,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
         google.accounts.id.initialize({
           client_id: '409809896736-fckja2ujg9itegt7r06k2itrt409472a.apps.googleusercontent.com',
           callback: (response: any) => {
-            this.handlelogin(response);
+            this.handlelogin(response); // Обработка логина
             return false;
           },
         });
@@ -110,16 +111,13 @@ export class LoginComponent implements AfterViewInit, OnInit {
       try {
         const payload = this.decoderToken(response.credential);
         if (isPlatformBrowser(this.platformId)) {
-          sessionStorage.setItem(
-            'loggedInUser',
-            JSON.stringify({
-              name: payload.name,
-              email: payload.email,
-              picture: payload.picture,
-            })
-          );
+          // Используем AuthService для обновления состояния
+          this.authService.setLoggedInUser({
+            name: payload.name,
+            email: payload.email,
+            picture: payload.picture,
+          }, response.credential);
         }
-        this.router.navigate(['browse']);
       } catch (error) {
         console.error('Error handling login response:', error);
       }
