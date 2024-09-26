@@ -4,11 +4,10 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <!-- Ваш контент -->
+    <div id="googleSignInButtonModal"></div> <!-- Место для кнопки Google -->
   </div>
 </ng-template>
 
-<!-- Логин ссылка -->
 <div class="header__utilities-login">
   <a (click)="navigateToLogin()">Log in</a>
 </div>
