@@ -1,36 +1,5 @@
 @import "variables.scss";
 
-.header__banner {
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-
-  .header__banner-item {
-    &--image {
-      flex: 1 1 50%;
-      
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-    }
-
-    &--text {
-      flex: 1 1 50%;
-      
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-        
-      }
-    }
-  }
-}
 
 .header-options {
   display: flex;
@@ -202,8 +171,4 @@
   justify-content: space-between;
 
 
-}
-
-.header-container {
-  background-image: url("../../../assets/images/promo/partent-top.jpg");
 }

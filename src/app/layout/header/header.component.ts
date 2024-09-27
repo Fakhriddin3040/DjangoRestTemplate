@@ -13,7 +13,8 @@ import { LoginComponent } from '../../auth/login/login.component';
 import { InfoUserComponent } from "../../user/info-user/info-user.component"; // Импорт компонента входа
 import { CommonModule } from '@angular/common'; // Импорт CommonModule
 
-import { AuthService } from '../../core/services/auth.service'; 
+import { AuthService } from '../../core/services/auth.service';
+import { Section1BannerComponent } from "./header-section1-banner/header-section1-banner.component"; 
 
 @Component({
   selector: 'app-header',
@@ -29,7 +30,9 @@ import { AuthService } from '../../core/services/auth.service';
     LoginComponent,
     InfoUserComponent,
     CommonModule // Добавляем CommonModule сюда
-  ],
+    ,
+    Section1BannerComponent
+],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
