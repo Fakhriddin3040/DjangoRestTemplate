@@ -3,44 +3,8 @@
 
   <app-container>
     <app-header-section2-option></app-header-section2-option>
+    <app-header-section3-utilities></app-header-section3-utilities>
 
-    <div class="header__utilities">
-      <div class="header__utilities-logo">
-        <img src="" alt="logo" />
-      </div>
-      <div class="header__utilities-search-form">
-        <div class="header__utilities-search-form-input-group input-group mb-3">
-          <input
-            type="text"
-            class="header__utilities-search-form-input form-control"
-            placeholder="I`m looking for..."
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
-          />
-          <button
-            class="header__utilities-search-form-button btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-      <div class="header__utilities-icons">
-        <i class="header__utilities-icon bi bi-heart"></i>
-        <i class="header__utilities-icon bi bi-handbag"></i>
-        <div class="header__utilities-user">
-          <i class="header__utilities-icon bi bi-person"></i>
-          <div class="header__utilities-user-actions">      
-            <app-info-user *ngIf="isUserLoggedIn"></app-info-user>
-            <app-login *ngIf="!isUserLoggedIn" (click)="navigateToLogin()"></app-login>
-            <div class="header__utilities-  ">
-              <a href="#">Register</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </app-container>
 
 

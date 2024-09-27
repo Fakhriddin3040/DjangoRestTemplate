@@ -1,0 +1,90 @@
+@import "variables.scss";
+.header__utilities {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    flex: 0 0 25%;
+  
+    &-search-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      flex: 0 0 50%;
+  
+      &-input-group {
+        margin-bottom: 0 !important;
+      }
+    }
+  
+    &-icons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      > .bi {
+        font-size: 35px;
+        cursor: pointer;
+        &:hover {
+          color: $menu-hover-text-color;
+          text-shadow:
+            1px 1px 0 $menu-hover-text-border,
+            -1px -1px 0 $menu-hover-text-border,
+            1px -1px 0 $menu-hover-text-border,
+            -1px 1px 0 $menu-hover-text-border;
+        }
+      }
+      > div {
+        display: flex;
+        align-items: center;
+        .bi {
+          font-size: 35px;
+        }
+      }
+      flex: 0 0 25%;
+    }
+    &-user-actions {
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+  
+      > div {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      a {
+        color: black;
+        font-size: small;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        cursor: pointer;
+        &:hover {
+          color: $menu-hover-text-color;
+          text-shadow:
+            1px 1px 0 $menu-hover-text-border,
+            -1px -1px 0 $menu-hover-text-border,
+            1px -1px 0 $menu-hover-text-border,
+            -1px 1px 0 $menu-hover-text-border;
+        }
+      }
+  
+      > div:nth-child(2) > a {
+        color: grey;
+        &:hover {
+          color: $menu-hover-text-color;
+          text-shadow:
+            1px 1px 0 $menu-hover-text-border,
+            -1px -1px 0 $menu-hover-text-border,
+            1px -1px 0 $menu-hover-text-border,
+            -1px 1px 0 $menu-hover-text-border;
+        }
+      }
+    }
+  }
