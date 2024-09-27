@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { ContainerComponent } from "../../../shared/container/container.component";
 
 @Component({
   selector: 'app-header-section3-utilities',
@@ -12,9 +13,9 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     InfoUserComponent,
-    LoginComponent
-
-  ],
+    LoginComponent,
+    ContainerComponent
+],
   templateUrl: './header-section3-utilities.component.html',
   styleUrls: ['./header-section3-utilities.component.scss']
 })

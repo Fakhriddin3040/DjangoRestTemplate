@@ -1,33 +1,37 @@
-<div class="header-options">
-    <div class="header-options__title">
-      <p>Welcome to Martfury Online Store!</p>
-    </div>
-
-    <div class="header-options__currency">
-      <div class="header-options__currency-location">
-        <a href="#">Store Location</a>
+<app-container>
+    <div class="header-options">
+        <div class="header-options__title">
+          <p>Welcome to Martfury Online Store!</p>
+        </div>
+    
+        <div class="header-options__currency">
+          <div class="header-options__currency-location">
+            <a href="#">Store Location</a>
+          </div>
+    
+          <div class="header-options__currency-track">
+            <a href="#">Track Order</a>
+          </div>
+    
+          <!-- The button for selecting the currency -->
+          <div class="header-options__currency-select">
+            <mat-select [(value)]="selected">
+              <mat-option value="option1">USD</mat-option>
+              <mat-option value="option2">TJ</mat-option>
+              <mat-option value="option3">RU</mat-option>
+            </mat-select>
+          </div>
+    
+          <!-- Language selection button -->
+          <div class="header-options__language-select">
+            <mat-select [(value)]="selected">
+              <mat-option value="option1">English</mat-option>
+              <mat-option value="option2">Spanish</mat-option>
+              <mat-option value="option3">French</mat-option>
+            </mat-select>
+          </div>
+        </div>
       </div>
+</app-container>
 
-      <div class="header-options__currency-track">
-        <a href="#">Track Order</a>
-      </div>
 
-      <!-- The button for selecting the currency -->
-      <div class="header-options__currency-select">
-        <mat-select [(value)]="selected">
-          <mat-option value="option1">USD</mat-option>
-          <mat-option value="option2">TJ</mat-option>
-          <mat-option value="option3">RU</mat-option>
-        </mat-select>
-      </div>
-
-      <!-- Language selection button -->
-      <div class="header-options__language-select">
-        <mat-select [(value)]="selected">
-          <mat-option value="option1">English</mat-option>
-          <mat-option value="option2">Spanish</mat-option>
-          <mat-option value="option3">French</mat-option>
-        </mat-select>
-      </div>
-    </div>
-  </div>

@@ -5,7 +5,10 @@ import {MatButtonModule} from '@angular/material/button';
 @Component({
   selector: 'app-app-menu',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule],
+  imports: [
+    MatButtonModule,
+    MatMenuModule
+    ],
   templateUrl: './app-menu.component.html',
   styleUrl: './app-menu.component.scss'
 })
