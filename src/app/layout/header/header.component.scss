@@ -1,77 +1,6 @@
 @import "variables.scss";
 
 
-.header-options {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-
-  &__title {
-    display: flex;
-    align-items: center;
-
-    flex: 0 0 40%;
-    p {
-      margin: 0;
-    }
-  }
-
-  &__currency {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-
-    color: black;
-    flex: 0 0 50%;
-    > div {
-      padding: 0 15px;
-
-      cursor: pointer;
-      &:nth-child(-n + 3) {
-        border-right: 1px solid black;
-      }
-    }
-    &-select {
-      mat-select {
-        &:hover {
-          color: $menu-hover-text-color;
-          text-shadow:
-            1px 1px 0 $menu-hover-text-border,
-            -1px -1px 0 $menu-hover-text-border,
-            1px -1px 0 $menu-hover-text-border,
-            -1px 1px 0 $menu-hover-text-border;
-        }
-      }
-    }
-
-    a {
-      text-decoration: none;
-      color: black;
-      &:hover {
-        color: $menu-hover-text-color;
-        text-shadow:
-          1px 1px 0 $menu-hover-text-border,
-          -1px -1px 0 $menu-hover-text-border,
-          1px -1px 0 $menu-hover-text-border,
-          -1px 1px 0 $menu-hover-text-border;
-      }
-    }
-  }
-
-  &__language-select {
-    mat-select {
-      &:hover {
-        color: $menu-hover-text-color;
-        text-shadow:
-          1px 1px 0 $menu-hover-text-border,
-          -1px -1px 0 $menu-hover-text-border,
-          1px -1px 0 $menu-hover-text-border,
-          -1px 1px 0 $menu-hover-text-border;
-      }
-    }
-  }
-}
-
 .header__utilities {
   display: flex;
   justify-content: space-between;
@@ -169,6 +98,4 @@
 .header__menu {
   display: flex;
   justify-content: space-between;
-
-
 }

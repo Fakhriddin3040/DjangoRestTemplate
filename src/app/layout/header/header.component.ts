@@ -14,7 +14,8 @@ import { InfoUserComponent } from "../../user/info-user/info-user.component"; //
 import { CommonModule } from '@angular/common'; // Импорт CommonModule
 
 import { AuthService } from '../../core/services/auth.service';
-import { Section1BannerComponent } from "./header-section1-banner/header-section1-banner.component"; 
+import { Section1BannerComponent } from "./header-section1-banner/header-section1-banner.component";
+import { HeaderSection1OptionComponent } from "./header-section2-option/header-section2-option.component"; 
 
 @Component({
   selector: 'app-header',
@@ -29,17 +30,15 @@ import { Section1BannerComponent } from "./header-section1-banner/header-section
     MatInputModule,
     LoginComponent,
     InfoUserComponent,
-    CommonModule // Добавляем CommonModule сюда
-    ,
-    Section1BannerComponent
+    CommonModule,
+    Section1BannerComponent,
+    HeaderSection1OptionComponent
 ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   
-  imageUrl = 'assets/images/promo/promo1.png';
-  imageUrl2 = 'assets/images/promo/promo2.png';
   selected = 'option2';
 
   @ViewChild('loginModal') loginModal: any;
