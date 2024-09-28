@@ -1,49 +1,44 @@
 <button mat-button [matMenuTriggerFor]="animals">Shop By Department <i class="bi bi-caret-down-fill"></i></button>
 <mat-menu #animals="matMenu">
+  
   <button mat-menu-item [matMenuTriggerFor]="vertebrates">
-    <i class="fas fa-washing-machine"></i> Consumer Electric    
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M320-680q17 0 28.5-11.5T360-720q0-17-11.5-28.5T320-760q-17 0-28.5 11.5T280-720q0 17 11.5 28.5T320-680Zm120 0q17 0 28.5-11.5T480-720q0-17-11.5-28.5T440-760q-17 0-28.5 11.5T400-720q0 17 11.5 28.5T440-680Zm40 440q63 0 107.5-43T632-388q0-29-10-56.5T592-492L480-604 372-496q-22 22-33.5 50T328-388q2 62 46 105t106 43Zm0-76q-30 0-51-21t-21-51q0-15 5.5-28.5T430-441l50-50 49 49q11 11 17 25t6 29q0 30-21 51t-51 21ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm0-80h480v-640H240v640Zm0 0v-640 640Z"/></svg> 
+    Consumer Electric 
   </button>  
-  <button mat-menu-item>Organik</button>
-  <button mat-menu-item [matMenuTriggerFor]="vertebrates2">Vertebrates</button>
+  <button mat-menu-item><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-120q-117 0-198.5-81.5T200-400q0-94 55.5-168.5T401-669q-20-5-39-14.5T328-708q-33-33-42.5-78.5T281-879q47-5 92.5 4.5T452-832q23 23 33.5 52t13.5 61q13-31 31.5-58.5T572-828q11-11 28-11t28 11q11 11 11 28t-11 28q-22 22-39 48.5T564-667q88 28 142 101.5T760-400q0 117-81.5 198.5T480-120Zm0-80q83 0 141.5-58.5T680-400q0-83-58.5-141.5T480-600q-83 0-141.5 58.5T280-400q0 83 58.5 141.5T480-200Zm0-200Z"/></svg>
+     Organik
+    </button>
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates2"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M120-80v-80h320v80H120Zm560-40q-33 0-56.5-23.5T600-200H480q-17 0-28.5-11T440-239q-2-90 56-156.5T640-476v-404h80v404q87 14 144.5 80.5T920-239q0 17-11.5 28T880-200H760q0 33-23 56.5T680-120Zm-440-80v-320H80q-20 0-32-15.5T41-570l75-280q4-13 14.5-21.5T155-880h250q14 0 24.5 8.5T444-850l75 280q5 19-7 34.5T480-520H320v320h-80Zm284-80h312q-12-54-56-87t-100-33q-55 0-99 33t-57 87ZM132-600h296l-53-200H186l-54 200Zm148-100Zm400 360Z"/></svg>
+    Home, Gaden & Kitchen
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates3"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m240-522-40 22q-14 8-30 4t-24-18L66-654q-8-14-4-30t18-24l230-132h70q9 0 14.5 5.5T400-820v20q0 33 23.5 56.5T480-720q33 0 56.5-23.5T560-800v-20q0-9 5.5-14.5T580-840h70l230 132q14 8 18 24t-4 30l-80 140q-8 14-23.5 17.5T760-501l-40-20v361q0 17-11.5 28.5T680-120H280q-17 0-28.5-11.5T240-160v-362Zm80-134v456h320v-456l124 68 42-70-172-100q-15 51-56.5 84.5T480-640q-56 0-97.5-33.5T326-758L154-658l42 70 124-68Zm160 177Z"/></svg>
+    Clothing & Apparel
+  </button>
 </mat-menu>
 
-<mat-menu #vertebrates="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
-  <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-  <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
-  <button mat-menu-item>Birds</button>
-  <button mat-menu-item>Mammals</button>
+<mat-menu #vertebrates="matMenu">    
+  <button mat-menu-item>Electronics</button>
+  <button mat-menu-item>Home Audio & Theaters</button>
+  <button mat-menu-item>TV & Video</button>
+  <button mat-menu-item>Camera, Photos & Videos</button>
+  <button mat-menu-item>Headphones</button>
+  <button mat-menu-item>Car Electronics</button>
+  <button mat-menu-item>Electronics Show case</button>
 </mat-menu>
-
-<mat-menu #fish="matMenu">
-  <button mat-menu-item>Baikal oilfish</button>
-  <button mat-menu-item>Bala shark</button>
-  <button mat-menu-item>Ballan wrasse</button>
-  <button mat-menu-item>Bamboo shark</button>
-  <button mat-menu-item>Banded killifish</button>
-</mat-menu>
-
-<mat-menu #amphibians="matMenu">
-  <button mat-menu-item>Sonoran desert toad</button>
-  <button mat-menu-item>Western toad</button>
-  <button mat-menu-item>Arroyo toad</button>
-  <button mat-menu-item>Yosemite toad</button>
-</mat-menu>
-
-<mat-menu #reptiles="matMenu">
-  <button mat-menu-item>Banded Day Gecko</button>
-  <button mat-menu-item>Banded Gila Monster</button>
-  <button mat-menu-item>Black Tree Monitor</button>
-  <button mat-menu-item>Blue Spiny Lizard</button>
-  <button mat-menu-item disabled>Velociraptor</button>
-</mat-menu>
-
 
 
 <mat-menu #vertebrates2="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
-  <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-  <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
-  <button mat-menu-item>Birds</button>
-  <button mat-menu-item>Mammals</button>
+  <button mat-menu-item>Furniture</button>
+  <button mat-menu-item>Home Decor</button>
+  <button mat-menu-item>Cookware</button>
+  <button mat-menu-item>Utensils & Garden</button>
+  <button mat-menu-item>Garden Tools</button>
+</mat-menu>
+
+<mat-menu #vertebrates3="matMenu">
+  <button mat-menu-item>Furniture</button>
+  <button mat-menu-item>Home Decor</button>
+  <button mat-menu-item>Cookware</button>
+  <button mat-menu-item>Utensils & Garden</button>
+  <button mat-menu-item>Garden Tools</button>
 </mat-menu>
