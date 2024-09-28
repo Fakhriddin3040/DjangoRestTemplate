@@ -16,7 +16,7 @@ class AbstractDjangoRepository(types.AbstractGenericClass[types.TModel]):
         return self.model.objects.create(**params.__dict__)
 
     def update(self, pk: int, params: types.BaseParams) -> int:
-        return self.model.objects.filter(pk=pk).update(**params.dict())
+        return self.model.objects.filter(pk=pk).update(**params.__dict__)
 
     def delete(self, pk: int) -> bool:
         return bool(self.model.objects.filter(pk=pk).delete())

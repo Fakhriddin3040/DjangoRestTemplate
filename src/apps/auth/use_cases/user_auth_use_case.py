@@ -13,7 +13,7 @@ class UserLoginUseCase:
 
     def execute(self, params: params.UserLoginParams) -> Token:
         user = self.user_service.get_by_email(email=params.email)
-        if user is None or not user.check_password(params.password):
+        if user is None or not self.user_service.check_password(params.password):
             raise Exception("Invalid credentials")
         return self._token_for_user(user)
 

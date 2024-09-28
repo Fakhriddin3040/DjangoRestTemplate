@@ -83,7 +83,7 @@ class UpdateAPIViewBase(
 
 
 class DestroyAPIViewBase(
-    ModelDetailAPIView,
+    ModelDetailAPIView
 ):
     http_method_names = [HTTPMethod.DELETE.lower()]
 
