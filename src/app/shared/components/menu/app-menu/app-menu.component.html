@@ -1,7 +1,9 @@
 <button mat-button [matMenuTriggerFor]="animals">Shop By Department <i class="bi bi-caret-down-fill"></i></button>
 <mat-menu #animals="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
-  <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Consumer Electric</button>
+  
+  <button mat-menu-item>Organik</button>
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates2">Vertebrates</button>
 </mat-menu>
 
 <mat-menu #vertebrates="matMenu">
@@ -10,16 +12,6 @@
   <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
   <button mat-menu-item>Birds</button>
   <button mat-menu-item>Mammals</button>
-</mat-menu>
-
-<mat-menu #invertebrates="matMenu">
-  <button mat-menu-item>Insects</button>
-  <button mat-menu-item>Molluscs</button>
-  <button mat-menu-item>Crustaceans</button>
-  <button mat-menu-item>Corals</button>
-  <button mat-menu-item>Arachnids</button>
-  <button mat-menu-item>Velvet worms</button>
-  <button mat-menu-item>Horseshoe crabs</button>
 </mat-menu>
 
 <mat-menu #fish="matMenu">
@@ -43,4 +35,14 @@
   <button mat-menu-item>Black Tree Monitor</button>
   <button mat-menu-item>Blue Spiny Lizard</button>
   <button mat-menu-item disabled>Velociraptor</button>
+</mat-menu>
+
+
+
+<mat-menu #vertebrates2="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+  <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+  <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
 </mat-menu>
