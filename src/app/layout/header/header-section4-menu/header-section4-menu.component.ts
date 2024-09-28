@@ -4,11 +4,12 @@ import { AppMenuComponent } from "../../../shared/components/menu/app-menu/app-m
 import { MenuHomeLayoutComponent } from "../../../shared/components/menu/menu-home-layout/menu-home-layout.component";
 import { MenuCategoryComponent } from "../../../shared/components/menu/menu-category/menu-category.component";
 import { MenuProductComponent } from "../../../shared/components/menu/menu-product/menu-product.component";
+import { MenuBlogComponent } from "../../../shared/components/menu/menu-blog/menu-blog.component";
 
 @Component({
   selector: 'app-header-section4-menu',
   standalone: true,
-  imports: [ContainerComponent, AppMenuComponent, MenuHomeLayoutComponent, MenuCategoryComponent, MenuProductComponent],
+  imports: [ContainerComponent, AppMenuComponent, MenuHomeLayoutComponent, MenuCategoryComponent, MenuProductComponent, MenuBlogComponent],
   templateUrl: './header-section4-menu.component.html',
   styleUrl: './header-section4-menu.component.scss'
 })
