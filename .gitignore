@@ -66,3 +66,5 @@ db*
 .ruff_cache/
 .trunk/
 db.sql*
+
+static/
