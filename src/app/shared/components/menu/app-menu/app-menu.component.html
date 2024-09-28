@@ -1,7 +1,8 @@
 <button mat-button [matMenuTriggerFor]="animals">Shop By Department <i class="bi bi-caret-down-fill"></i></button>
 <mat-menu #animals="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Consumer Electric</button>
-  
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">
+    <i class="fas fa-washing-machine"></i> Consumer Electric    
+  </button>  
   <button mat-menu-item>Organik</button>
   <button mat-menu-item [matMenuTriggerFor]="vertebrates2">Vertebrates</button>
 </mat-menu>
