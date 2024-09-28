@@ -1,0 +1,35 @@
+version '3.8'
+
+services:
+  marketplace:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    container_name: marketplace
+    volumes:
+      - marketplace-build:/app/build
+    networks:
+      - marketplace-network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+      container_name: nginx
+      ports:
+        - "80:80"
+      volumes:
+        - marketplace-build:/usr/share/nginx/html
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      depends_on:
+        - marketplace
+      networks:
+        - marketplace-network
+    
+volumes:
+  marketplace-build:
+
+networks:
+  marketplace-network:
+    driver: bridge

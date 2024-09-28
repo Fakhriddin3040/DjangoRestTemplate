@@ -1,17 +1,15 @@
 FROM node:20-alpine as build
 
-WORKDIR /marketplace
+WORKDIR /app
 
-COPY . /marketplace
+COPY package*.json ./
 
 RUN npm install --force
 
-RUN npm run build
+COPY . .
 
-FROM nginx:1.17.1-alpine
+RUN npm run build --prod
 
-COPY --from=build /marketplace/dist/marketplace /usr/share/nginx/html
+RUN mv /app/dist /app/build
 
-COPY ./nginx/nginx.conf  /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
+RUN mv /app/build /app
