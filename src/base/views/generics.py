@@ -8,7 +8,7 @@ from src.base.abstractions.repositories import base_django_repository
 from src.base.mixins import mixins
 
 
-class ModelDetailView(views.APIView):
+class ModelDetailAPIView(views.APIView):
     http_method_names = [HTTPMethod.GET.lower()]
     lookup_field = "pk"
     lookup_url_kwarg = "pk"
@@ -57,7 +57,7 @@ class ListAPIViewBase(PaginatedAPIViewBase):
         """Your action here."""
 
 
-class RetrieveAPIViewBase(ModelDetailView):
+class RetrieveAPIViewBase(ModelDetailAPIView):
     http_method_names = [HTTPMethod.GET.lower()]
 
     def get(self, request, *args, **kwargs) -> Response:
@@ -74,7 +74,7 @@ class CreateAPIViewBase(
 
 
 class UpdateAPIViewBase(
-    ModelDetailView,
+    ModelDetailAPIView,
 ):
     http_method_names = [HTTPMethod.PUT.lower()]
 
@@ -83,7 +83,7 @@ class UpdateAPIViewBase(
 
 
 class DestroyAPIViewBase(
-    ModelDetailView,
+    ModelDetailAPIView,
 ):
     http_method_names = [HTTPMethod.DELETE.lower()]
 
