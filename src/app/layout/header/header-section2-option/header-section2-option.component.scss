@@ -31,6 +31,7 @@
         }
       }
       &-select {
+        width: 100px;
         mat-select {
           &:hover {
             color: $menu-hover-text-color;
@@ -58,6 +59,7 @@
     }
   
     &__language-select {
+      width: 150px;
       mat-select {
         &:hover {
           color: $menu-hover-text-color;

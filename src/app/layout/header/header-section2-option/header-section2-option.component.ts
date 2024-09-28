@@ -19,4 +19,5 @@ import { MenuBlogComponent } from "../../../shared/components/menu/menu-blog/men
 export class HeaderSection1OptionComponent {
 
   selected = 'option2';
+  selected1 = 'option4';
 }
