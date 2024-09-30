@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { InfoUserComponent } from '../../../user/info-user/info-user.component';
 import { LoginComponent } from '../../../auth/login/login.component';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,8 @@ import { ContainerComponent } from "../../../shared/container/container.componen
     CommonModule,
     InfoUserComponent,
     LoginComponent,
-    ContainerComponent
+    ContainerComponent,
+    RouterModule
 ],
   templateUrl: './header-section3-utilities.component.html',
   styleUrls: ['./header-section3-utilities.component.scss']
@@ -46,5 +47,20 @@ export class HeaderSection3UtilitiesComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isUserLoggedIn = loggedIn;
     });
+  }
+
+  navigateToRegister(): void {
+    console.log('Register link clicked');
+    this.router.navigate(['/register'])
+      .then(success => {
+        if (success) {
+          console.log('Navigation to register successful');
+        } else {
+          console.error('Navigation to register failed');
+        }
+      })
+      .catch(err => {
+        console.error('Navigation error:', err);
+      });
   }
 }

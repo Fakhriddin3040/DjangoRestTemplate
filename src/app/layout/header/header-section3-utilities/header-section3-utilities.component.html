@@ -30,7 +30,7 @@
               <app-info-user *ngIf="isUserLoggedIn"></app-info-user>
               <app-login *ngIf="!isUserLoggedIn" (click)="navigateToLogin()"></app-login>
               <div class="header__utilities-">
-                <a href="#">Register</a>
+                <a [routerLink]="['/register']">Register</a>
               </div>
             </div>
           </div>

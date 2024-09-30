@@ -5,8 +5,10 @@ import { MainComponent } from "./layout/main/main.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { LoginComponent } from "./auth/login/login.component";
 
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Импортируйте CommonModule
+import { RegisterComponent } from './auth/register/register.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,8 @@ import { CommonModule } from '@angular/common'; // Импортируйте Comm
     MainComponent, 
     FooterComponent, 
     LoginComponent,
-    CommonModule
+    CommonModule,
+    RegisterComponent,
   ],
     
   templateUrl: './app.component.html',  
@@ -25,10 +28,14 @@ import { CommonModule } from '@angular/common'; // Импортируйте Comm
 })
 export class AppComponent {
   title = 'marketplace-client';
-  showMain: boolean = true; // По умолчанию показываем app-main
+  showMain: boolean = true; 
 
   // Функция для переключения на логин
-  navigateToLogin() {
+  navigateToLogin() {    
     this.showMain = false;
+  }
+
+  navigateToRegister(): void {
+    this.showMain = false; // Переходим к компоненту Register
   }
 }

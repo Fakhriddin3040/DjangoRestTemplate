@@ -1,11 +1,3 @@
-<app-header (loginClick)="navigateToLogin()"></app-header>
-
-<!-- Показываем app-main, если showMain = true, иначе показываем app-login -->
-<div *ngIf="showMain; else loginTemplate">
-  <app-main></app-main>
-</div>
-
-<ng-template #loginTemplate>
-  <app-login></app-login>
-</ng-template>
+<app-header></app-header>
+<router-outlet></router-outlet>
 <app-footer></app-footer>
