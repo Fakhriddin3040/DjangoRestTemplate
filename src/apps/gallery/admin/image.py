@@ -2,8 +2,6 @@ from django.contrib import admin
 
 from src.utils.functions.admin import get_image_with_tag
 
-from ..models.image import Image
-
 
 class ImageAdmin(admin.ModelAdmin):
     def image_tag(self, obj):
@@ -14,6 +12,3 @@ class ImageAdmin(admin.ModelAdmin):
         "title",
         "image_tag",
     )
-
-
-admin.site.register(Image, ImageAdmin)

@@ -1,13 +1,10 @@
 from django.db import models
 
-from src.base.mixins import models as model_mixins
 from src.apps.gallery.managers.slide import SlideManager
 
 
 class Slide(
     models.Model,
-    model_mixins.AbstractTimestambleModelFields,
-    model_mixins.AbstractAuditModelsFields,
 ):
     class Meta:
         verbose_name = "Слайд"

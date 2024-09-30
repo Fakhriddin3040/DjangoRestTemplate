@@ -1,2 +1,9 @@
-from .image import ImageAdmin  # noqa: F401
-from .slide import SlideAdmin  # noqa: F401
+from django.contrib import admin
+
+from .image import ImageAdmin
+from .slide import SlideAdmin
+from ..models import Image, Slide
+
+
+admin.site.register(Image, ImageAdmin)
+admin.site.register(Slide, SlideAdmin)

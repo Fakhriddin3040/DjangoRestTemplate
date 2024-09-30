@@ -1,6 +1,5 @@
 from django.db import models
 
-from src.base.mixins import models as model_mixins
 from src.apps.gallery.managers.image import ImageManager
 
 
@@ -8,11 +7,7 @@ def upload_to(instance, filename) -> str:
     return "images/{}".format(filename)
 
 
-class Image(
-    models.Model,
-    model_mixins.AbstractAuditModelsFields,
-    model_mixins.AbstractTimestambleModelFields,
-):
+class Image(models.Model):
     class Meta:
         verbose_name = "Изображение"
         verbose_name_plural = "Изображения"
