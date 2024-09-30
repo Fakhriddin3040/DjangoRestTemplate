@@ -2,11 +2,13 @@
 
 
 .container2 {  
+ 
   height: 100%;
   display: flex;
   justify-content: center;
   background: $background-color;
   .wrapperFormRegister{
+    padding: 20px;
     max-width: 40%;
     border: 2px solid red;
   }
