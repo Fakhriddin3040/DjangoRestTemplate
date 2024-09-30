@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './layout/main/main.component';
 
 export const routes: Routes = [
-    { path: '', component: MainComponent }, // Главная страница 
+    { path: '', component: MainComponent }, 
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent } // Страница регистрации
+    { path: 'register', component: RegisterComponent } 
 ];

@@ -1,0 +1,28 @@
+@import "variables.scss";
+
+
+.container2 {  
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background: $background-color;
+  .wrapperFormRegister{
+    max-width: 40%;
+    border: 2px solid red;
+  }
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+
