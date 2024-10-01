@@ -7,13 +7,11 @@ from ..params import params
 
 class UserLoginUseCase:
     def __init__(self, user_service: UserService = None):
-        if user_service is None:
-            user_service = UserService()
-        self.user_service = user_service
+        self.user_service = user_service or UserService()
 
     def execute(self, params: params.UserLoginParams) -> Token:
         user = self.user_service.get_by_email(email=params.email)
-        if user is None or not self.user_service.check_password(params.password):
+        if user is None or not self.user_service.check_password(user, params.password):
             raise Exception("Invalid credentials")
         return self._token_for_user(user)
 
@@ -26,4 +24,7 @@ class UserRegisterUseCase:
         self.user_service = user_service or UserService()
 
     def execute(self, params: params.UserRegister) -> user_models.User:
-        return self.user_service.create(params=params)
+        user = self.user_service.create(params=params)
+        user.set_password(params.password)
+        user.save()
+        return user

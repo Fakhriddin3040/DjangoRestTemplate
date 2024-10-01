@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Any, Union
 from django.db import models
 from src.base import types
 
@@ -21,8 +21,11 @@ class AbstractDjangoRepository(types.AbstractGenericClass[types.TModel]):
     def delete(self, pk: int) -> bool:
         return bool(self.model.objects.filter(pk=pk).delete())
 
-    def get_by_lookup(self, lookup: str, value: str) -> Union[types.TModel, None]:
-        return self.model.objects.get(**{lookup: value})
+    def get_by_lookup(self, lookup: str, value: Any) -> Union[types.TModel, None]:
+        return self.model.objects.filter(**{lookup: value})
+
+    def exists(self, **kwargs) -> bool:
+        return self.all().filter(**kwargs).exists()
 
     def save(self, instance: types.TModel) -> types.TModel:
         instance.save()
