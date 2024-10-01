@@ -38,6 +38,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://62.113.110.170:8090",
     "http://62.113.110.170.7000",
     "http://localhost:8090",
+    "http://localhost:80",
+    "http://localhsot",
 ]
 
 
