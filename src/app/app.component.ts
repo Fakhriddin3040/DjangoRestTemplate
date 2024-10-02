@@ -9,19 +9,23 @@ import { LoginComponent } from "./auth/login/login.component";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Импортируйте CommonModule
 import { RegisterComponent } from './auth/register/register.component';
+import { BreadcrumbNavigationComponent } from "./shared/components/breadcrumb-navigation/breadcrumb-navigation.component";
+import { ContainerComponent } from "./shared/container/container.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    HeaderComponent, 
-    MainComponent, 
-    FooterComponent, 
+    RouterOutlet,
+    HeaderComponent,
+    MainComponent,
+    FooterComponent,
     LoginComponent,
     CommonModule,
     RegisterComponent,
-  ],
+    BreadcrumbNavigationComponent,
+    ContainerComponent
+],
     
   templateUrl: './app.component.html',  
   styleUrls: ['./app.component.scss'],   
