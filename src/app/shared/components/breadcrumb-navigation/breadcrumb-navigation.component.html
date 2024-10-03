@@ -1,18 +1,6 @@
-<nav aria-label="breadcrumb" class="nav">
-  <ol class="breadcrumb">
-    <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
-      <a *ngIf="breadcrumb.url; else noLink" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
-      <ng-template #noLink>{{ breadcrumb.label }}</ng-template>
-    </li>
-  </ol>
+<nav>
+  <ng-container *ngFor="let crumb of breadcrumbs; let last = last">
+    <a [routerLink]="['' + crumb]">{{ crumb }}</a>
+    <span *ngIf="!last"> > </span>
+  </ng-container>
 </nav>
-
-<h1>Test</h1>
-
-<div *ngIf="breadcrumbs.length === 0">
-  <p>No breadcrumbs available.</p>
-</div>
-<div *ngIf="breadcrumbs.length > 0">
-  <p>Current breadcrumbs: {{ breadcrumbs | json }}</p>
-</div>
-
