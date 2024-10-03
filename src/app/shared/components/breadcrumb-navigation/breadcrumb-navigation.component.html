@@ -1,13 +1,18 @@
 <nav aria-label="breadcrumb" class="nav">
   <ol class="breadcrumb">
-    <ng-container *ngIf="breadcrumbs.length > 0; else noBreadcrumbs">
-      <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
-        <a *ngIf="!breadcrumb.url; else noLink" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
-        <ng-template #noLink>{{ breadcrumb.label }}</ng-template>
-      </li>
-    </ng-container>
-    <ng-template #noBreadcrumbs>
-      <li class="breadcrumb-item">Нет крошек</li>
-    </ng-template>
+    <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
+      <a *ngIf="breadcrumb.url; else noLink" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+      <ng-template #noLink>{{ breadcrumb.label }}</ng-template>
+    </li>
   </ol>
 </nav>
+
+<h1>Test</h1>
+
+<div *ngIf="breadcrumbs.length === 0">
+  <p>No breadcrumbs available.</p>
+</div>
+<div *ngIf="breadcrumbs.length > 0">
+  <p>Current breadcrumbs: {{ breadcrumbs | json }}</p>
+</div>
+

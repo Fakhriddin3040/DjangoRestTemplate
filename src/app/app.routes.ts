@@ -9,8 +9,10 @@ import { ProductListComponent } from './features/products/components/product-lis
 
 
 export const routes: Routes = [
-    { path: '', component: MainComponent, data: { breadcrumb: 'Home' } }, // Добавлено свойство breadcrumb
-    { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } }, // Добавлено свойство breadcrumb
-    { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Register' } }, // Добавлено свойство breadcrumb
-    { path: 'products', component: ProductListComponent, data: { breadcrumb: 'Products' } } // Добавлено свойство breadcrumb
+    { path: '', component: MainComponent, data: { breadcrumb: 'Home' } },
+    { path: 'products', component: ProductListComponent, data: { breadcrumb: 'Products' } },
+    { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
+    { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Register' } },
+    
 ];
+
