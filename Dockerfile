@@ -10,6 +10,10 @@ COPY . .
 
 RUN npm run build --prod
 
-RUN mv /app/dist /app/build
+FROM node:20-alpine
 
-RUN mv /app/build /app
+WORKDIR /app
+
+COPY --from=build /app/dist ./dist
+
+CMD ["node", "/app/dist/marketplace-client/server/server.mjs"]

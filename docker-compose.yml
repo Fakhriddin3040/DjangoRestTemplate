@@ -3,10 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: build
     container_name: marketplace
-    volumes:
-      - marketplace-build:/app/build
+    expose:
+      - "4000"
     networks:
       - marketplace-network
 
@@ -18,15 +17,11 @@ services:
     ports:
       - "80:80"
     volumes:
-      - marketplace-build:/usr/share/nginx/html
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - marketplace
     networks:
       - marketplace-network
-    
-volumes:
-  marketplace-build:
 
 networks:
   marketplace-network:
