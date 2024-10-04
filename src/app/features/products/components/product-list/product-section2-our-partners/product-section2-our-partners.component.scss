@@ -1,0 +1,15 @@
+@import "variables.scss";
+.wrapperSectionOurPartners {
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .item {
+        flex: 0 0 14.5%;
+        border: 1px solid  $background-color;        
+        border-radius: 10px;
+    }
+}
+
