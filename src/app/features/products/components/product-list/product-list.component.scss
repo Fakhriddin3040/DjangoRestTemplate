@@ -1,0 +1,9 @@
+@import "variables.scss";
+
+.wrapperBreadcrumb {
+    background: $background-color;
+    .breadcrumb {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
