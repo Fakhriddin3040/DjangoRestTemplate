@@ -1,4 +1,6 @@
-<button mat-button [matMenuTriggerFor]="animals">Shop By Department <i class="bi bi-caret-down-fill"></i></button>
+<button mat-button [matMenuTriggerFor]="animals">Shop By Department 
+  <i class="bi bi-caret-down-fill"></i>
+</button>
 <mat-menu #animals="matMenu">
   
   <button mat-menu-item [matMenuTriggerFor]="vertebrates" [routerLink]="['/products']" (click)="onNavigateToConsumerElectric()">
