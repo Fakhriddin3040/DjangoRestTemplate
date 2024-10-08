@@ -1,16 +1,22 @@
-
+@import "variables.scss";
 
 .wrapperSection4Filter {
     display: flex;
-    border: 2px solid green;
+    
 }
 
 .product-setting-filter {
+    padding: 10px;
+    margin: 10px;
     flex: 0 0 25%;
-    border: 2px solid red;
+    border: 2px solid $border-color;
+    border-radius: 15px;
 }
 
 .product-show {
+    margin: 10px;
+    flex: 0 0 25%;
     flex: 1 1 75%;
-    border: 2px solid blue;
+    border: 2px solid $border-color;
+    border-radius: 15px;
 }
