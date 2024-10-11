@@ -12,8 +12,8 @@ class AbstractDjangoRepository(types.AbstractGenericClass[types.TModel]):
     def all(self) -> models.QuerySet[types.TModel]:
         return self.model.objects.all()
 
-    def create(self, params: types.BaseParams) -> types.TModel:
-        return self.model.objects.create(**params.__dict__)
+    def create(self, **kwargs) -> types.TModel:
+        return self.model.objects.create(**kwargs)
 
     def update(self, pk: int, params: types.BaseParams) -> int:
         return self.model.objects.filter(pk=pk).update(**params.dict())

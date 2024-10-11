@@ -1,7 +1,7 @@
 from typing import Dict, List
 from src.base import types
 from src.base.abstractions.repositories import base_django_repository as django_repo
-
+from dataclasses import asdict
 
 class AbstractService(types.AbstractGenericClass[types.TModel]):
     def __init__(self, repository: django_repo.AbstractDjangoRepository) -> None:
@@ -18,7 +18,7 @@ class AbstractService(types.AbstractGenericClass[types.TModel]):
         return self._repository.get(pk=pk)
 
     def create(self, params: types.BaseParams) -> types.TModel:
-        return self._repository.create(params=params)
+        return self._repository.create(**asdict(params))
 
     def update(self, pk: int, data: Dict) -> int:
         return self._repository.update(pk=pk, data=data)
