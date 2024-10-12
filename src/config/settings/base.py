@@ -13,6 +13,17 @@ MEDIA_URL = "media/"
 STATIC_ROOT = BASE_DIR / STATIC_URL
 MEDIA_ROOT = BASE_DIR / MEDIA_URL
 
+#!============ EMAIL =============
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "send.message.2333@gmail.com"
+EMAIL_HOST_PASSWORD = "cxqtyzyyocggucmr"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = "send.message.2333@gmail.com"
+EMAIL_TOKEN_EXPIRE_MINUTES = int(os.environ.get("EMAIL_TOKEN_EXPIRE_MINUTES", 5))
+
 
 #! ========== ENV VARIABLES ==========
 

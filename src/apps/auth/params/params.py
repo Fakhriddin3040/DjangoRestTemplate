@@ -3,12 +3,12 @@ from dataclasses import dataclass
 
 @dataclass
 class UserRegister:
-    email: str
-    password: str
-    username: str = ""
-    phone_number: str = ""
-    first_name: str = ""
-    last_name: str = ""
+    email: str = None
+    password: str = None
+    username: str = None
+    phone_number: str = None
+    first_name: str = None
+    last_name: str = None
     birth_date: str = None
     is_active: bool = True
     is_superuser: bool = False
@@ -39,3 +39,33 @@ class UserChangePasswordParams:
     old_password: str
     new_password: str
     confirm_password: str
+
+
+@dataclass
+class RegistrationPhoneNumberParams:
+    phone_number: str
+
+
+@dataclass
+class RegistrationStep2PhoneNumberParams:
+    otp: str
+
+
+@dataclass
+class RegistrationEmailParams:
+    email: str
+
+
+@dataclass
+class RegistrationStep2EmailParams:
+    otp: str
+
+
+@dataclass
+class RegistrationOAuthParams:
+    token: str
+
+
+@dataclass
+class LoginOAuthParams:
+    token: str

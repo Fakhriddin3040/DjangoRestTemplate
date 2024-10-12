@@ -79,12 +79,12 @@ class UseCaseCreateModelMixin(
     function_mixins.CreateParamsRetrieverMixin,
     function_mixins.CreateSerializerRetrieverMixin,
 ):
-    def perform_create(self, **data: Dict):
+    def perform_create(self, request, **data: Dict):
         params = self.get_params(**data)
-        return self.get_use_case().execute(params=params)
+        return self.get_use_case().execute(request=request, params=params)
 
     def create(self, request, *args, **kwargs):
-        instance = self.perform_create(**request.data)
+        instance = self.perform_create(request=request, **request.data)
         serializer = self.get_list_serializer(instance)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 

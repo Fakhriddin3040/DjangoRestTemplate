@@ -30,3 +30,5 @@ ruff==0.5.7
 sqlparse==0.5.1
 uritemplate==4.1.1
 virtualenv==20.26.4
+requests==2.31.0
+pytz==2024.1

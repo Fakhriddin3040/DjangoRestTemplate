@@ -3,6 +3,7 @@ from dataclasses import asdict
 from django.db.models import QuerySet
 from src.base import types
 from src.base.abstractions.repositories import base_django_repository as django_repo
+from dataclasses import asdict
 
 
 class AbstractService(types.AbstractGenericClass[types.TModel]):
@@ -20,7 +21,7 @@ class AbstractService(types.AbstractGenericClass[types.TModel]):
         return self._repository.get(pk=pk)
 
     def create(self, params: types.BaseParams) -> types.TModel:
-        return self._repository.create(params=params)
+        return self._repository.create(**asdict(params))
 
     def update(self, pk: int, params: types.BaseParams) -> int:
         return self._repository.update(
