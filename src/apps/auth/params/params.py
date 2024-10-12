@@ -3,12 +3,12 @@ from dataclasses import dataclass
 
 @dataclass
 class UserRegister:
-    email: str = ""
+    email: str = None
     password: str = None
-    username: str = ""
-    phone_number: str = ""
-    first_name: str = ""
-    last_name: str = ""
+    username: str = None
+    phone_number: str = None
+    first_name: str = None
+    last_name: str = None
     birth_date: str = None
     is_active: bool = True
     is_superuser: bool = False
