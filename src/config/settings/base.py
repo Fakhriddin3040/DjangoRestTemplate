@@ -25,7 +25,6 @@ DEFAULT_FROM_EMAIL = "send.message.2333@gmail.com"
 EMAIL_TOKEN_EXPIRE_MINUTES = int(os.environ.get("EMAIL_TOKEN_EXPIRE_MINUTES", 5))
 
 
-
 #! ========== ENV VARIABLES ==========
 
 #! ENVIRONMENT = development | testing | production
@@ -45,6 +44,14 @@ USE_TZ = True
 
 #! ========== CORS ==========
 CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS").split(",")
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://62.113.110.170:8090",
+    "http://62.113.110.170.7000",
+    "http://localhost:8090",
+    "http://localhost:80",
+    "http://localhsot",
+]
 
 
 #! ========== DJANGO SETTINGS ==========
@@ -73,6 +80,8 @@ INSTALLED_APPS = [
     # Local apps
     "src.apps.auth",
     "src.apps.api",
+    "src.apps.gallery",
+    "src.apps.common",
 ]
 
 

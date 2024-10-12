@@ -4,10 +4,12 @@ import requests
 from datetime import date, datetime, timedelta
 import pytz
 from src.config.settings.base import TIME_ZONE
+
 tz = pytz.timezone(TIME_ZONE)
 from django.utils.module_loading import import_string
 from django.conf import settings
 from django.core.mail.message import EmailMultiAlternatives
+
 
 def get_datetime() -> datetime:
     return datetime.now().replace(tzinfo=None)
@@ -59,4 +61,3 @@ def send_mail(
         mail.attach_alternative(html_message, "text/html")
 
     return mail.send()
-

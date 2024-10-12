@@ -9,14 +9,17 @@ from datetime import timedelta
 import pytz
 from src.config.settings.base import TIME_ZONE
 from src.utils.functions.functions import get_datetime, send_mail
+
 tz = pytz.timezone(TIME_ZONE)
 
 
 def token_for_user(self, user: user_models.User) -> Token:
     return RefreshToken.for_user(user)
 
+
 def get_otp_expire_time():
     return get_datetime() + timedelta(minutes=5)
+
 
 def send_sms_notification(phone_numbers: list | str, message: str) -> bool:
     LOGIN = "ITRUN"
@@ -48,7 +51,6 @@ def generate_otp(min: int = 10000, max: int = 99999) -> int:
     return random.randint(min, max)
 
 
-
 def email_user(self, subject, message, from_email=None, **kwargs):
     """Send an email to this user."""
     send_mail(subject, message, from_email, [self.email], **kwargs)
@@ -61,6 +63,6 @@ def send_email_notification(subject: str, message: str, recipients: list | str) 
     send_mail(subject, message, from_email, recipient_list)
 
 
-def decode_jwt(token: str, *args, **kwargs) -> dict[str: str]:
+def decode_jwt(token: str, *args, **kwargs) -> dict[str:str]:
     decoded_token = jwt.decode(token, *args, **kwargs)
     return decoded_token

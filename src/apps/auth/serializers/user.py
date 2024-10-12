@@ -56,11 +56,14 @@ class RegistrationStep2PhoneNumberSerializer(serializers.Serializer):
 class RegistrationEmailSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
+
 class RegistrationStep2EmailSerializer(serializers.Serializer):
     otp = serializers.CharField()
 
+
 class RegistrationOAuthSeralizier(serializers.Serializer):
     token = serializers.CharField()
+
 
 class LoginOAuthSeralizier(serializers.Serializer):
     token = serializers.CharField()

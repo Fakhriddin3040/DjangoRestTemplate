@@ -3,7 +3,7 @@ from src.apps.auth.use_cases import email_registration_use_case as email_registr
 from src.apps.auth.use_cases import oauth_registration_use_case as oauth_registration
 from src.base.views import use_case_generics
 from ..serializers import user as user_serializers
-from ..use_cases import user_use_cases
+from ..use_cases import user_auth_use_case
 from ..params import params
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,14 +12,14 @@ from rest_framework import status
 class UserLoginAPIView(use_case_generics.UseCaseCreateAPIView):
     create_serializer_class = user_serializers.UserLoginSerializer
     create_params_class = params.UserLoginParams
-    create_use_case_class = user_use_cases.UserLoginUseCase
+    create_use_case_class = user_auth_use_case.UserLoginUseCase
     list_serializer_class = user_serializers.UserLoginResponseSerializer
 
 
 class UserRegisterAPIView(use_case_generics.UseCaseCreateAPIView):
     create_serializer_class = user_serializers.UserRegisterSerializer
     create_params_class = params.UserRegister
-    create_use_case_class = user_use_cases.UserRegisterUseCase
+    create_use_case_class = user_auth_use_case.UserRegisterUseCase
     list_serializer_class = user_serializers.UserListSerializer
 
 
@@ -31,7 +31,11 @@ class UserPhoneStep1RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         instance = self.perform_create(request=request, **request.data)
-        return Response({"data":"OTP успешно отправлен на номер телефона"}, status=status.HTTP_200_OK)
+        return Response(
+            {"data": "OTP успешно отправлен на номер телефона"},
+            status=status.HTTP_200_OK,
+        )
+
 
 class UserPhoneStep2RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
     create_serializer_class = user_serializers.RegistrationStep2PhoneNumberSerializer
@@ -47,8 +51,9 @@ class UserPhoneStep2RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
 class UserPhoneStep3RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
     create_serializer_class = user_serializers.UserRegisterSerializer
     create_params_class = params.UserRegister
-    create_use_case_class = user_use_cases.UserRegisterUseCase
+    create_use_case_class = phone_registration.UserRegisterUseCase
     list_serializer_class = user_serializers.UserLoginResponseSerializer
+
 
 class UserEmailStep1RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
     create_serializer_class = user_serializers.RegistrationEmailSerializer
@@ -58,7 +63,9 @@ class UserEmailStep1RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         instance = self.perform_create(request=request, **request.data)
-        return Response({"data":"OTP успешно отправлен на email"}, status=status.HTTP_200_OK)
+        return Response(
+            {"data": "OTP успешно отправлен на email"}, status=status.HTTP_200_OK
+        )
 
 
 class UserEmailStep2RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
@@ -77,7 +84,7 @@ class UserEmailStep3RegisterAPIView(use_case_generics.UseCaseCreateAPIView):
     create_params_class = params.UserRegister
     create_use_case_class = email_registration.UserEmailRegisterUseCase
     list_serializer_class = user_serializers.UserLoginResponseSerializer
-    
+
 
 class UserOAuthRegisterAPIView(use_case_generics.UseCaseCreateAPIView):
     create_serializer_class = user_serializers.RegistrationOAuthSeralizier
@@ -87,7 +94,7 @@ class UserOAuthRegisterAPIView(use_case_generics.UseCaseCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         instance = self.perform_create(request=request, **request.data)
-        return Response(data={"data": "Success"},status=status.HTTP_200_OK)
+        return Response(data={"data": "Success"}, status=status.HTTP_200_OK)
 
 
 class UserOAuthLoginAPIView(use_case_generics.UseCaseCreateAPIView):

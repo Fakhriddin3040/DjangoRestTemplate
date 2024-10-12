@@ -69,3 +69,4 @@ db*
 db.sql*
 
 static/
+media/

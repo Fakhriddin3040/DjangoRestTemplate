@@ -65,6 +65,7 @@ class RegistrationStep2EmailParams:
 class RegistrationOAuthParams:
     token: str
 
+
 @dataclass
 class LoginOAuthParams:
     token: str

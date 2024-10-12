@@ -7,8 +7,8 @@ class UserService(base_service.AbstractService[auth_models.User]):
     def __init__(self, repository: user_repo.UserRepository = None):
         super().__init__(repository=repository or user_repo.UserRepository())
 
-    def get_by_email(self, email: str) -> auth_models.User:
-        return self._repository.get_by_email(email=email)
+    def get_by_email(self, email) -> auth_models.User:
+        return self._repository.get_by_lookup(lookup="email", value=email)
 
     def set_password(self, user: auth_models.User, password: str) -> auth_models.User:
         user.set_password(password)

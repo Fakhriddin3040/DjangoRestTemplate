@@ -46,32 +46,22 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.email
 
+
 class UserTempData(models.Model):
     user = models.ForeignKey(
-        User, 
-        on_delete=models.CASCADE, 
-        related_name="oauth2_data",
-        null=True
+        User, on_delete=models.CASCADE, related_name="oauth2_data", null=True
     )
 
-    otp = models.CharField(
-        max_length=40, 
-        blank=True, 
-        null=True
-        )
+    otp = models.CharField(max_length=40, blank=True, null=True)
 
-    expired_time = models.DateTimeField(
-        verbose_name="Время истечения"
-        )
+    expired_time = models.DateTimeField(verbose_name="Время истечения")
 
     target_value = models.CharField(max_length=255)
 
+
 class OAuth2(models.Model):
     user = models.ForeignKey(
-        User, 
-        on_delete=models.CASCADE, 
-        related_name="Пользователь",
-        null=True
+        User, on_delete=models.CASCADE, related_name="Пользователь", null=True
     )
 
     token = models.CharField(verbose_name="Токен", max_length=255)
