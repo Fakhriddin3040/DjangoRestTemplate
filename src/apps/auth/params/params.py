@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class UserRegister:
+class UserRegisterParams:
     email: str = None
     password: str = None
     username: str = None
@@ -42,30 +42,21 @@ class UserChangePasswordParams:
 
 
 @dataclass
-class RegistrationPhoneNumberParams:
+class PhoneNumberRegistrationParams:
     phone_number: str
 
 
 @dataclass
-class RegistrationStep2PhoneNumberParams:
-    otp: str
-
-
-@dataclass
-class RegistrationEmailParams:
+class EmailRegistrationParams:
     email: str
 
 
 @dataclass
-class RegistrationStep2EmailParams:
+class CredentialsVerificationParams:
     otp: str
+    target_value: str
 
 
 @dataclass
-class RegistrationOAuthParams:
-    token: str
-
-
-@dataclass
-class LoginOAuthParams:
+class OAuth2Params:
     token: str

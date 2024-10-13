@@ -1,18 +1,17 @@
-import hashlib
-import random
-import requests
-from datetime import date, datetime, timedelta
+from datetime import datetime
 import pytz
 from src.config.settings.base import TIME_ZONE
 
-tz = pytz.timezone(TIME_ZONE)
+from django.utils import timezone
 from django.utils.module_loading import import_string
 from django.conf import settings
 from django.core.mail.message import EmailMultiAlternatives
 
+tz = pytz.timezone(TIME_ZONE)
+
 
 def get_datetime() -> datetime:
-    return datetime.now().replace(tzinfo=None)
+    return timezone.now()
 
 
 def get_connection(backend=None, fail_silently=False, **kwds):

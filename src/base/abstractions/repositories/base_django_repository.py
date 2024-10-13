@@ -22,7 +22,7 @@ class AbstractDjangoRepository(types.AbstractGenericClass[types.TModel]):
         return bool(self.model.objects.filter(pk=pk).delete())
 
     def get_by_lookup(self, lookup: str, value: Any) -> Union[types.TModel, None]:
-        return self.model.objects.filter(**{lookup: value})
+        return self.model.objects.filter(**{lookup: value}).first()
 
     def exists(self, **kwargs) -> bool:
         return self.all().filter(**kwargs).exists()
