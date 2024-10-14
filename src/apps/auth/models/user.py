@@ -54,7 +54,7 @@ class UserTempData(models.Model):
 
     otp = models.CharField(max_length=40, blank=True, null=True)
 
-    expired_time = models.DateTimeField(verbose_name="Время истечения")
+    expired_time = models.DateTimeField(verbose_name="Время истечения", null=True)
 
     target_value = models.CharField(max_length=255)
 

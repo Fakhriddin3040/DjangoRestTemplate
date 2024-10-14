@@ -16,7 +16,7 @@ from src.apps.auth import const
 tz = pytz.timezone(TIME_ZONE)
 
 
-def token_for_user(self, user: user_models.User) -> Token:
+def token_for_user(user: user_models.User) -> Token:
     return RefreshToken.for_user(user)
 
 

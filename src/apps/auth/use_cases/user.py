@@ -19,7 +19,7 @@ class UserLoginUseCase:
         user = self.user_service.get_by_email(email=params.email)
         if user is None or not self.user_service.check_password(user, params.password):
             raise Exception("Invalid credentials")
-        return token_for_user(self, user)
+        return token_for_user(user)
 
 
 class RegistrationFinishUseCase:
@@ -40,7 +40,7 @@ class RegistrationFinishUseCase:
         self.validate(request, params)
         user = self.user_service.create(params)
         user = self.user_service.set_password(user, params.password)
-        return token_for_user(self, user)
+        return token_for_user(user)
 
     def validate(self, request, params) -> None:
         user = self.user_service.filter(
