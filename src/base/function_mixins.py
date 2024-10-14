@@ -26,9 +26,7 @@ class RetrieveSerializerRetrieverMixin(SerializerContextRetrieverMixin):
 
     def get_retrieve_serializer(self, *args, **kwargs) -> serializers.Serializer:
         kwargs.setdefault("context", self.get_serializer_context())
-        return self.retrieve_serializer_class(
-            self.get_object(), *args, **kwargs, read_only=True
-        )
+        return self.retrieve_serializer_class(*args, **kwargs, read_only=True)
 
 
 class CreateSerializerRetrieverMixin(ListSerializerRetrieverMixin):

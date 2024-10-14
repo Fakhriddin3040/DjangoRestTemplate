@@ -7,16 +7,19 @@ from src.apps.auth.managers.user_manager import UserManager
 class User(AbstractUser):
     objects = UserManager()
 
+    username = None
+
     email = models.EmailField(unique=True, verbose_name="Адрес электронной почты")
-    username = models.CharField(
-        max_length=150, unique=True, verbose_name="Имя пользователя"
-    )
     password = models.CharField(max_length=128, null=True, blank=True)
     phone_number = models.CharField(
         max_length=15, blank=True, null=True, verbose_name="Номер телефона"
     )
-    first_name = models.CharField(max_length=150, verbose_name="Имя")
-    last_name = models.CharField(max_length=150, verbose_name="Фамилия")
+    first_name = models.CharField(
+        max_length=150, verbose_name="Имя", null=True, blank=True
+    )
+    last_name = models.CharField(
+        max_length=150, verbose_name="Фамилия", null=True, blank=True
+    )
     birth_date = models.DateField(blank=True, null=True, verbose_name="Дата рождения")
 
     USERNAME_FIELD = "email"

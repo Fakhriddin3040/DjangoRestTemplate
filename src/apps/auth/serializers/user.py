@@ -9,7 +9,6 @@ class UserLoginSerializer(serializers.Serializer):
 class UserRegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(required=False)
     password = serializers.CharField()
-    username = serializers.CharField(max_length=25)
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
     phone_number = serializers.CharField(required=False)
@@ -26,7 +25,6 @@ class UserUpdateSerializer(serializers.Serializer):
     email = serializers.EmailField(required=False)
     password = serializers.CharField(required=False)
     phone_number = serializers.CharField(required=False)
-    username = serializers.CharField(required=False)
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
 

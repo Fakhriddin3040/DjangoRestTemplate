@@ -1,4 +1,4 @@
-from src.base.views import use_case_generics
+from src.base.views import generics, use_case_generics
 from ..serializers import user as user_serializers
 from ..use_cases import user as user_use_cases
 from ..params import params
@@ -19,6 +19,13 @@ class RegistrationFinishAPIView(use_case_generics.UseCaseCreateAPIView):
     create_params_class = params.UserRegisterParams
     create_use_case_class = user_use_cases.RegistrationFinishUseCase
     list_serializer_class = user_serializers.UserLoginResponseSerializer
+
+
+class RetrieveMeAPIView(generics.RetrieveAPIView):
+    retrieve_serializer_class = user_serializers.UserListSerializer
+
+    def get_object(self):
+        return self.request.user
 
 
 class PhoneRegistrationAPIView(use_case_generics.UseCaseCreateAPIView):

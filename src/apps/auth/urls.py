@@ -21,4 +21,5 @@ urlpatterns = [
         name="registration-finish",
     ),
     path("oauth2/", user_views.OAuthAPIView.as_view(), name="oauth2"),
+    path("users/me", user_views.RetrieveMeAPIView.as_view(), name="get-me"),
 ]

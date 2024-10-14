@@ -5,7 +5,6 @@ from dataclasses import dataclass
 class UserRegisterParams:
     email: str = None
     password: str = None
-    username: str = None
     phone_number: str = None
     first_name: str = None
     last_name: str = None
@@ -20,7 +19,6 @@ class UserUpdateParams:
     email: str = None
     password: str = None
     phone_number: str = None
-    username: str = None
     first_name: str = None
     last_name: str = None
     is_active: bool = None

@@ -31,10 +31,8 @@ class OAuth2UseCase:
             token=token, algoritms=["RS256"], options={"verify_signature": False}
         )
         email = decoded_token.get("email")
-        name = decoded_token.get("name")
         return user_params.UserRegisterParams(
             email=email,
-            username=name,
             phone_number=decoded_token.get("phone_number"),
             first_name=decoded_token.get("given_name"),
             last_name=decoded_token.get("family_name"),

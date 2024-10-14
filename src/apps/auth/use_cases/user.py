@@ -44,14 +44,11 @@ class RegistrationFinishUseCase:
 
     def validate(self, request, params) -> None:
         user = self.user_service.filter(
-            username=params.username,
             email=params.email,
             phone_number=params.phone_number,
         ).last()
 
         if user is not None:
-            if user.username == params.username:
-                raise Exception(const.FieldsBusyExceptionMessages.USER_USERNAME)
             if user.email == params.email:
                 raise Exception(const.FieldsBusyExceptionMessages.USER_EMAIL)
             if user.phone_number == params.phone_number:

@@ -16,7 +16,7 @@ class EmailRegistrationUseCase:
 
     def execute(self, request, params: params.EmailRegistrationParams) -> None:
         if self.user_service.get_queryset().filter(email=params.email).exists():
-            raise Exception(const.FieldsBusyExceptionMessages.USER_EMAIL)
+            raise Exception(const.FieldsBusyExceptionMessages.USER_EMAIL.value)
 
         otp = generate_otp()
 
