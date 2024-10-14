@@ -3,7 +3,6 @@ from dataclasses import asdict
 from django.db.models import QuerySet
 from src.base import types
 from src.base.abstractions.repositories import base_django_repository as django_repo
-from dataclasses import asdict
 
 
 class AbstractService(types.AbstractGenericClass[types.TModel]):
@@ -39,6 +38,9 @@ class AbstractService(types.AbstractGenericClass[types.TModel]):
 
     def get_queryset(self) -> Union[QuerySet[types.TModel], None]:
         return self._repository.all()
+
+    def filter(self, **kwargs) -> Union[QuerySet[types.TModel], None]:
+        return self.model.objects.filter(**kwargs)
 
     def exists(self, **kwargs) -> bool:
         return self._repository.exists(**kwargs)

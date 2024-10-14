@@ -45,25 +45,18 @@ class UserLoginResponseSerializer(serializers.Serializer):
     access = serializers.CharField(source="access_token")
 
 
-class RegistrationPhoneNumberSerializer(serializers.Serializer):
+class PhoneNumberRegistrationSerializer(serializers.Serializer):
     phone_number = serializers.CharField(max_length=15)
 
 
-class RegistrationStep2PhoneNumberSerializer(serializers.Serializer):
+class CredentialsVerificationSerializer(serializers.Serializer):
+    target_value = serializers.CharField()
     otp = serializers.CharField()
 
 
-class RegistrationEmailSerializer(serializers.Serializer):
+class EmailRegistrationSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
 
-class RegistrationStep2EmailSerializer(serializers.Serializer):
-    otp = serializers.CharField()
-
-
-class RegistrationOAuthSeralizier(serializers.Serializer):
-    token = serializers.CharField()
-
-
-class LoginOAuthSeralizier(serializers.Serializer):
+class OAuth2Serializer(serializers.Serializer):
     token = serializers.CharField()

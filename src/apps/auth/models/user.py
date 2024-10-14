@@ -58,6 +58,10 @@ class UserTempData(models.Model):
 
     target_value = models.CharField(max_length=255)
 
+    verified = models.BooleanField(
+        default=False,
+    )
+
 
 class OAuth2(models.Model):
     user = models.ForeignKey(
