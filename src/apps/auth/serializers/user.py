@@ -41,7 +41,7 @@ class UserListSerializer(serializers.Serializer):
 class UserLoginResponseSerializer(serializers.Serializer):
     refresh = serializers.CharField()
     access = serializers.CharField()
-    profile = UserListSerializer(source='user')
+    profile = UserListSerializer(source="user")
 
 
 class PhoneNumberRegistrationSerializer(serializers.Serializer):

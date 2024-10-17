@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 from src.apps.common.models.organization import Organization
+
+
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ("title", "email", "phone", "about_us")
     list_display_links = ("title", "email")
@@ -9,9 +11,9 @@ class OrganizationAdmin(admin.ModelAdmin):
         if Organization.objects.exists():
             return False
         return True
-    
+
     def has_delete_permission(self, request, obj=None):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return True

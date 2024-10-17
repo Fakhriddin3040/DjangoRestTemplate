@@ -1,1 +1,1 @@
-from .slide import SlideListAPIView  # noqa: F401 
+from .slide import SlideListAPIView  # noqa: F401

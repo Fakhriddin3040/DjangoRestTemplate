@@ -3,14 +3,15 @@ from django.db import models
 
 class SocialMedia(models.Model):
     SOCIAL_MEDIA_CHOICES = [
-        ('youtube', 'Youtube'),
-        ('twitter', 'Twitter'),
-        ('instagram', 'Instagram'),
-        ('linkedin', 'LinkedIn'),
-        ('fb', 'Facebook'),
-        ('telegram', 'Telegram'),
-        ('whatsapp', 'WhatsApp'),
+        ("youtube", "Youtube"),
+        ("twitter", "Twitter"),
+        ("instagram", "Instagram"),
+        ("linkedin", "LinkedIn"),
+        ("fb", "Facebook"),
+        ("telegram", "Telegram"),
+        ("whatsapp", "WhatsApp"),
     ]
+
     class Meta:
         verbose_name = "Социальная сеть"
         verbose_name_plural = "Социальные сети"

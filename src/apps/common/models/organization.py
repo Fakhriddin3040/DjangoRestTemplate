@@ -16,7 +16,9 @@ class Organization(models.Model):
         null=True,
         blank=True,
     )
-    phone = models.CharField(max_length=15, verbose_name="Номер телефона", null=True, blank=True)
+    phone = models.CharField(
+        max_length=15, verbose_name="Номер телефона", null=True, blank=True
+    )
     phone_two = models.CharField(
         max_length=15,
         verbose_name="Запасной номер телефона",
@@ -28,8 +30,14 @@ class Organization(models.Model):
         null=True,
         blank=True,
     )
-    icon = models.ImageField(verbose_name="Иконка", null=True, blank=True,)
-    social_media = models.CharField(verbose_name="Социальные сети", max_length=25, null=True, blank=True)
+    icon = models.ImageField(
+        verbose_name="Иконка",
+        null=True,
+        blank=True,
+    )
+    social_media = models.CharField(
+        verbose_name="Социальные сети", max_length=25, null=True, blank=True
+    )
     coordinates = models.CharField(
         max_length=50,
         verbose_name="Координаты",
