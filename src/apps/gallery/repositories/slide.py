@@ -6,3 +6,6 @@ from ..models.slide import Slide
 
 class SlideRepository(AbstractDjangoRepository[Slide]):
     model = Slide
+
+    def create(self, request, **kwargs):
+        slides = Slide.objects.filter()

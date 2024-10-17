@@ -40,7 +40,10 @@ class RegistrationFinishUseCase:
         self.validate(request, params)
         user = self.user_service.create(params)
         user = self.user_service.set_password(user, params.password)
-        return token_for_user(user)
+        token = token_for_user(user)
+        return {"refresh": token, "access": token.__str__, "user": user}
+
+
 
     def validate(self, request, params) -> None:
         user = self.user_service.filter(
