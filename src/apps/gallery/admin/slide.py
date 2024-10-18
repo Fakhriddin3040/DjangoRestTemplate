@@ -16,7 +16,7 @@ class SlideAdmin(admin.ModelAdmin):
 
         existing_slides = Slide.objects.filter(turn__gte=obj.turn).order_by("turn")
         if existing_slides.exists():
-            existing_slides.update(turn=F('turn') + 1)
+            existing_slides.update(turn=F("turn") + 1)
 
         if obj.turn > (max_turn or 0):
             obj.turn = (max_turn or 0) + 1

@@ -28,11 +28,13 @@ class UserUpdateSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
 
+
 class Profile(serializers.Serializer):
     bio = serializers.CharField()
     avatar = serializers.ImageField()
     address = serializers.CharField()
     postal_code = serializers.CharField()
+
 
 class UserListSerializer(serializers.Serializer):
     id = serializers.IntegerField()
