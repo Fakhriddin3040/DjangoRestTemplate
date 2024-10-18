@@ -27,11 +27,7 @@ class Slide(
         null=True,
         blank=True,
     )
-    image = models.ForeignKey(
-        to="gallery.Image",
-        on_delete=models.CASCADE,
-        verbose_name="Изображение",
-    )
+    image = models.ImageField(verbose_name="Изображения организации")
     link = models.URLField(
         verbose_name="Ссылка",
         blank=True,

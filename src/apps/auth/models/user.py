@@ -23,7 +23,7 @@ class User(AbstractUser):
     birth_date = models.DateField(blank=True, null=True, verbose_name="Дата рождения")
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username", "first_name", "last_name"]
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
     @property
     def full_name(self):

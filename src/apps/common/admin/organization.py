@@ -1,14 +1,19 @@
 from django.contrib import admin
 
-from src.utils.functions.admin import get_image_with_tag
+from src.apps.common.models.organization import Organization
 
 
 class OrganizationAdmin(admin.ModelAdmin):
-    def icon_tag(self, obj):
-        if obj.icon:
-            return get_image_with_tag(instance=obj.icon, image_field="image")
+    list_display = ("title", "email", "phone", "about_us")
+    list_display_links = ("title", "email")
 
-    icon_tag.short_description = "Иконка Организации"
+    def has_add_permission(self, request):
+        if Organization.objects.exists():
+            return False
+        return True
 
-    list_display = ("title", "icon_tag", "email", "phone", "about_us")
-    list_display_links = ("title", "icon_tag", "email")
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return True

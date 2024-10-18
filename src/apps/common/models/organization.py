@@ -13,8 +13,12 @@ class Organization(models.Model):
     address = models.CharField(
         max_length=256,
         verbose_name="Адрес",
+        null=True,
+        blank=True,
     )
-    phone = models.CharField(max_length=15, verbose_name="Номер телефона")
+    phone = models.CharField(
+        max_length=15, verbose_name="Номер телефона", null=True, blank=True
+    )
     phone_two = models.CharField(
         max_length=15,
         verbose_name="Запасной номер телефона",
@@ -23,17 +27,13 @@ class Organization(models.Model):
     )
     email = models.EmailField(
         verbose_name="Адрес электронной почты",
-    )
-    icon = models.ForeignKey(
-        to="gallery.Image",
-        on_delete=models.CASCADE,
         null=True,
         blank=True,
-        verbose_name="Иконка",
     )
-    social_networks = models.ManyToManyField(
-        to="common.SocialMedia",
-        verbose_name="Социальные сети",
+    icon = models.ImageField(
+        verbose_name="Иконка",
+        null=True,
+        blank=True,
     )
     coordinates = models.CharField(
         max_length=50,
