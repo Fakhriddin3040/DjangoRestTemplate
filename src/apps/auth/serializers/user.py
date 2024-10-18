@@ -28,6 +28,11 @@ class UserUpdateSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
 
+class Profile(serializers.Serializer):
+    bio = serializers.CharField()
+    avatar = serializers.ImageField()
+    address = serializers.CharField()
+    postal_code = serializers.CharField()
 
 class UserListSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -36,12 +41,15 @@ class UserListSerializer(serializers.Serializer):
     last_name = serializers.CharField()
     phone_number = serializers.CharField()
     birth_date = serializers.DateField()
+    profile = Profile()
+
+    def get_profile(self, obj):
+        return Profile(obj.profile).data
 
 
 class UserLoginResponseSerializer(serializers.Serializer):
-    refresh = serializers.CharField()
-    access = serializers.CharField()
-    profile = UserListSerializer(source="user")
+    refresh = serializers.CharField(source="__str__")
+    access = serializers.CharField(source="access_token")
 
 
 class PhoneNumberRegistrationSerializer(serializers.Serializer):

@@ -9,6 +9,5 @@ class OrganizationListSerializer(serializers.Serializer):
     phone = serializers.CharField()
     phone_two = serializers.CharField()
     email = serializers.CharField()
-    social_media = SocialMediaListSerializer(many=True)
     about_us = serializers.CharField()
     coordinates = serializers.CharField()

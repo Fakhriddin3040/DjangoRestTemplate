@@ -35,9 +35,6 @@ class Organization(models.Model):
         null=True,
         blank=True,
     )
-    social_media = models.CharField(
-        verbose_name="Социальные сети", max_length=25, null=True, blank=True
-    )
     coordinates = models.CharField(
         max_length=50,
         verbose_name="Координаты",
