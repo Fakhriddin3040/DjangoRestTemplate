@@ -69,3 +69,11 @@ class EmailRegistrationSerializer(serializers.Serializer):
 
 class OAuth2Serializer(serializers.Serializer):
     token = serializers.CharField()
+
+
+class ProfileSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField(read_only=True)
+    bio = serializers.CharField()
+    avatar = serializers.ImageField()
+    address = serializers.CharField()
+    postal_code = serializers.CharField()

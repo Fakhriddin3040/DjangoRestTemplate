@@ -1,3 +1,4 @@
+from django.db.models.base import Model as Model
 from src.base.views import generics, use_case_generics
 from ..serializers import user as user_serializers
 from ..use_cases import user as user_use_cases
@@ -73,3 +74,10 @@ class CredentialsVerificationAPIView(use_case_generics.UseCaseCreateAPIView):
     def post(self, request, *args, **kwargs):
         self.perform_create(request, **request.data)
         return Response(status=status.HTTP_200_OK)
+
+
+class CreateProfileAPIView(use_case_generics.UseCaseCreateAPIView):
+    create_serializer_class = user_serializers.ProfileSerializer
+    create_params_class = params.ProfileParams
+    create_use_case_class = user_use_cases.ProfileUseCase
+    list_serializer_class = user_serializers.ProfileSerializer

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 @dataclass
@@ -58,3 +59,12 @@ class CredentialsVerificationParams:
 @dataclass
 class OAuth2Params:
     token: str
+
+
+@dataclass
+class ProfileParams:
+    user_id: int = None
+    bio: str = None
+    avatar: InMemoryUploadedFile = None
+    address: str = None
+    postal_code: str = None

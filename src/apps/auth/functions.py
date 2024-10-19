@@ -1,3 +1,4 @@
+import base64
 import datetime
 import jwt
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -9,6 +10,10 @@ import requests
 import pytz
 from src.config.settings.base import TIME_ZONE
 from src.utils.functions.functions import get_datetime, send_mail
+import io, base64
+from PIL import Image
+
+from src.apps.auth.const import PROFILE_AVATAR_ROOT
 
 tz = pytz.timezone(TIME_ZONE)
 
@@ -70,3 +75,10 @@ def decode_jwt(token: str, *args, **kwargs) -> dict[str:str]:
 
 def is_valid_otp_exp_time(exp_time: datetime.datetime) -> bool:
     return exp_time < get_datetime()
+
+
+def image_from_base64_for_user_profile(base64_str: str, user_id: int):
+    img = Image.open(io.BytesIO(base64.decodebytes(bytes(base64_str, "utf-8"))))
+    path = "{}{}.{}".format(PROFILE_AVATAR_ROOT, user_id, img.format.lower())
+    img.save(path)
+    return path

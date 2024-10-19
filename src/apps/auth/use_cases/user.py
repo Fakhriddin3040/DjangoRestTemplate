@@ -1,9 +1,10 @@
 from django.db import models as dj_models
 from rest_framework_simplejwt.tokens import Token
 from src.apps.auth import const
-from src.apps.auth.functions import token_for_user
+from src.apps.auth.functions import image_from_base64_for_user_profile, token_for_user
 from src.apps.auth.models import user as user_models
-from src.apps.auth.services.user import UserService
+from src.apps.auth.services.user import ProfileService, UserService
+from src.apps.gallery.functions import image_from_base64
 from ..params import params
 from src.apps.auth import functions as auth_functions
 
@@ -79,3 +80,20 @@ class CredentialsVerificationUseCase:
 
         user_temp_data.verified = True
         user_temp_data.save()
+
+
+class ProfileUseCase:
+    def __init__(
+        self, profile_service: ProfileService = None, user_service: UserService = None
+    ):
+        self.profile_service = profile_service or ProfileService()
+        self.user_service = user_service or UserService()
+
+    def execute(self, request, params: params.ProfileParams) -> user_models.Profile:
+        if self.profile_service.filter(user_id=request.user.id).exists():
+            raise Exception("Неизвестная ошибка при создании профиля")
+        user = request.user
+        ava_path = image_from_base64_for_user_profile(params.avatar, user.id)
+        params.user_id = user.id
+        params.avatar = ava_path
+        return self.profile_service.create(params)

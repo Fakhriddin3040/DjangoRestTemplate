@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.files.images import ImageFile
+from src.apps.auth.const import PROFILE_AVATAR_ROOT
 from src.apps.auth.managers.user_manager import UserManager
 
 
@@ -39,7 +40,7 @@ class Profile(models.Model):
     )
     bio: str = models.TextField(max_length=500, blank=True, verbose_name="О себе")
     avatar: ImageFile = models.ImageField(
-        upload_to="avatars/", null=True, blank=True, verbose_name="Аватар"
+        upload_to=PROFILE_AVATAR_ROOT, null=True, blank=True, verbose_name="Аватар"
     )
     address: str = models.CharField(max_length=255, blank=True, verbose_name="Адрес")
     postal_code: str = models.CharField(
