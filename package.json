@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "build:server": "tsc server.ts",
-    "start:server": "node server.js",
-    "start:ng": "ng serve",
+    "start:server": "node server/server.js",
+    "start:full": "concurrently \"npm run start\" \"npm run start:server\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:marketplace-client": "node dist/marketplace-client/server/server.mjs"
@@ -30,7 +30,9 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "node-fetch": "^3.3.2",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.8.0",
     "swiper": "^11.1.12",
@@ -47,6 +49,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "@types/swiper": "^5.4.3",
+    "concurrently": "^9.0.1",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -54,5 +57,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.5.2"
-  }
+  },
+   "type": "module"
 }

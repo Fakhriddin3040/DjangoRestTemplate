@@ -4,7 +4,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { BreadcrumbService } from '../../breadcrumb-navigation/breadcrumb.service';
-import { ProductService } from '../../../../features/products/services/product.service';
 import { MoyskladService } from '../../../../services/moysklad.service';
 
 @Component({
