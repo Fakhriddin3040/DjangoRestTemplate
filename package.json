@@ -5,6 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:server": "tsc server.ts",
+    "start:server": "node server.js",
+    "start:ng": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:marketplace-client": "node dist/marketplace-client/server/server.mjs"

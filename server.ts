@@ -1,57 +1,37 @@
-import { APP_BASE_HREF } from '@angular/common';
-import { CommonEngine } from '@angular/ssr';
+// server.ts
 import express from 'express';
-import { fileURLToPath } from 'node:url';
-import { dirname, join, resolve } from 'node:path';
-import bootstrap from './src/main.server';
+import fetch from 'node-fetch'; 
+import cors from 'cors'; 
 
-// The Express app is exported so that it can be used by serverless Functions.
-export function app(): express.Express {
-  const server = express();
-  const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-  const browserDistFolder = resolve(serverDistFolder, '../browser');
-  const indexHtml = join(serverDistFolder, 'index.server.html');
+const app = express();
+const PORT = 3000;
 
-  const commonEngine = new CommonEngine();
+// Включаем CORS для всех маршрутов
+app.use(cors());
 
-  server.set('view engine', 'html');
-  server.set('views', browserDistFolder);
+app.get('/proxy', async (req, res) => {
+    
+  try {
+    const response = await fetch("https://api.moysklad.ru/api/remap/1.2/entity/assortment?groupBy=consignment", {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer 9903b4458420aa193f41d12c6c7205f8324a4f0f',
+        'Accept-Encoding': 'gzip'
+      }
+    });
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
-  server.get('**', express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: 'index.html',
-  }));
+    if (!response.ok) {
+      throw new Error(`Ошибка запроса: ${response.status}`);
+    }
 
-  // All regular routes use the Angular engine
-  server.get('**', (req, res, next) => {
-    const { protocol, originalUrl, baseUrl, headers } = req;
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Ошибка при запросе к Моему Складу:', error);
+    res.status(500).json({ error: 'Ошибка при запросе к Моему Складу' });
+  }
+});
 
-    commonEngine
-      .render({
-        bootstrap,
-        documentFilePath: indexHtml,
-        url: `${protocol}://${headers.host}${originalUrl}`,
-        publicPath: browserDistFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
-      })
-      .then((html) => res.send(html))
-      .catch((err) => next(err));
-  });
-
-  return server;
-}
-
-function run(): void {
-  const port = process.env['PORT'] || 4000;
-
-  // Start up the Node server
-  const server = app();
-  server.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
-}
-
-run();
+app.listen(PORT, () => {
+  console.log(`Прокси-сервер запущен на http://localhost:${PORT}`);
+});

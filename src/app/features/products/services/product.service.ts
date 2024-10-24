@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-  private apiUrl = 'http://localhost:3000/items';  // Ваш URL для API
+  private apiUrl = 'http://localhost:3000/proxy';  // Ваш URL для API
 
   constructor(private http: HttpClient) {}
 
