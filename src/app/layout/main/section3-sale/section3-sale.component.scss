@@ -32,15 +32,22 @@
     }
 
     &__title {
-        // Стили для элемента sale-content__title
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        
+        width: 45%;
+        height: 100%;
+        padding: 10px;
     }
 
     &__product-name {
-        // Стили для элемента sale-content__product-name
+        font-size: 30px;
     }
 
     &__description {
-        // Стили для элемента sale-content__description
+        font-size: 12px;
+        color: $color-muted-text;
     }
 
     &__img {
