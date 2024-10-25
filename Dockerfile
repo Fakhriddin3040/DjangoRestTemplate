@@ -17,3 +17,5 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 
 CMD ["node", "/app/dist/marketplace-client/server/server.mjs"]
+
+EXPOSE 3000
