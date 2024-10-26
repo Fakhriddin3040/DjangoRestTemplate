@@ -25,8 +25,8 @@ app.get('/proxy', async (req, res) => {
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    console.error('Ошибка при запросе к Моему Складу:', error);
-    res.status(500).json({ error: 'Ошибка при запросе к Моему Складу' });
+    console.error('Ошибка при запросе к платформе "Мой Склад"', error);
+    res.status(500).json({ error: 'Ошибка при запросе к платформе "Мой Склад"' });
   }
 });
 

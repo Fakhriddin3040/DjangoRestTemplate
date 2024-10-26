@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,38 +13,38 @@ import { MoyskladService } from '../../../../services/moysklad.service';
   templateUrl: './app-menu.component.html',
   styleUrl: './app-menu.component.scss',
 })
-export class AppMenuComponent {
+export class AppMenuComponent implements OnInit {
   constructor(
-    private breadcrumbService: BreadcrumbService,    
-    private dataFetchService: MoyskladService   
-
+    private breadcrumbService: BreadcrumbService,
+    private dataFetchService: MoyskladService
   ) {}
 
   onNavigateToConsumerElectric() {
     this.breadcrumbService.updateBreadcrumbs('Consumer Electric');
   }
 
+  ngOnInit() {
+    this.fetchData(); // Запрашиваем данные при инициализации
+  }
+
   sortedNames: string[] = [];
 
- // Метод для получения данных через сервис
- fetchData() {
-  this.dataFetchService.fetchData().subscribe({
-    next: (data) => {
-      if (data.rows && Array.isArray(data.rows)) {
-        // Извлекаем и сортируем имена
-        const names = data.rows.map((item: any) => item.name);
-        this.sortedNames = names.sort((a: string, b: string) => a.localeCompare(b));
-
-        // Выводим результат в консоль
-        console.log('Отсортированные имена:', this.sortedNames);
-      } else {
-        console.log('Поле rows отсутствует или не является массивом.');
-      }
-    },
-    error: (error) => {
-      console.error('Ошибка при выполнении запроса:', error);
-    },
-  });
-}
+  // Метод для получения данных через сервис
+  fetchData() {
+    this.dataFetchService.fetchData().subscribe({
+      next: (data) => {
+        console.log('Полученные данные из API в AppMenuComponent:', data); // Проверяем данные из API
+        if (data && data.length > 0) {
+          this.dataFetchService.updateData(data); // Сохраняем данные только если они существуют
+          console.log('Данные успешно сохранены в сервисе'); // Лог успешного обновления данных
+        } else {
+          console.warn('Получен пустой ответ от API или данные отсутствуют'); // Лог, если данные пустые
+        }
+      },
+      error: (error) => {
+        console.error('Ошибка при выполнении запроса:', error);
+      },
+    });
+  }
 
 }

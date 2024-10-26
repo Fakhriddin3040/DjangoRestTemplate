@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ProductService } from '../../../../services/product.service';
+import { MoyskladService } from '../../../../../../services/moysklad.service';
+
 
 
 @Component({
@@ -10,26 +11,32 @@ import { ProductService } from '../../../../services/product.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './product-show.component.html',
-  styleUrl: './product-show.component.scss',
-  providers: [ProductService]  // Зарегистрируйте сервис как провайдера
+  styleUrls: ['./product-show.component.scss'],
+  providers: [MoyskladService]  // Зарегистрируйте сервис как провайдера
 })
-export class ProductShowComponent {
-  data: any[] = [];  // Переменная для хранения данных
-  errorMessage: string | null = null;  // Переменная для хранения ошибки
+export class ProductShowComponent implements OnInit  {
+  data: any[] = [];
+  errorMessage: string | null = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: MoyskladService) {}
 
-  // Метод для загрузки данных при нажатии на кнопку
-  fetchData() {
-    this.productService.fetchData().subscribe({
-      next: (response: any) => {
-        this.data = response;  // Сохраняем данные в переменную
-        this.errorMessage = null;  // Очищаем ошибку, если данные успешно загружены
-      },
-      error: (error) => {
-        this.errorMessage = 'Ошибка при загрузке данных';  // Сохраняем сообщение об ошибке
-        console.error('Ошибка при загрузке данных:', error);
+  ngOnInit() {
+  // Подписываемся на поток данных
+  this.productService.data$.subscribe({
+    next: (data) => {
+      console.log('Полученные данные в ProductShowComponent:', data); // Лог данных для проверки
+      if (data && data.length > 0) {
+        this.data = data; // Сохраняем данные для отображения
+      } else {
+        console.warn('Нет данных для отображения в ProductShowComponent'); // Лог, если данные пустые
       }
-    });
+    },
+    error: (error) => {
+      this.errorMessage = 'Ошибка при загрузке данных';
+      console.error('Ошибка при подписке на данные:', error);
+    }
+  });
+
+
   }
 }
