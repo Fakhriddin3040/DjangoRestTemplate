@@ -33,16 +33,17 @@ export class AppMenuComponent implements OnInit {
   fetchData() {
     this.dataFetchService.fetchData().subscribe({
       next: (data) => {
-        console.log('Полученные данные из API в AppMenuComponent:', data); // Проверяем данные из API
-        if (data && data.length > 0) {
-          this.dataFetchService.updateData(data); // Сохраняем данные только если они существуют
-          console.log('Данные успешно сохранены в сервисе'); // Лог успешного обновления данных
+        console.log('AppMenuComponent - Полученные данные из API:', data);
+
+        if (data && data.rows && data.rows.length > 0) {
+          this.dataFetchService.updateData(data.rows); // Сохраняем только data.rows
+          console.log('AppMenuComponent - Данные успешно сохранены в сервисе:', data.rows);
         } else {
-          console.warn('Получен пустой ответ от API или данные отсутствуют'); // Лог, если данные пустые
+          console.warn('AppMenuComponent - Пустой ответ от API или данные отсутствуют');
         }
       },
       error: (error) => {
-        console.error('Ошибка при выполнении запроса:', error);
+        console.error('AppMenuComponent - Ошибка при выполнении запроса:', error);
       },
     });
   }
