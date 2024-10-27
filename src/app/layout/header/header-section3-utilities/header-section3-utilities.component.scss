@@ -6,6 +6,11 @@
     margin-top: 20px;
     flex: 0 0 25%;
   
+    &-logo > img{
+      width: 150px;
+      height: 50px;
+
+    }
     &-search-form {
       display: flex;
       justify-content: center;
