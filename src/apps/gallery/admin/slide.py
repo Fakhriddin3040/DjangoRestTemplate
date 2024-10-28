@@ -1,27 +1,63 @@
 from django.contrib import admin
 from django.db import models
+from src.apps.gallery.data_structiors import LinkedListQueue
 from src.apps.gallery.models.slide import Slide
-from src.apps.gallery.utils import add_end_queue
-from django.db.models import F
+from django.contrib import admin
+from django.db import models
 
+from src.apps.gallery.utils import add_end_queue
 
 class SlideAdmin(admin.ModelAdmin):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.queue = LinkedListQueue()
+
     def save_model(self, request, obj, form, change):
-        max_turn = Slide.objects.aggregate(max_turn=models.Max("turn"))["max_turn"]
-        if obj.turn is None and not change:
-            obj.turn = (max_turn or 0) + 1
+        max_turn = Slide.objects.aggregate(max_turn=models.Max("turn"))["max_turn"] or 0
+        max_count = Slide.objects.count()
 
-        if obj.turn < 0:
-            add_end_queue(obj)
+        if obj.turn is not None and obj.turn <= 0:
+            obj.turn = 1
+        
+        if not change:
+            if obj.turn is None:
+                obj.turn = max_turn + 1
+            elif obj.turn > max_turn + 1:
+                obj.turn = max_turn + 1
+            else:
+                for slide in Slide.objects.filter(turn__gte=obj.turn):
+                    self.queue.enqueue(slide)
+                while not self.queue.is_empty():
+                    slide = self.queue.dequeue()
+                    slide.turn += 1
+                    slide.save()
 
-        existing_slides = Slide.objects.filter(turn__gte=obj.turn).order_by("turn")
-        if existing_slides.exists():
-            existing_slides.update(turn=F("turn") + 1)
-
-        if obj.turn > (max_turn or 0):
-            obj.turn = (max_turn or 0) + 1
+        else:
+            old_turn = Slide.objects.get(pk=obj.pk).turn
+            if old_turn != obj.turn:
+                if obj.turn < old_turn:
+                    for slide in Slide.objects.filter(turn__gte=obj.turn, turn__lt=old_turn):
+                        self.queue.enqueue(slide)
+                    while not self.queue.is_empty():
+                        slide = self.queue.dequeue()
+                        slide.turn += 1
+                        slide.save()
+                elif obj.turn > old_turn:
+                    if obj.turn > max_turn + 1:
+                        obj.turn = max_count
+                    for slide in Slide.objects.filter(turn__gt=old_turn, turn__lte=obj.turn):
+                        self.queue.enqueue(slide)
+                    while not self.queue.is_empty():
+                        slide = self.queue.dequeue()
+                        slide.turn -= 1
+                        slide.save()
 
         super().save_model(request, obj, form, change)
+
+    def delete_model(self, request, obj):
+        obj_turn = obj.turn
+        Slide.objects.filter(turn__gt=obj_turn).update(turn=models.F("turn") - 1)
+        super().delete_model(request, obj)
 
     list_display = ("title", "description", "turn", "link", "is_active")
     list_display_links = ("title",)
