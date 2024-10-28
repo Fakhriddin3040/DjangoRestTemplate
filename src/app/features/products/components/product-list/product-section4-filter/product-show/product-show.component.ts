@@ -26,7 +26,8 @@ export class ProductShowComponent implements OnInit  {
       next: (data) => {
         console.log('ProductShowComponent - Полученные данные:', data);
         if (data && data.length > 0) {
-          this.data = data;
+          this.data = data.slice(0, 10); // Получаем только первые 10 объектов
+          console.log('ProductShowComponent - Первые 10 данных:', this.data);
         } else {
           console.warn('ProductShowComponent - Нет данных для отображения');
         }
