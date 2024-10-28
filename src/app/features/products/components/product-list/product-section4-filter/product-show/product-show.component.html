@@ -11,8 +11,9 @@
         <strong>Название:</strong> {{ item.name }} <br>
         <strong>Описание:</strong> {{ item.description }} <br>
         <strong>Количество:</strong> {{ item.quantity }} <br>
+        <strong>Цена</strong> {{ item.buyPrice.value / 100}} <br>
       </li>
     </ul>
   </div>
-  <pre>{{ data | json }}</pre>
+  
 </div>
