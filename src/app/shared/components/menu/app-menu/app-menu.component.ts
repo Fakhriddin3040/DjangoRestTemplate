@@ -40,7 +40,7 @@ export class AppMenuComponent implements OnInit {
           console.log('AppMenuComponent - Данные успешно сохранены в сервисе:', data.rows);
         } else {
           console.warn('AppMenuComponent - Пустой ответ от API или данные отсутствуют');
-        }
+        } 
       },
       error: (error) => {
         console.error('AppMenuComponent - Ошибка при выполнении запроса:', error);
