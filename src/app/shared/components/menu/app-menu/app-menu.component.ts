@@ -35,9 +35,11 @@ export class AppMenuComponent implements OnInit {
       next: (data) => {
         console.log('AppMenuComponent - Полученные данные из API:', data);
 
-        if (data && data.rows && data.rows.length > 0) {
-          this.dataFetchService.updateData(data.rows); // Сохраняем только data.rows
-          console.log('AppMenuComponent - Данные успешно сохранены в сервисе:', data.rows);
+        // Проверяем, есть ли данные
+        if (data && data.length > 0) {
+          this.sortedNames = data; // Сохраняем данные в sortedNames
+          this.dataFetchService.updateData(data); // Сохраняем данные в сервисе
+          console.log('AppMenuComponent - Данные успешно сохранены в сервисе:', data);
         } else {
           console.warn('AppMenuComponent - Пустой ответ от API или данные отсутствуют');
         } 

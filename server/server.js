@@ -23,7 +23,14 @@ app.get('/proxy', async (req, res) => {
     }
 
     const data = await response.json();
-    res.json(data);
+    console.log('Полученные данные от API:', data); // Логируем полученные данные
+
+    // Убедимся, что данные содержат массив с объектами
+    const assortmentData = data.rows || []; // Предположим, что массив находится в data.rows
+
+    // Ограничим количество объектов до 10
+    const limitedData = assortmentData.slice(0, 10);
+    res.json(limitedData); // Возвращаем только первые 10 объектов
   } catch (error) {
     console.error('Ошибка при запросе к платформе "Мой Склад"', error);
     res.status(500).json({ error: 'Ошибка при запросе к платформе "Мой Склад"' });
