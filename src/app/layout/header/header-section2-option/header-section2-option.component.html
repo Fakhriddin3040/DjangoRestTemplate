@@ -24,10 +24,9 @@
 
       <!-- Language selection button -->
       <div class="header-options__language-select">
-        <mat-select [(value)]="selected1">
-          <mat-option value="option3">English</mat-option>
-          <mat-option value="option4">Spanish</mat-option>
-          <mat-option value="option5">French</mat-option>
+        <mat-select [(value)]="selectedLanguage" (selectionChange)="onLanguageChange($event.value)">         
+          <mat-option value="ru">Russia</mat-option>
+          <mat-option value="en">English</mat-option>
         </mat-select>
       </div>
     </div>

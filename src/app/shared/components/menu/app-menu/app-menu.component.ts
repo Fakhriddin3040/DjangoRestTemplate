@@ -1,23 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { BreadcrumbService } from '../../breadcrumb-navigation/breadcrumb.service';
 import { MoyskladService } from '../../../../services/moysklad.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-app-menu',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, RouterModule],
+  imports: [MatButtonModule, MatMenuModule, RouterModule, TranslateModule],
   templateUrl: './app-menu.component.html',
   styleUrl: './app-menu.component.scss',
 })
 export class AppMenuComponent implements OnInit {
   constructor(
     private breadcrumbService: BreadcrumbService,
-    private dataFetchService: MoyskladService
-  ) {}
+    private dataFetchService: MoyskladService,
+    private translate: TranslateService
+  ) {
+    this.translate.setDefaultLang('ru'); // Установите язык по умолчанию
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language); // Метод для смены языка
+  }
 
   onNavigateToConsumerElectric() {
     this.breadcrumbService.updateBreadcrumbs('Consumer Electric');

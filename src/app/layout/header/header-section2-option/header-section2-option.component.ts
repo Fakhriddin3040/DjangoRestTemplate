@@ -3,6 +3,7 @@ import { ContainerComponent } from '../../../shared/container/container.componen
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MenuBlogComponent } from "../../../shared/components/menu/menu-blog/menu-blog.component";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-section2-option',
@@ -20,4 +21,14 @@ export class HeaderSection1OptionComponent {
 
   selected = 'option2';
   selected1 = 'option4';
+
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang(this.selectedLanguage);
+    this.translate.use(this.selectedLanguage); // Установить начальный язык
+  }
+  selectedLanguage = 'ru';  // Язык по умолчанию
+  onLanguageChange(language: string) {
+    this.selectedLanguage = language;
+    this.translate.use(language); // Меняем язык с помощью ngx-translate
+  }
 }
