@@ -6,16 +6,18 @@ import {
   AfterViewInit,
   OnInit,
   inject,
-  PLATFORM_ID,
+  PLATFORM_ID,  
   
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -26,7 +28,14 @@ export class LoginComponent implements AfterViewInit, OnInit {
 
   @ViewChild('content') content!: TemplateRef<any>;
 
-  constructor(private modalService: NgbModal, private authService: AuthService) {}
+  constructor(
+    private modalService: NgbModal, 
+    private authService: AuthService,
+    private translate: TranslateService
+  ) 
+    {
+      this.translate.setDefaultLang('ru');
+    }
 
   ngAfterViewInit() {
     // Проверка, что шаблон инициализирован
