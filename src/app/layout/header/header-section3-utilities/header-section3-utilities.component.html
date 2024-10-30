@@ -8,7 +8,7 @@
             <input
               type="text"
               class="header__utilities-search-form-input form-control"
-              placeholder="I`m looking for..."
+              placeholder="{{ 'I_AM_LOOKING' | translate }}"
               aria-label="Recipient's username"
               aria-describedby="button-addon2"
             />
@@ -17,7 +17,8 @@
               type="button"
               id="button-addon2"
             >
-              Search
+             
+              {{ 'SEARCH' | translate }}
             </button>
           </div>
         </div>
@@ -30,7 +31,7 @@
               <app-info-user *ngIf="isUserLoggedIn"></app-info-user>
               <app-login *ngIf="!isUserLoggedIn" (click)="navigateToLogin()"></app-login>
               <div class="header__utilities-">
-                <a [routerLink]="['/register']">Register</a>
+                <a [routerLink]="['/register']">{{ 'REGISTER' | translate }}</a>
               </div>
             </div>
           </div>

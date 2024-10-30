@@ -5,6 +5,7 @@ import { MenuHomeLayoutComponent } from '../../../shared/components/menu/menu-ho
 import { MenuCategoryComponent } from '../../../shared/components/menu/menu-category/menu-category.component';
 import { MenuProductComponent } from '../../../shared/components/menu/menu-product/menu-product.component';
 import { MenuBlogComponent } from '../../../shared/components/menu/menu-blog/menu-blog.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -19,10 +20,21 @@ import { MatButtonModule } from '@angular/material/button';
     MenuCategoryComponent,
     MenuProductComponent,
     MenuBlogComponent,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule
   ],
   templateUrl: './header-section4-menu.component.html',
   styleUrl: './header-section4-menu.component.scss',
 })
-export class HeaderSection4MenuComponent {}
+export class HeaderSection4MenuComponent {
+  constructor(    
+    private translate: TranslateService
+  ) {
+    this.translate.setDefaultLang('ru'); // Установите язык по умолчанию
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language); // Метод для смены языка
+  }
+}
 

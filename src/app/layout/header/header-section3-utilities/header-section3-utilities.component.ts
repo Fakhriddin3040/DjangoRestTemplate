@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ContainerComponent } from "../../../shared/container/container.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-section3-utilities',
@@ -15,7 +16,8 @@ import { ContainerComponent } from "../../../shared/container/container.componen
     InfoUserComponent,
     LoginComponent,
     ContainerComponent,
-    RouterModule
+    RouterModule,
+    TranslateModule
 ],
   templateUrl: './header-section3-utilities.component.html',
   styleUrls: ['./header-section3-utilities.component.scss']
@@ -29,8 +31,11 @@ export class HeaderSection3UtilitiesComponent implements OnInit {
    constructor(
     private modalService: NgbModal, 
     private router: Router,
-    private authService: AuthService 
-    ) {}  
+    private authService: AuthService,
+    private translate: TranslateService
+    ) {
+      this.translate.setDefaultLang('ru');
+    }  
 
   navigateToLogin() {
     console.log('navigateToLogin method called');

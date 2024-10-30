@@ -1,5 +1,14 @@
 {
-    "Shop By Department ": "Shop By Department ",
+    "SHOP_BY_DEPARTAMEN": "Shop By Department ",
     "CONSUMER_ELECTRIC": "Consumer Electric",
-    "Organik": "Organik"
+    "ORGANIK": "Organik",
+    "BLOG": "Blog",
+    "GATEGORY": "Category",
+    "HOME_LAYOUT": "Home layout", 
+    "PRODUCT": "Product",
+    "CONTACT": "Contact",
+    "HOTLINE": "Hotline", 
+    "SEARCH": "Search", 
+    "REGISTER": "Register", 
+    "I_AM_LOOKING": "I`m looking for... "
   }
