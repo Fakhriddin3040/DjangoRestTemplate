@@ -3,7 +3,8 @@ import { ContainerComponent } from '../../../shared/container/container.componen
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MenuBlogComponent } from "../../../shared/components/menu/menu-blog/menu-blog.component";
-import { TranslateService } from '@ngx-translate/core';
+
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-section2-option',
@@ -12,7 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
     ContainerComponent,
     MatButtonModule,
     MatSelectModule,
-    MenuBlogComponent
+    MenuBlogComponent , 
+    TranslateModule
 ],
   templateUrl: './header-section2-option.component.html',
   styleUrl: './header-section2-option.component.scss'
@@ -22,7 +24,9 @@ export class HeaderSection1OptionComponent {
   selected = 'option2';
   selected1 = 'option4';
 
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService    
+  ) {
     this.translate.setDefaultLang(this.selectedLanguage);
     this.translate.use(this.selectedLanguage); // Установить начальный язык
   }

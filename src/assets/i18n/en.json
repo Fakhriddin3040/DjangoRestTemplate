@@ -10,5 +10,8 @@
     "HOTLINE": "Hotline", 
     "SEARCH": "Search", 
     "REGISTER": "Register", 
-    "I_AM_LOOKING": "I`m looking for... "
+    "I_AM_LOOKING": "I`m looking for... ", 
+    "STORE_LOCATION": "Store Location", 
+    "TRACK_ORDER": "Track Order", 
+    "WELCOME_ONLINE_STORE": "Welcome to Martfury Online Store!"
   }
