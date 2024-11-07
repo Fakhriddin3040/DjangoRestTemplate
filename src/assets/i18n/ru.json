@@ -29,5 +29,10 @@
     "CAMERA_PHOTOS_VIDEOS": "Камера, Фото и Видео",
     "HEADPHONES": "Наушники",
     "CAR_ELECTRONICS": "Автомобильная электроника",
-    "ELECTRONICS_SHOWCASE": "Витрина электроники"
+    "ELECTRONICS_SHOWCASE": "Витрина электроники",
+    "FURNITURE": "Мебель",
+    "HOME_DECOR": "Домашний декор",
+    "COOKWARE": "Кухонные принадлежности",
+    "UTENSILS_GARDEN": "Сад и принадлежности",
+    "GARDEN_TOOLS": "Инструменты для сада"
   }
