@@ -42,5 +42,17 @@
     "EAT_DRINK_BABY": "Питание для малыша",
     "APPARELS_BABY": "Одежда для малыша",
     "BABY_OUT": "Малышам для выхода",
-    "PREGNANCY_MATERNITY": "Для беременных и матерей"
+    "PREGNANCY_MATERNITY": "Для беременных и матерей",
+    "SMART_PHONES": "Смартфоны",
+    "IOS_PHONES": "IOS",
+    "ANDROID_PHONES": "Android",
+    "WINDOWS_PHONES": "Window",
+    "OTHER_SMARTPHONES": "Другие Смартфоны",
+    "ACCESSORIES": "Аксессуары",
+    "CASES": "Чехлы",
+    "LIGHTING_CABLES": "Осветительные кабели",
+    "MEMORY_CARDS": "Карта памяти",
+    "OTHER": "Другое",
+    "EAR_PHONES": "Безпроводные наушники",
+    "PHONE_COMPONENTS": "Компоненты телефона"
   }
