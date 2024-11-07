@@ -22,5 +22,12 @@
     "SPORT_OUTDOOR": "Спорт и отдых",
     "PHONES_ACCESSORIES": "Телефоны и аксессуары",
     "HEALTH_BEAUTY": "Здоровье и красота",
-    "BOOKS_OFFICE": "Книги и концтовары"
+    "BOOKS_OFFICE": "Книги и концтовары",
+    "ELECTRONICS": "Электроника",
+    "HOME_AUDIO_THEATERS": "Аудио и Кинотеатр",
+    "TV_VIDEO": "ТВ и Видео",
+    "CAMERA_PHOTOS_VIDEOS": "Камера, Фото и Видео",
+    "HEADPHONES": "Наушники",
+    "CAR_ELECTRONICS": "Автомобильная электроника",
+    "ELECTRONICS_SHOWCASE": "Витрина электроники"
   }

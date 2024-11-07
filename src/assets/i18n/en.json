@@ -22,5 +22,12 @@
     "SPORT_OUTDOOR": "Sport & Outdoor", 
     "PHONES_ACCESSORIES": "Phones & Accessories", 
     "HEALTH_BEAUTY": "Health & Beauty", 
-    "BOOKS_OFFICE": "Books & Office"
+    "BOOKS_OFFICE": "Books & Office",
+    "ELECTRONICS": "Electronics",
+    "HOME_AUDIO_THEATERS": "Home Audio & Theaters",
+    "TV_VIDEO": "TV & Video",
+    "CAMERA_PHOTOS_VIDEOS": "Camera, Photos & Videos",
+    "HEADPHONES": "Headphones",
+    "CAR_ELECTRONICS": "Car Electronics",
+    "ELECTRONICS_SHOWCASE": "Electronics Showcase"
   }
