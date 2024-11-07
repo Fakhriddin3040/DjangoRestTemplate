@@ -54,5 +54,10 @@
     "MEMORY_CARDS": "Memory Cards",
     "OTHER": "Other",
     "EAR_PHONES": "Ear-Phones",
-    "PHONE_COMPONENTS": "Phone Components"
+    "PHONE_COMPONENTS": "Phone Components",
+    "MAKEUP": "Makeup",
+    "SKIN_CARE": "Skin Care",
+    "HAIR_CARE": "Hair Care",
+    "TOOLS_EQUIPMENTS": "Tools & Equipments",
+    "PERFUMER_COLOGINE": "Perfumer & Cologine"
   }

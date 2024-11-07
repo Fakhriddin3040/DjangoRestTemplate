@@ -54,5 +54,10 @@
     "MEMORY_CARDS": "Карта памяти",
     "OTHER": "Другое",
     "EAR_PHONES": "Безпроводные наушники",
-    "PHONE_COMPONENTS": "Компоненты телефона"
+    "PHONE_COMPONENTS": "Компоненты телефона",
+    "MAKEUP": "Косметика",
+    "SKIN_CARE": "Уход за лицом",
+    "HAIR_CARE": "Уход за волосами",
+    "TOOLS_EQUIPMENTS": "Инструменты и оборудование",
+    "PERFUMER_COLOGINE": "Парфюмерия"
   }
