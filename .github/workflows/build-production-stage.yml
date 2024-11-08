@@ -13,8 +13,8 @@ env:
   HOST_USER: root
   WORK_DIR: ${{ secrets.WORK_DIR }}
   SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
-  DOCKER_CR_USER: ${{ secrets.GH_CR_USER }}
-  DOCKER_CR_PASSWORD: ${{ secrets.GH_CR_PASSWORD }}
+  DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
+  DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
 
 jobs:
   deploy:
