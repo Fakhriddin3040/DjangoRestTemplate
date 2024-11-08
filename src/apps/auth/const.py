@@ -9,4 +9,4 @@ class FieldsBusyExceptionMessages(enum.Enum):
 
 
 PROFILE_AVATAR_URL = "avatar/"
-PROFILE_AVATAR_ROOT = "{}/{}".format(settings.MEDIA_ROOT, PROFILE_AVATAR_URL)
+PROFILE_AVATAR_ROOT = "{}/{}".format(settings.MEDIA_URL, PROFILE_AVATAR_URL)[1:]
