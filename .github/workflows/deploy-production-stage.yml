@@ -1,9 +1,8 @@
 name: Deploy Production
 
-on: 
-  registry_package:
-    types:
-      [published, updated]
+on:
+  repository_dispatch:
+    types: [container_push]
 
 env:
   HOST_IP: 62.113.110.170
