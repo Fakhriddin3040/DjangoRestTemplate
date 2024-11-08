@@ -16,7 +16,7 @@ env:
   DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
   DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
   REPOSITORY_SSH_PRIVATE_KEY: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   deploy:
