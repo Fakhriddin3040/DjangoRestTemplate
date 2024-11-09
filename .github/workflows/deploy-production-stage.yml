@@ -33,7 +33,10 @@ jobs:
 
       - name: Login to server, pull containers and deploy
         run: |
-          ssh $HOST_USER@$HOST_IP 
+          ssh $HOST_USER@$HOST_IP \
+          "
+          ls -la
+          "
       
       - name: Finish Deploy
         run: |
