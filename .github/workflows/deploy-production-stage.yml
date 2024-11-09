@@ -45,6 +45,7 @@ jobs:
         run: |
           ssh "$HOST_USER@$HOST_IP" -i '$SSH_IDENTITY_FILE' \
           "
+          cd $WORK_DIR
           echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
 
           docker compose -f compose.deploy.yml down
