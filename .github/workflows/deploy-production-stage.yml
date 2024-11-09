@@ -20,7 +20,7 @@ jobs:
       - name: Setup SSH agent
         run: |
           eval $(ssh-agent)
-          echo $SSH_PRIVATE_KEY | ssh-add -
+          echo ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }} | ssh-add -
     
       - name: Add server name to SSH known hosts
         run: |
