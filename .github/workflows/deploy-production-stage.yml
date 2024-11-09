@@ -43,7 +43,7 @@ jobs:
           ssh -i '$SSH_IDENTITY_FILE' "$HOST_USER@$HOST_IP"  \
             "mkdir -p $WORK_DIR"
 
-          scp -i '$SSH_IDENTITY_FILE' ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/docker-compose.yml"
+          scp -i '$SSH_IDENTITY_FILE' ./compose.override.yml ./compose.yml "$HOST_USER@$HOST_IP:$WORK_DIR"
 
       - name: Login to server, pull containers and deploy
         run: |
