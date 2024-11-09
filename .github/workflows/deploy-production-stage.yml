@@ -32,7 +32,7 @@ jobs:
           ssh-keyscan -H "$HOST_IP" >> ~/.ssh/known_hosts
 
           echo "$SSH_PRIVATE_KEY" > $SSH_IDENTITY_FILE
-          chmod 600 "$SSH_IDENTITY_FILE"
+          chmod 600 $SSH_IDENTITY_FILE
 
       - name: Copy compose files to server
         run: |
