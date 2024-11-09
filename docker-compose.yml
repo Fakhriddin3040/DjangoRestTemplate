@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   frontend:
-    image: your-frontend-image
+    image: ghcr.io/it-lab-tj/marketplace-client-nodejs:latest
     ports:
       - "4200:4200"
-      - "3000:3000"  # Проброс портов на хост-систему
+      - "3000:3000"
 
   nginx:
     build:
@@ -19,7 +19,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - nodejs
+      - frontend
     networks:
       - marketplace-network
 
