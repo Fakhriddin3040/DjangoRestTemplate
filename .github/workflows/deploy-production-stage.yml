@@ -1,5 +1,9 @@
 name: Deploy Production
 
+concurrency:
+  group: ${{ github.repository }}-concurrency-for-workflow
+  cancel-in-progress: true
+
 on:
   repository_dispatch:
     types: [container_push]

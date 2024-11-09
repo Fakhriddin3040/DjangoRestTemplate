@@ -1,5 +1,9 @@
 name: Build Production Stage
 
+concurrency:
+  group: ${{ github.repository }}-concurrency-for-workflow
+  cancel-in-progress: true  
+
 on:
   push:
     branches:
