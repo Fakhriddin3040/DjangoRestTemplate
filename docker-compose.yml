@@ -1,6 +1,7 @@
 services:
   frontend:
     image: ghcr.io/it-lab-tj/marketplace-client-nodejs:latest
+    container_name: frontend
     ports:
       - "4200:4200"
       - "3000:3000"
