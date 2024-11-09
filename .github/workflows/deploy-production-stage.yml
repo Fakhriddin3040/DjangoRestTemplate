@@ -35,14 +35,8 @@ jobs:
 
       - name: Login to server, pull containers and deploy
         run: |
-          ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP \
-          "
-          cd $WORK_DIR
-          docker-compose pull
-          docker-compose down
-          docker-compose up -d
-          "
-      
+          ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "echo SSH connection established"
+       
       - name: Finish Deploy
         run: |
           ssh $HOST_USER@$HOST_IP \
