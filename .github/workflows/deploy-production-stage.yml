@@ -31,7 +31,7 @@ jobs:
         run: |
           eval $(ssh-agent)
           echo "${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}" | ssh-add -
-          ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP |
+          ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP \
           "
           ls -al /
           "
