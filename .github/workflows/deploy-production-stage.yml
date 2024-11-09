@@ -13,6 +13,7 @@ env:
   HOST_USER: ${{ vars.HOST_USER }}
   WORK_DIR: ${{ vars.WORK_DIR }}
   SSH_IDENTITY_FILE: ${{ vars.SSH_IDENTITY_FILE_PATH }}
+  WORK_DIR: ${{ vars.WORK_DIR }}
 
 jobs:
   deploy:
