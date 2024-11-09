@@ -34,10 +34,7 @@ jobs:
 
       - name: Login to server, pull containers and deploy
         run: |
-          ssh $HOST_USER@$HOST_IP \
-          "
-          ls -la
-          "
+          ssh $HOST_USER@$22.435.67.54
       
       - name: Finish Deploy
         run: |
