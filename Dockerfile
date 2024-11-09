@@ -11,4 +11,4 @@ COPY . .
 CMD ["npm", "run", "start:full"]
 
 EXPOSE 3000
-EXPOSE 4000
+EXPOSE 4200
