@@ -19,7 +19,7 @@ services:
     container_name: nginx
     ports:
       - "4200:4200"
-      -  "3000:3000"
+      - "3000:3000"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
