@@ -17,12 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup SSH agent
-        run: |
-          eval $(ssh-agent)
-          echo "${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}" | ssh-add -
-          ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "echo SSH key added"
-    
       - name: Add server name to SSH known hosts
         run: |
           mkdir -p ~/.ssh
@@ -32,10 +26,13 @@ jobs:
       - name: Login to Docker registry
         run: |
           echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
-
+        
       - name: Login to server, pull containers and deploy
         run: |
           ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "echo SSH connection established"
+          eval $(ssh-agent)
+          echo "${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}" | ssh-add -
+
        
       - name: Finish Deploy
         run: |
