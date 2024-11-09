@@ -31,8 +31,9 @@ jobs:
           ssh-keyscan -H 'github.com' >> "$HOME/.ssh/known_hosts"
           ssh-keyscan -H "$HOST_IP" >> "$HOME/.ssh/known_hosts"
 
-          echo "$SSH_PRIVATE_KEY" > "$SSH_IDENTITY_FILE"
-          chmod 600 "$SSH_IDENTITY_FILE"
+          touch "$HOME/.ssh/id_rsa_github_actions"
+          echo "$SSH_PRIVATE_KEY" > "$HOME/.ssh/id_rsa_github_actions"
+          chmod 600 "$HOME/.ssh/id_rsa_github_actions"
         
       - name: Copy compose files to server
         run: |
