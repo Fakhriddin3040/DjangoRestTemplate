@@ -27,7 +27,7 @@ jobs:
 
       - name: Set up SSH
         run: |
-          mkdir -p ~/.ssh
+          mkdir -p "$HOME/.ssh"
           ssh-keyscan -H 'github.com' >> "$HOME/.ssh/known_hosts"
           ssh-keyscan -H "$HOST_IP" >> "$HOME/.ssh/known_hosts"
 
