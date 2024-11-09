@@ -1,12 +1,8 @@
+version: '3.8'
+
 services:
-  nodejs:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: ghcr.io/it-lab-tj/marketplace-client-nodejs:latest
-    container_name: marketplace
-    networks:
-      - marketplace-network
+  frontend:
+    image: your-frontend-image
     ports:
       - "4200:4200"
       - "3000:3000"  # Проброс портов на хост-систему
@@ -27,6 +23,6 @@ services:
     networks:
       - marketplace-network
 
-  networks:
-    marketplace-network:
-      driver: bridge
+networks:
+  marketplace-network:
+    driver: bridge
