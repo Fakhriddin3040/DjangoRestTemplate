@@ -33,14 +33,7 @@ jobs:
 
       - name: Login to server, pull containers and deploy
         run: |
-          ssh $HOST_USER@$HOST_IP \
-          "
-          # cd $WORK_DIR
-          # docker compose -f compose.deploy.yml down
-          # docker compose -f compose.deploy.yml pull
-          # docker compose -f compose.deploy.yml up -d
-          ls -a
-          "
+          ssh $HOST_USER@$HOST_IP 
       
       - name: Finish Deploy
         run: |
