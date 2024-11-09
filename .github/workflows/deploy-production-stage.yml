@@ -8,7 +8,7 @@ env:
   HOST_IP: 62.113.110.170
   HOST_USER: market_gha
   WORK_DIR: ${{ secrets.WORK_DIR }}
-  SSH_PRIVATE_KEY: psygifdiosfjroeifjeoiufnveuifnveufhvefuhvefuvh
+  SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
   DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
   DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
 
@@ -21,6 +21,7 @@ jobs:
         run: |
           eval $(ssh-agent)
           echo "${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}" | ssh-add -
+          ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "echo SSH key added"
     
       - name: Add server name to SSH known hosts
         run: |
@@ -30,11 +31,17 @@ jobs:
         
       - name: Login to Docker registry
         run: |
-          echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "${{ secrets.DOCKER_CR_USER }}" --password-stdin
+          echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
 
       - name: Login to server, pull containers and deploy
         run: |
-          ssh $HOST_USER@$HOST_IP
+          ssh $HOST_USER@$HOST_IP \
+          "
+          cd $WORK_DIR
+          docker-compose pull
+          docker-compose down
+          docker-compose up -d
+          "
       
       - name: Finish Deploy
         run: |
