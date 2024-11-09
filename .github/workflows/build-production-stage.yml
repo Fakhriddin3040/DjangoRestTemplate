@@ -12,6 +12,7 @@ env:
   DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
   SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
   DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
   
   HOST_IP: ${{ vars.HOST_IP }}
   HOST_USER: ${{ vars.HOST_USER }}
