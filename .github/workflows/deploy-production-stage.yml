@@ -37,7 +37,7 @@ jobs:
         
       - name: Copy compose files to server
         run: |
-          scp -i $SSH_IDENTITY_FILE ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/compose.deploy.yml"
+          scp -o StrictHostKeyChecking=no -i $SSH_IDENTITY_FILE ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/compose.deploy.yml"
 
       - name: Login to server, pull containers and deploy
         run: |
