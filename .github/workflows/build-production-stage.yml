@@ -1,0 +1,44 @@
+name: Build Production Stage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  HOST_IP: 62.113.110.170
+  HOST_USER: root
+  WORK_DIR: ${{ secrets.WORK_DIR }}
+  SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
+  DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
+  DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
+  REPOSITORY_SSH_PRIVATE_KEY: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          ssh-key: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
+
+      - name: Login to Docker container registry
+        run: |
+          echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
+          docker compose -f compose.build.yml build
+          docker compose -f compose.build.yml push
+          docker logout ghcr.io
+      
+      - name: Trigger production deployment
+        run: |
+          curl -X POST -H "Accept: application/vnd.github.everest-preview+json" \
+          -H "Authorization: token $GH_TOKEN" \
+          https://api.github.com/repos/${{ github.repository }}/dispatches \
+          -d '{"event_type": "container_push"}'

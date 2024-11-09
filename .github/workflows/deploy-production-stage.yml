@@ -1,0 +1,49 @@
+name: Deploy Production
+
+on:
+  repository_dispatch:
+    types: [container_push]
+
+env:
+  HOST_IP: 62.113.110.170
+  HOST_USER: market_gha
+  WORK_DIR: ${{ secrets.WORK_DIR }}
+  SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
+  DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
+  DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup SSH agent
+        run: |
+          eval $(ssh-agent)
+          echo "${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}" | ssh-add -
+    
+      - name: Add server name to SSH known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
+        
+      - name: Login to Docker registry
+        run: |
+          echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "${{ secrets.DOCKER_CR_USER }}" --password-stdin
+
+      - name: Login to server, pull containers and deploy
+        run: |
+          ssh $HOST_USER@$HOST_IP \
+          "
+          cd $WORK_DIR
+          docker compose -f compose.deploy.yml down
+          docker compose -f compose.deploy.yml pull
+          docker compose -f compose.deploy.yml up -d
+          "
+      
+      - name: Finish Deploy
+        run: |
+          ssh $HOST_USER@$HOST_IP \
+          "
+          docker logout
+          "
