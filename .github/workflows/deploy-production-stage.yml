@@ -36,14 +36,14 @@ jobs:
 
       - name: Copy compose files to server
         run: |
-          ssh -i "$SSH_IDENTITY_FILE" "$HOST_USER@$HOST_IP" \
+          ssh -i '$SSH_IDENTITY_FILE' "$HOST_USER@$HOST_IP" \
             "mkdir -p $WORK_DIR"
 
-          scp -i "$SSH_IDENTITY_FILE" ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/compose.deploy.yml"
+          scp -i '$SSH_IDENTITY_FILE; ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/compose.deploy.yml"
 
       - name: Login to server, pull containers and deploy
         run: |
-          ssh "$HOST_USER@$HOST_IP" -i "$SSH_IDENTITY_FILE" \
+          ssh "$HOST_USER@$HOST_IP" -i '$SSH_IDENTITY_FILE' \
           "
           echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
 
