@@ -28,13 +28,13 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p "$HOME/.ssh"
-          ssh-keyscan -H 'github.com' >> "$HOME/.ssh/known_hosts"
-          ssh-keyscan -H "$HOST_IP" >> "$HOME/.ssh/known_hosts"
+          ssh-keyscan -H 'github.com' >> ~/.ssh/known_hosts
+          ssh-keyscan -H "$HOST_IP" >> ~/.ssh/known_hosts
 
-          touch "$HOME/.ssh/id_rsa_github_actions"
-          echo "$SSH_PRIVATE_KEY" > "$HOME/.ssh/id_rsa_github_actions"
-          chmod 600 "$HOME/.ssh/id_rsa_github_actions"
-        
+          touch ~/.ssh/id_rsa_github_actions
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa_github_actions
+          chmod 600 ~/.ssh/id_rsa_github_actions
+
       - name: Copy compose files to server
         run: |
           scp -o StrictHostKeyChecking=no -i $SSH_IDENTITY_FILE ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/compose.deploy.yml"
