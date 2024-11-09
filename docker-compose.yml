@@ -7,9 +7,9 @@ services:
     container_name: marketplace
     networks:
       - marketplace-network
-    expose:
-      - "4200"
-      - "3000"
+    ports:
+      - "4200:4200"
+      - "3000:3000"  # Проброс портов на хост-систему
 
   nginx:
     build:
