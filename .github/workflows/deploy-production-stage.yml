@@ -13,7 +13,6 @@ env:
   HOST_USER: ${{ vars.HOST_USER }}
   WORK_DIR: ${{ vars.WORK_DIR }}
   SSH_IDENTITY_FILE: ${{ vars.SSH_IDENTITY_FILE_PATH }}
-  WORK_DIR: ${{ vars.WORK_DIR }}
 
 jobs:
   deploy:
@@ -40,7 +39,7 @@ jobs:
           ssh -i '$SSH_IDENTITY_FILE' "$HOST_USER@$HOST_IP" \
             "mkdir -p $WORK_DIR"
 
-          scp -i '$SSH_IDENTITY_FILE' ./compose.deploy.yml "$HOST_USER@$HOST_IP:$(echo '$WORK_DIR')/compose.deploy.yml"
+          scp -i '$SSH_IDENTITY_FILE' ./compose.deploy.yml "$HOST_USER@$HOST_IP:$(echo $WORK_DIR)/compose.deploy.yml"
 
       - name: Login to server, pull containers and deploy
         run: |
