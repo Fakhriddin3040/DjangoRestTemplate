@@ -37,8 +37,8 @@ jobs:
       - name: Build and Push Docker Images to GitHub Container Registry
         run: |
           echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
-          docker compose -f compose.build.yml build
-          docker compose -f compose.build.yml push
+          docker compose d build
+          docker compose d push
           docker logout ghcr.io
       
       - name: Trigger production deployment

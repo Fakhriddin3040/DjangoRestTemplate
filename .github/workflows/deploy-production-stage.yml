@@ -1,6 +1,6 @@
 name: Deploy Production
 
-concurrency:
+oncurrency:
   group: ${{ github.repository }}-concurrency-for-workflow
   cancel-in-progress: true
 
@@ -52,9 +52,9 @@ jobs:
           cd $WORK_DIR
           echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
 
-          docker compose -f compose.deploy.yml down
-          docker compose -f compose.deploy.yml pull
-          docker compose -f compose.deploy.yml up -d
+          docker compose down
+          docker compose pull
+          docker compose up -d
           docker system prune -f
 
           docker logout ghcr.io
