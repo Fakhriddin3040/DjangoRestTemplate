@@ -1,6 +1,6 @@
 name: Deploy Production
 
-oncurrency:
+concurrency:
   group: ${{ github.repository }}-concurrency-for-workflow
   cancel-in-progress: true
 
