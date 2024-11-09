@@ -27,17 +27,19 @@ jobs:
 
       - name: Set up SSH
         run: |
-          mkdir -p "$HOME/.ssh"
+          mkdir -p "~/.ssh"
           ssh-keyscan -H 'github.com' >> ~/.ssh/known_hosts
           ssh-keyscan -H "$HOST_IP" >> ~/.ssh/known_hosts
 
-          touch ~/.ssh/id_rsa_github_actions
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa_github_actions
-          chmod 600 ~/.ssh/id_rsa_github_actions
+          echo "$SSH_PRIVATE_KEY" > $SSH_IDENTITY_FILE
+          chmod 600 "$SSH_IDENTITY_FILE"
 
       - name: Copy compose files to server
         run: |
-          scp -i ~/.ssh/id_rsa_github_actions ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/compose.deploy.yml"
+          ssh -i "$SSH_IDENTITY_FILE" "$HOST_USER@$HOST_IP" \
+            "mkdir -p $WORK_DIR"
+
+          scp -i "$SSH_IDENTITY_FILE" ./compose.deploy.yml "$HOST_USER@$HOST_IP:$WORK_DIR/compose.deploy.yml"
 
       - name: Login to server, pull containers and deploy
         run: |
