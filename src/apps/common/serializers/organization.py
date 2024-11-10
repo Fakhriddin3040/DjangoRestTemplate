@@ -1,7 +1,5 @@
 from rest_framework import serializers
 
-from .social_media import SocialMediaListSerializer
-
 
 class OrganizationListSerializer(serializers.Serializer):
     title = serializers.CharField()

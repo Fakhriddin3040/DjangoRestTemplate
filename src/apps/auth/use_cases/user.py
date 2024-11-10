@@ -4,7 +4,6 @@ from src.apps.auth import const
 from src.apps.auth.functions import image_from_base64_for_user_profile, token_for_user
 from src.apps.auth.models import user as user_models
 from src.apps.auth.services.user import ProfileService, UserService
-from src.apps.gallery.functions import image_from_base64
 from ..params import params
 from src.apps.auth import functions as auth_functions
 
