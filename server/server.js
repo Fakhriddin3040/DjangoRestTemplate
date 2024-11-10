@@ -70,7 +70,7 @@ app.get('/proxy', async (req, res) => {
 
     // Привязываем данные изображений к соответствующим объектам
     enrichedData.forEach((item, index) => {
-      item.imageDetails = imagesDetails[index]?.rows || null;
+      item.imageDetails = imagesDetails[index]?.rows[0]?.miniature?.href || null;
     });
 
     // Отправляем ответ с обогащенными данными
