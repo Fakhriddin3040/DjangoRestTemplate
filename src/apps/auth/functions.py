@@ -1,4 +1,5 @@
 import base64
+import io
 import datetime
 import jwt
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -10,7 +11,6 @@ import requests
 import pytz
 from src.config.settings.base import TIME_ZONE
 from src.utils.functions.functions import get_datetime, send_mail
-import io, base64
 from PIL import Image
 
 from src.apps.auth.const import PROFILE_AVATAR_ROOT

@@ -2,10 +2,9 @@ from django.contrib import admin
 from django.db import models
 from src.apps.gallery.data_structiors import LinkedListQueue
 from src.apps.gallery.models.slide import Slide
-from django.contrib import admin
-from django.db import models
 
 from src.apps.gallery.utils import add_end_queue
+
 
 class SlideAdmin(admin.ModelAdmin):
     def __init__(self, *args, **kwargs):
@@ -18,7 +17,7 @@ class SlideAdmin(admin.ModelAdmin):
 
         if obj.turn is not None and obj.turn <= 0:
             obj.turn = 1
-        
+
         if not change:
             if obj.turn is None:
                 obj.turn = max_turn + 1
@@ -36,7 +35,9 @@ class SlideAdmin(admin.ModelAdmin):
             old_turn = Slide.objects.get(pk=obj.pk).turn
             if old_turn != obj.turn:
                 if obj.turn < old_turn:
-                    for slide in Slide.objects.filter(turn__gte=obj.turn, turn__lt=old_turn):
+                    for slide in Slide.objects.filter(
+                        turn__gte=obj.turn, turn__lt=old_turn
+                    ):
                         self.queue.enqueue(slide)
                     while not self.queue.is_empty():
                         slide = self.queue.dequeue()
@@ -45,7 +46,9 @@ class SlideAdmin(admin.ModelAdmin):
                 elif obj.turn > old_turn:
                     if obj.turn > max_turn + 1:
                         obj.turn = max_count
-                    for slide in Slide.objects.filter(turn__gt=old_turn, turn__lte=obj.turn):
+                    for slide in Slide.objects.filter(
+                        turn__gt=old_turn, turn__lte=obj.turn
+                    ):
                         self.queue.enqueue(slide)
                     while not self.queue.is_empty():
                         slide = self.queue.dequeue()

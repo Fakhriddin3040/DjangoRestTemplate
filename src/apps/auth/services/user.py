@@ -1,7 +1,4 @@
 from typing import Union
-from src.base.abstractions.repositories.base_django_repository import (
-    AbstractDjangoRepository,
-)
 from src.base.abstractions.services import base_service as base_service
 from src.apps.auth.repositories import user as user_repo
 from src.apps.auth import models as auth_models

@@ -15,13 +15,13 @@ MEDIA_ROOT = BASE_DIR / MEDIA_URL
 
 #!============ EMAIL =============
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "send.message.2333@gmail.com"
-EMAIL_HOST_PASSWORD = "cxqtyzyyocggucmr"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = "send.message.2333@gmail.com"
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_EMAIL")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", 587))
+EMAIL_USE_TLS = bool(os.getenv("EMAIL_USE_TLS", True))
+EMAIL_USE_SSL = bool(os.getenv("EMAIL_USE_SSL", False))
 EMAIL_TOKEN_EXPIRE_MINUTES = int(os.environ.get("EMAIL_TOKEN_EXPIRE_MINUTES", 5))
 
 
@@ -30,8 +30,10 @@ EMAIL_TOKEN_EXPIRE_MINUTES = int(os.environ.get("EMAIL_TOKEN_EXPIRE_MINUTES", 5)
 #! ENVIRONMENT = development | testing | production
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+
 ENVIRONMENT = os.getenv("ENVIRONMENT")
 DEBUG = ENVIRONMENT in ["development", "testing"]
+
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
 #! ========== LOCALIZATION ==========
@@ -123,8 +125,12 @@ TEMPLATES = [
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.",
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
 
