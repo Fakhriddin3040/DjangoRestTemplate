@@ -1,7 +1,6 @@
 FROM python:3.12-alpine
 
-ENV PIP_NO_CACHE_DIR=off \
-    WORK_DIR=/project
+ENV PIP_NO_CACHE_DIR=off
 
 # Set the working directory
 WORKDIR ${WORK_DIR}
