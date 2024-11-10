@@ -1,5 +1,9 @@
 name: Build Production Stage
 
+concurrency:
+  group: ${{ github.repository }}-concurrency-for-workflow
+  cancel-in-progress: true  
+
 on:
   push:
     branches:
@@ -9,14 +13,15 @@ on:
       - main
 
 env:
-  HOST_IP: 62.113.110.170
-  HOST_USER: root
-  WORK_DIR: ${{ secrets.WORK_DIR }}
-  SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
   DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
   DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
-  REPOSITORY_SSH_PRIVATE_KEY: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
+  SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  
+  HOST_IP: ${{ vars.HOST_IP }}
+  HOST_USER: ${{ vars.HOST_USER }}
+  WORK_DIR: ${{ vars.WORK_DIR }}
+  SSH_IDENTITY_FILE: ${{ vars.SSH_IDENTITY_FILE_PATH }}
 
 jobs:
   deploy:
@@ -29,11 +34,11 @@ jobs:
           ref: main
           ssh-key: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
 
-      - name: Login to Docker container registry
+      - name: Build and Push Docker Images to GitHub Container Registry
         run: |
           echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
-          docker compose -f compose.build.yml build
-          docker compose -f compose.build.yml push
+          docker compose build
+          docker compose push
           docker logout ghcr.io
       
       - name: Trigger production deployment

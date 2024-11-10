@@ -1,8 +1,0 @@
-services:
-  nodejs:
-    build: .
-    image: ghcr.io/it-lab-tj/marketplace-client-nodejs:latest
-  
-  nginx:
-    build: .
-    image: ghcr.io/it-lab-tj/marketplace-client-nginx:latest

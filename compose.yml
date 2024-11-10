@@ -1,0 +1,8 @@
+services:
+  nodejs:
+    image: ghcr.io/it-lab-tj/marketplace-client-nodejs:latest
+    container_name: frontend_container
+
+  proxy:
+    image: ghcr.io/it-lab-tj/marketplace-client-proxy:latest
+    container_name: proxy_container

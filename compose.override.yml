@@ -1,0 +1,28 @@
+services:
+  nodejs:
+    image: ghcr.io/it-lab-tj/marketplace-client-nodejs:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "4200"
+      - "3000"
+    networks:
+      - marketplace-network
+
+  proxy:
+    image: ghcr.io/it-lab-tj/marketplace-client-proxy:latest
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+      - "3000:3000"
+    networks:
+      - marketplace-network
+    depends_on:
+      - nodejs
+
+networks:
+  marketplace-network:
+    driver: bridge

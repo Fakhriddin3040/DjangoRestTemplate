@@ -1,49 +1,60 @@
 name: Deploy Production
 
+concurrency:
+  group: ${{ github.repository }}-concurrency-for-workflow
+  cancel-in-progress: true
+
 on:
   repository_dispatch:
     types: [container_push]
 
 env:
-  HOST_IP: 62.113.110.170
-  HOST_USER: market_gha
-  WORK_DIR: ${{ secrets.WORK_DIR }}
-  SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
   DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
+  SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
   DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
+  
+  HOST_IP: ${{ vars.HOST_IP }}
+  HOST_USER: ${{ vars.HOST_USER }}
+  WORK_DIR: ${{ vars.WORK_DIR }}
+  SSH_IDENTITY_FILE: ${{ vars.SSH_IDENTITY_FILE_PATH }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup SSH agent
-        run: |
-          eval $(ssh-agent)
-          echo "${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}" | ssh-add -
-    
-      - name: Add server name to SSH known hosts
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          ssh-key: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
+
+      - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
-        
-      - name: Login to Docker registry
+          ssh-keyscan -H 'github.com' >> ~/.ssh/known_hosts
+          ssh-keyscan -H "$HOST_IP" >> ~/.ssh/known_hosts
+
+          echo "$SSH_PRIVATE_KEY" > '$SSH_IDENTITY_FILE'
+          chmod 600 '$SSH_IDENTITY_FILE'
+
+      - name: Copy compose files to server
         run: |
-          echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "${{ secrets.DOCKER_CR_USER }}" --password-stdin
+          ssh -i '$SSH_IDENTITY_FILE' "$HOST_USER@$HOST_IP"  \
+            "mkdir -p $WORK_DIR"
+
+          scp -i '$SSH_IDENTITY_FILE' ./compose.override.yml ./compose.yml "$HOST_USER@$HOST_IP:$WORK_DIR"
 
       - name: Login to server, pull containers and deploy
         run: |
-          ssh $HOST_USER@$HOST_IP \
+          ssh "$HOST_USER@$HOST_IP" -i '$SSH_IDENTITY_FILE' \
           "
           cd $WORK_DIR
-          docker compose -f compose.deploy.yml down
-          docker compose -f compose.deploy.yml pull
-          docker compose -f compose.deploy.yml up -d
-          "
-      
-      - name: Finish Deploy
-        run: |
-          ssh $HOST_USER@$HOST_IP \
-          "
-          docker logout
+          echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
+
+          docker compose down
+          docker compose pull
+          docker compose up -d
+          docker system prune -f
+          docker logout ghcr.io
           "
