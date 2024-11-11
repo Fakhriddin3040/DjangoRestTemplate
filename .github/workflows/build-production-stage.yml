@@ -34,7 +34,7 @@ jobs:
 
       - name: Login to Container Registry
         run: |
-          echo ${{ secrets.DOCKER_CR_PASSWORD}} | docker login ghcr.io -u ${{ DOCKER_CR_USER }} --password-stdin
+          echo ${{ secrets.DOCKER_CR_PASSWORD}} | docker login ghcr.io -u ${{ vars.DOCKER_CR_USER }} --password-stdin
 
       - name: Set-up .env file
         run: |
