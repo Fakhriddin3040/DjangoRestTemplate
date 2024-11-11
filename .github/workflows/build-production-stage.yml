@@ -1,0 +1,61 @@
+name: Build Production Stage
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  SSH_IDENTITY_FILE = ~/.ssh/id_rsa
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+            ref: master
+            ssh-key: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
+
+      - name: Set-up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }} > "$SSH_IDENTITY_FILE"
+          chmod -R 600 ~/.ssh
+
+      - name: Login to Container Registry
+        run: |
+          echo ${{ secrets.DOCKER_CR_PASSWORD}} | docker login ghcr.io -u ${{ DOCKER_CR_USER }} --password-stdin
+
+      - name: Set-up .env file
+        run: |
+          cp .env.example .env
+          cat > .env << 'EOF'
+
+          # EMAIL SETTINGS VARS
+          EMAIL_HOST=${{ vars.EMAIL_HOST }}
+          EMAIL_HOST_USER=${{ vars.EMAIL_HOST_USER }}
+          DEFAULT_EMAIL=${{ vars.DEFAULT_EMAIL }}
+
+          # DATABASE VARS
+          POSTGRES_DB=${{ vars.POSTGRES_DB }}
+          POSTGRES_USER=${{ vars.POSTGRES_USER }}
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+
+          # ENVIRONMENT
+          ENVIRONMENT=${{ ENVIRONMENT }}
+          'EOF'
+
+          docker compose build
+          docker compose push
+
+      - name: Finish build
+        run: |
+          docker logout ghcr.io
+          rm -rf ~/.ssh
+          rm -rf .env

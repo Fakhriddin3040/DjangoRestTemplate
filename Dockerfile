@@ -1,7 +1,8 @@
 FROM python:3.12-alpine
 
-ENV PIP_NO_CACHE_DIR=off \
-    WORK_DIR=/project
+ARG WORK_DIR
+
+ENV PIP_NO_CACHE_DIR=off
 
 # Set the working directory
 WORKDIR ${WORK_DIR}
@@ -14,6 +15,7 @@ RUN pip install --no-cache-dir -r ${WORK_DIR}/requirements.txt
 
 COPY . ${WORK_DIR}
 
+RUN echo ${WORK_DIR}
 RUN chmod -R 700 ${WORK_DIR}
 
 CMD ["sh", "-c", "${ENTRYFILE}"]
