@@ -52,7 +52,7 @@ jobs:
           POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
 
           # ENVIRONMENT
-          ENVIRONMENT=${{ ENVIRONMENT }}
+          ENVIRONMENT=${{ vars.ENVIRONMENT }}
           'EOF'
 
           docker compose build
