@@ -8,7 +8,7 @@ name: Build Production Stage
 #     branches:
 #       - master
 
-0n:
+on:
   repository_dispatch:
     types: [container_push]
 
