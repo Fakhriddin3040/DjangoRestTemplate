@@ -1,0 +1,20 @@
+name: Deploy Production
+
+concurrency:
+  group: ${{ github.repository }}-concurrency-for-workflow
+  cancel-in-progress: true
+
+on:
+  repository_dispatch:
+    types: [container_push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@V4
+        with:
+            ref: master
+            ssh-key: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
