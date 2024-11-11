@@ -8,12 +8,12 @@ name: Build Production Stage
 #     branches:
 #       - master
 
-n:
+0n:
   repository_dispatch:
     types: [container_push]
 
 env:
-  SSH_IDENTITY_FILE = ~/.ssh/id_rsa
+  SSH_IDENTITY_FILEc: ~/.ssh/id_rsa
 
 jobs:
   build:
