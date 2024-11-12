@@ -1,20 +1,42 @@
-# name: Deploy Production
+name: Deploy Production
 
-# concurrency:
-#   group: ${{ github.repository }}-concurrency-for-workflow
-#   cancel-in-progress: true
+concurrency:
+  group: ${{ github.repository }}-concurrency-for-workflow
+  cancel-in-progress: true
 
-# on:
-#   repository_dispatch:
-#     types: [container_push]
+env:
+  SSH_IDENTITY_FILE: ~/.ssh/id_rsa
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
+on:
+  repository_dispatch:
+    types: [container_push]
 
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@V4
-#         with:
-#             ref: master
-#             ssh-key: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+            ref: master
+            ssh-key: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
+
+      - name: Set-up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }} > '$SSH_IDENTITY_FILE'
+          chmod 600 '$SSH_IDENTITY_FILE'
+
+
+      - name: Copy Docker composer files to remote server
+        run: |
+          ssh "${{ vars.HOST_USER }}@${{ vars.HOST_IP }}" -i '$SSH_IDENTITY_FILE' <<EOF
+          echo ${{ secrets.GH_CR_PASSWORD }} | docker login ghcr.io -u ${{ vars.GH_CR_USER }}
+
+          docker compose pull
+          docker compose down
+          docker compose up -d
+
+          docker logout ghcr.io
+          EOF

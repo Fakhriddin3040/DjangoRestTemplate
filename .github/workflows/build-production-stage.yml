@@ -12,9 +12,6 @@ on:
   repository_dispatch:
     types: [container_push]
 
-env:
-  SSH_IDENTITY_FILE: ~/.ssh/id_rsa
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,13 +23,7 @@ jobs:
             ref: master
             ssh-key: ${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}
 
-      - name: Set-up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}' > '$SSH_IDENTITY_FILE'
-          chmod -R 600 ~/.ssh
-
-      - name: Login to Container Registry
+      - name: Login to container registry
         run: |
           echo ${{ secrets.DOCKER_CR_PASSWORD}} | docker login ghcr.io -u ${{ vars.DOCKER_CR_USER }} --password-stdin
 
@@ -61,5 +52,4 @@ jobs:
       - name: Finish build
         run: |
           docker logout ghcr.io
-          rm -rf ~/.ssh
           rm .env
