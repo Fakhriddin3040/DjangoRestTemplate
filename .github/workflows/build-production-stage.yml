@@ -39,7 +39,7 @@ jobs:
       - name: Set-up .env file and build
         run: |
           cp .env.example .env
-          cat > .env << 'EOF'
+          cat > .env <<EOF
 
           # EMAIL SETTINGS VARS
           EMAIL_HOST=${{ vars.EMAIL_HOST }}
@@ -53,7 +53,7 @@ jobs:
 
           # ENVIRONMENT
           ENVIRONMENT=${{ vars.ENVIRONMENT }}
-          'EOF'
+          EOF
 
           docker compose build
           docker compose push
