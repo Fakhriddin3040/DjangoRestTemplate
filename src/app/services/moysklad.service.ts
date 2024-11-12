@@ -31,4 +31,8 @@
       console.log('MoyskladService - Сохранение данных в сервисе:', data); // Лог для проверки данных
       this.dataSubject.next(data);
     }
+
+    getProductImage(): Observable<Blob> {
+      return this.http.get('http://localhost:3001/proxy', { responseType: 'blob' });
+    }
   }
