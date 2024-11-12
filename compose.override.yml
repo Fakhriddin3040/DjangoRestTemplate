@@ -1,6 +1,5 @@
 services:
   api:
-    image: ghcr.io/it-lab-tj/marketplace-api:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,9 +28,7 @@ services:
       - marketplace-db:/var/lib/postgresql/data
     networks:
       - marketplace
-
   proxy:
-    image: ghcr.io/it-lab-tj/marketplace-proxy:latest
     build:
       context: ./nginx
       dockerfile: Dockerfile

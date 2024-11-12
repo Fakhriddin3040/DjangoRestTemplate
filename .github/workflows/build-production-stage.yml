@@ -23,7 +23,7 @@ jobs:
         run: |
           echo '${{ secrets.GH_CR_PASSWORD}}' | docker login ghcr.io -u '${{ vars.GH_CR_USER }}' --password-stdin
 
-      - name: Set-up .env file and build
+      - name: Set-up .env file build
         run: |
           cp .env.example .env
           cat > .env <<EOF
@@ -42,6 +42,8 @@ jobs:
           ENVIRONMENT=${{ vars.ENVIRONMENT }}
           EOF
 
+      - name: Build images
+        run: |
           docker compose build
           docker compose push
 

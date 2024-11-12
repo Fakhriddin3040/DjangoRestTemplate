@@ -9,7 +9,11 @@ on:
       types: [container_push]
 
 env:
+  HOST_IP: ${{ vars.HOST_IP }}
+  HOST_USER: ${{ vars.HOST_USER }}
+  HOST_FULL: ${{ vars.HOST_USER}}@${{ vars.HOST_IP }}
   SSH_IDENTITY_FILE: ~/.ssh/id_rsa
+  REMOTE_WORK_DIR: ~/server
 
 
 jobs:
@@ -26,19 +30,52 @@ jobs:
       - name: Set-up SSH
         run: |
           mkdir -p ~/.ssh
-          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}' > "$SSH_IDENTITY_FILE"
-          chmod 600 "$SSH_IDENTITY_FILE"
+
+          ssh-keyscan -H '${{ vars.HOST_IP }}' >> ~/.ssh/known_hosts
+          ssh-keyscan -H "github.com" >> ~/.ssh/known_hosts
+
+          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}' > '$SSH_IDENTITY_FILE'
+          chmod 600 '$SSH_IDENTITY_FILE'
 
 
-      - name: Copy Docker composer files to remote server
+      - name: Copy and setup required files
         run: |
-          ssh -i '$SSH_IDENTITY_FILE' '${{ vars.HOST_USER }}@${{ vars.HOST_IP }}' \
-          "
-          echo '${{ secrets.GH_CR_PASSWORD }}' | docker login ghcr.io -u '${{ vars.GH_CR_USER }}'
+          cp .env.example .env
+          cat > .env <<EOF
+
+          # EMAIL SETTINGS VARS
+          EMAIL_HOST=${{ vars.EMAIL_HOST }}
+          EMAIL_HOST_USER=${{ vars.EMAIL_HOST_USER }}
+          DEFAULT_EMAIL=${{ vars.DEFAULT_EMAIL }}
+
+          # DATABASE VARS
+          POSTGRES_DB=${{ vars.POSTGRES_DB }}
+          POSTGRES_USER=${{ vars.POSTGRES_USER }}
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+
+          # ENVIRONMENT
+          ENVIRONMENT=${{ vars.ENVIRONMENT }}
+          EOF
+
+          ssh -i '$SSH_IDENTITY_FILE' $HOST_FULL <<EOF
+          mkdir -p $REMOTE_WORK_DIR
+          EOF
+
+          scp -i '$SSH_IDENTITY_FILE' ./compose* .env $HOST_FULL:$REMOTE_WORK_DIR
+
+
+      - name: Pull and finish deploying
+        run: |
+          ssh -i '$SSH_IDENTITY_FILE' $HOST_FULL <<EOF
+          echo '${{ secrets.GH_CR_PASSWORD}}' | docker login ghcr.io -u '${{ vars.GH_CR_USER }}' --password-stdin
+
+          cd $REMOTE_WORK_DIR
+
           docker compose pull
           docker compose down
           docker compose up -d
 
           docker logout ghcr.io
+
+          rm .env
           EOF
-          "
