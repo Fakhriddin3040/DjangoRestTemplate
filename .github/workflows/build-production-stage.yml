@@ -13,11 +13,11 @@ on:
       - main
 
 env:
-  DOCKER_CR_USER: ${{ secrets.DOCKER_CR_USER }}
-  DOCKER_CR_PASSWORD: ${{ secrets.DOCKER_CR_PASSWORD }}
+  GH_CR_USER: ${{ vars.GH_CR_USER }}
+  GH_CR_PASSWORD: ${{ secrets.GH_CR_PASSWORD }}
   SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  
+
   HOST_IP: ${{ vars.HOST_IP }}
   HOST_USER: ${{ vars.HOST_USER }}
   WORK_DIR: ${{ vars.WORK_DIR }}
@@ -36,7 +36,7 @@ jobs:
 
       - name: Build and Push Docker Images to GitHub Container Registry
         run: |
-          echo "$DOCKER_CR_PASSWORD" | docker login ghcr.io -u "$DOCKER_CR_USER" --password-stdin
+          echo "$GH_CR_PASSWORD" | docker login ghcr.io -u "$GH_CR_USER" --password-stdin
           docker compose build
           docker compose push
           docker logout ghcr.io
