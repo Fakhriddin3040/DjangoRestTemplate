@@ -32,7 +32,8 @@ jobs:
 
       - name: Copy Docker composer files to remote server
         run: |
-          ssh -i $SSH_IDENTITY_FILE '${{ vars.HOST_USER }}@${{ vars.HOST_IP }}' <<EOF
+          ssh -i $SSH_IDENTITY_FILE '${{ vars.HOST_USER }}@${{ vars.HOST_IP }}' \
+          "
           echo '${{ secrets.GH_CR_PASSWORD }}' | docker login ghcr.io -u '${{ vars.GH_CR_USER }}'
           docker compose pull
           docker compose down
@@ -40,3 +41,4 @@ jobs:
 
           docker logout ghcr.io
           EOF
+          "
