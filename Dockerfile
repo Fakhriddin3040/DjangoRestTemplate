@@ -4,7 +4,7 @@ ENV PIP_NO_CACHE_DIR=off \
     WORK_DIR=/app
 
 # Set the working directory
-WORKDIR ${WORK_DIR}}
+WORKDIR ${WORK_DIR}
 
 RUN apk add --no-cache build-base postgresql-dev
 
