@@ -1,16 +1,12 @@
 name: Build Production Stage
 
-# on:
-#   push:
-#     branches:
-#       - master
-#   pull_request:
-#     branches:
-#       - master
-
 on:
-  repository_dispatch:
-    types: [container_push]
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -25,7 +21,7 @@ jobs:
 
       - name: Login to container registry
         run: |
-          echo ${{ secrets.DOCKER_CR_PASSWORD}} | docker login ghcr.io -u ${{ vars.DOCKER_CR_USER }} --password-stdin
+          echo ${{ secrets.GH_CR_PASSWORD}} | docker login ghcr.io -u ${{ vars.GH_CR_USER }} --password-stdin
 
       - name: Set-up .env file and build
         run: |

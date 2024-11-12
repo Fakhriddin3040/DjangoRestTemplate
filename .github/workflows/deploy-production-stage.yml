@@ -1,7 +1,7 @@
 name: Deploy Production
 
 concurrency:
-  group: ${{ github.repository }}-concurrency-for-workflow
+  group: ${{ github.workflow }}-${{ github.job }}-concurrency
   cancel-in-progress: true
 
 env:
