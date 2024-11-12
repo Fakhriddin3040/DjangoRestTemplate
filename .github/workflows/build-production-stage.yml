@@ -62,4 +62,4 @@ jobs:
         run: |
           docker logout ghcr.io
           rm -rf ~/.ssh
-          rm -rf .env
+          rm .env

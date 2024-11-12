@@ -1,9 +1,10 @@
 FROM python:3.12-alpine
 
-ENV PIP_NO_CACHE_DIR=off
+ENV PIP_NO_CACHE_DIR=off \
+    WORK_DIR=/app
 
 # Set the working directory
-WORKDIR /app
+WORKDIR ${WORK_DIR}}
 
 RUN apk add --no-cache build-base postgresql-dev
 
