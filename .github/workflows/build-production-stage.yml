@@ -29,7 +29,7 @@ jobs:
       - name: Set-up SSH
         run: |
           mkdir -p ~/.ssh
-          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}' > "$SSH_IDENTITY_FILE"
+          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}' > $SSH_IDENTITY_FILE
           chmod -R 600 ~/.ssh
 
       - name: Login to Container Registry
