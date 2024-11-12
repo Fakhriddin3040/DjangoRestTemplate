@@ -41,7 +41,7 @@ jobs:
       - name: Copy and setup required files
         run: |
           cp .env.example .env
-          cat > .env <<EOF
+          cat >> .env <<EOF
 
           # EMAIL SETTINGS VARS
           EMAIL_HOST=${{ vars.EMAIL_HOST }}
@@ -71,11 +71,20 @@ jobs:
 
           cd $REMOTE_WORK_DIR
 
+          source .env
+
           docker compose pull
           docker compose down
           docker compose up -d
 
+          docker system prune -f
           docker logout ghcr.io
+
+          echo docker compose ps -a:
+          docker compose ps -a
+
+          echo docker compose logs:
+          docker compose logs
 
           rm .env
           EOF
