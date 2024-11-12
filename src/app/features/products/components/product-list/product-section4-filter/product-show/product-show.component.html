@@ -1,19 +1,19 @@
 <div class="wrapperProductSettingFilter">
   <div id="output">
-    <!-- Проверка, если есть ошибка, то отображаем её -->
     <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
 
-    <!-- Проверка, если есть данные, то отображаем их -->
     <ul *ngIf="data.length > 0">
       <li *ngFor="let item of data">
-        <!-- Пример отображения данных. Настройте под свои нужды -->
         <strong>ID:</strong> {{ item.id }} <br>
         <strong>Название:</strong> {{ item.name }} <br>
         <strong>Описание:</strong> {{ item.description }} <br>
         <strong>Количество:</strong> {{ item.quantity }} <br>
-        <strong>Цена</strong> {{ item.buyPrice.value / 100}} <br>
+        <strong>Цена</strong> {{ item.buyPrice.value / 100 }} <br>
+        <div *ngIf="item.imageBlobUrl">
+          <img [src]="item.imageBlobUrl" alt="Product Image" style="width: 100px; height: auto;">
+        </div>
       </li>
     </ul>
+    
   </div>
-  
 </div>
