@@ -36,7 +36,7 @@ jobs:
         run: |
           echo ${{ secrets.DOCKER_CR_PASSWORD}} | docker login ghcr.io -u ${{ vars.DOCKER_CR_USER }} --password-stdin
 
-      - name: Set-up .env file
+      - name: Set-up .env file and build
         run: |
           cp .env.example .env
           cat > .env << 'EOF'
