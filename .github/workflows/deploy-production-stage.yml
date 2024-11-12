@@ -26,8 +26,8 @@ jobs:
       - name: Set-up SSH
         run: |
           mkdir -p ~/.ssh
-          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}' > '$SSH_IDENTITY_FILE'
-          chmod 600 '$SSH_IDENTITY_FILE'
+          echo '${{ secrets.PRODUCTION_SERVER_SSH_PRIVATE_KEY }}' > "$SSH_IDENTITY_FILE"
+          chmod 600 "$SSH_IDENTITY_FILE"
 
 
       - name: Copy Docker composer files to remote server
