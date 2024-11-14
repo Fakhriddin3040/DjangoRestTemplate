@@ -18,6 +18,7 @@ services:
     volumes:
       - ./nginx/cert.pem:/etc/cert.pem
       - ./nginx/key.pem:/etc/key.pem
+      - ./nginx/certbot:/var/www/certbot
     ports:
       - "4200:80"
       - "4000:443"
