@@ -40,6 +40,7 @@ services:
       - .env
     volumes:
       - ./nginx/:/etc/nginx
+      - ./nginx/certbot:/var/www/certbot
     expose:
       - "80"
       - "6000"
