@@ -1,6 +1,6 @@
 services:
   nodejs:
-    image: ghcr.io/it-lab-tj/marketplace-client-nodejs:latest
+    image: ghcr.io/it-lab-tj/marketplace-client-nodejs
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,17 +11,41 @@ services:
       - marketplace-network
 
   proxy:
-    image: ghcr.io/it-lab-tj/marketplace-client-proxy:latest
+    image: ghcr.io/it-lab-tj/marketplace-client-proxy
     build:
       context: ./nginx
       dockerfile: Dockerfile
+    volumes:
+      - ./nginx/cert.pem:/etc/cert.pem
+      - ./nginx/key.pem:/etc/key.pem
+      - ./nginx/certbot:/var/www/certbot
     ports:
-      - "4200:4200"
+      - "80:80"
+      - "443:443"
       - "3000:3000"
     networks:
       - marketplace-network
     depends_on:
       - nodejs
+    
+  certbot:
+    image: ghcr.io/it-lab-tj/marketplace-client-certbot
+    build:
+      context: ./certbot
+      dockerfile: Dockerfile
+      args:
+        DOMAIN_EMAIL: ${DOMAIN_EMAIL}
+        DOMAIN_URL: ${DOMAIN_URL}
+    env_file:
+      - .env
+    volumes:
+      - ./nginx/:/etc/nginx
+      - ./nginx/certbot:/var/www/certbot
+    expose:
+      - "80"
+      - "6000"
+    networks:
+      - marketplace-network
 
 networks:
   marketplace-network:
