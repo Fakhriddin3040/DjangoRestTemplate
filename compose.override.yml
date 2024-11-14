@@ -20,8 +20,8 @@ services:
       - ./nginx/key.pem:/etc/key.pem
       - ./nginx/certbot:/var/www/certbot
     ports:
-      - "4200:80"
-      - "4000:443"
+      - "80:80"
+      - "443:443"
       - "3000:3000"
     networks:
       - marketplace-network
