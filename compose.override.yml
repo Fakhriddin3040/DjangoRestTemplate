@@ -68,8 +68,8 @@ services:
       - nginx_data:/etc/nginxbot
 
       # Mount compose files for composing containers.
-      - compose.yml:/compose_files/compose.yml
-      - compose.override.yml:/compose_files/compose.override.yml
+      - ./compose.yml:/compose_files/compose.yml
+      - ./compose.override.yml:/compose_files/compose.override.yml
       - .env:/compose_files/.env
 
     environment:

@@ -7,5 +7,10 @@ services:
     image: ghcr.io/it-lab-tj/marketplace-client-proxy
     container_name: proxy_container
 
-  certbot:
+  monipulator:
+    image: ghcr.io/it-lab-tj/marketplace-client-manipulator
+    container_name: manipulator
+
+  cert:
     image: ghcr.io/it-lab-tj/marketplace-client-certbot
+    container_name: certbot
