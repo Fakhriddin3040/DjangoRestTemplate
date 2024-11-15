@@ -4,6 +4,7 @@ NGINX_CONF_DIR=/etc/nginx/conf.d/
 
 if [ -f $NGINX_CONF_DIR ]; then
     mv $NGINX_CONF_DIR/ssl.conf /
+fi
 
 certbot certonly --webroot -w /var/www/certbot \
     --non-interactive \
