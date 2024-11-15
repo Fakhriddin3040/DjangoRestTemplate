@@ -27,10 +27,10 @@ services:
       - marketplace-network
     depends_on:
       - nodejs
-      - certbot
+      - cert
 
-  certbot:
-    image: ghcr.io/it-lab-tj/marketplace-client-certbot
+  cert:
+    image: ghcr.io/it-lab-tj/marketplace-client-cert
     build:
       context: ./certbot
       dockerfile: Dockerfile
@@ -41,12 +41,41 @@ services:
     env_file:
       - .env
     volumes:
-      - certbot_data:/etc/letsencrypt
       - certbot_www:/var/www/certbot
+      - certbot_data:/etc/letsencrypt
+      - nginx_data:/etc/nginx
     expose:
       - "80"
     networks:
       - marketplace-network
+
+  manipulator:
+    image: docker:latest
+    command: ["sh", "-c", "apk add --no-cache cron && cron && tail -f /var/log/cron.log &&", "sleep", "infinity"]
+    working_dir: /compose_files
+    networks:
+      - marketplace-network
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # nginx_confs_bc - Folder with nginx configs backups
+      - ./nginx/default.conf:/nginx_confs_bc/default.conf
+      - ./nginx/ssl.conf:/nginx_confs_bc/ssl.conf
+
+      # From here, will manipulate with nginx container
+      # configurations from this container.
+      - nginx_data:/etc/nginxbot
+
+      # Mount compose files for composing containers.
+      - compose*:/compose_files
+      - .env:/compose_files/.env
+
+    environment:
+      - NGINX_CONTAINER_NAME=proxy
+      - CERTBOT_CONTAINER_NAME=cert
+      - DOMAIN_URL=${DOMAIN_URL}
+      - NGINX_CONF_D=/etc/nginx/conf.d
 
 networks:
   marketplace-network:

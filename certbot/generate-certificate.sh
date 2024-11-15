@@ -1,7 +1,9 @@
 #!/bin/sh
 
-# Убедитесь, что предыдущие сертификаты удалены
-rm -rf /etc/letsencrypt/live/certfolder*
+NGINX_CONF_DIR=/etc/nginx/conf.d/
+
+if [ -f $NGINX_CONF_DIR ]; then
+    mv $NGINX_CONF_DIR/ssl.conf /
 
 certbot certonly --webroot -w /var/www/certbot \
     --non-interactive \
@@ -9,10 +11,9 @@ certbot certonly --webroot -w /var/www/certbot \
     -d $DOMAIN_URL \
     --agree-tos
 
-# Проверка успешности получения сертификатов
-if [ -f /etc/letsencrypt/live/astrotech-spaceapp.space/fullchain.pem ] then
-    echo "Сертификаты были успешно сгенерированы."
-else
-    echo "Сертификаты не были сгенерированы. Проверьте настройки."
+if [ $? -ne 0 ]; then
+    echo "Failed to generate certificate"
+    exit 1
 fi
 
+mv /ssl.conf $NGINX_CONF_DIR
