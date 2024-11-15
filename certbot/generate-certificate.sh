@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NGINX_CONF_DIR=/etc/nginx/conf.d/
+NGINX_CONF_DIR=/etc/nginx/conf.d
 
 if [ -f $NGINX_CONF_DIR ]; then
     mv $NGINX_CONF_DIR/ssl.conf /

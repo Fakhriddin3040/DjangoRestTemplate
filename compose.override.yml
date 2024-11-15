@@ -37,6 +37,7 @@ services:
       args:
         DOMAIN_EMAIL: ${DOMAIN_EMAIL}
         DOMAIN_URL: ${DOMAIN_URL}
+    command: ["sleep", "infinity"]
 
     env_file:
       - .env
@@ -51,7 +52,7 @@ services:
 
   manipulator:
     image: docker:latest
-    command: ["sh", "-c", "apk add --no-cache cron && cron && /bin/bash /scripts/certbot_schedule.sh && tail -f /var/log/cron.log"]
+    command: ["sh", "-c", "apk add --no-cache bash dcron && crond && /bin/bash /scripts/certbot_schedule.sh && tail -f /var/log/cron.log"]
     working_dir: /compose_files
     networks:
       - marketplace-network
@@ -65,12 +66,14 @@ services:
 
       # From here, will manipulate with nginx container
       # configurations from this container.
-      - nginx_data:/etc/nginxbot
+      - nginx_data:/etc/nginx
 
       # Mount compose files for composing containers.
       - ./compose.yml:/compose_files/compose.yml
       - ./compose.override.yml:/compose_files/compose.override.yml
       - .env:/compose_files/.env
+      - ./certbot/certbot_schedule.sh:/scripts/certbot_schedule.sh
+      - ./certbot/certbot_renew.sh:/scripts/certbot_renew.sh
 
     environment:
       - NGINX_CONTAINER_NAME=proxy
