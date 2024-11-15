@@ -8,6 +8,8 @@ if docker ps --filter "name=$CERTBOT_CONTAINER_NAME" \
     echo "Nginx container is running. Try to update ssl certificates"
 
     docker exec -it "$CERTBOT_CONTAINER_NAME" sh -c "certbot renew"
+    docker exec -it "$NGINX_CONTAINER_NAME" sh -c "nginx -s reload"
+    echo "Certificates updated successfully"
 else
     echo "Nginx container is not running. Certificates not updated."
     exit 1

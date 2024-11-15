@@ -37,7 +37,6 @@ services:
       args:
         DOMAIN_EMAIL: ${DOMAIN_EMAIL}
         DOMAIN_URL: ${DOMAIN_URL}
-    entrypoint: ["certbot"]
     command: ["sleep", "infinity"]
 
     env_file:
@@ -53,7 +52,7 @@ services:
 
   manipulator:
     image: docker:latest
-    command: ["sh", "-c", "apk add --no-cache bash dcron && crond && /bin/bash /scripts/certbot_schedule.sh && tail -f /var/log/cron.log"]
+    command: ["sh", "-c", "/scripts/entrypoint.sh"]
     working_dir: /compose_files
     networks:
       - marketplace-network
@@ -74,7 +73,8 @@ services:
       - ./compose.override.yml:/compose_files/compose.override.yml
       - .env:/compose_files/.env
       - ./certbot/certbot_schedule.sh:/scripts/certbot_schedule.sh
-      - ./certbot/certbot_renew.sh:/scripts/certbot_renew.sh
+      - ./scripts/certbot_renew.sh:/scripts/certbot_renew.sh
+      - ./scripts/entrypoint.sh:/scripts/entrypoint.sh
 
     environment:
       - NGINX_CONTAINER_NAME=proxy

@@ -7,7 +7,7 @@ services:
     image: ghcr.io/it-lab-tj/marketplace-client-proxy
     container_name: proxy_container
 
-  monipulator:
+  manipulator:
     image: ghcr.io/it-lab-tj/marketplace-client-manipulator
     container_name: manipulator
 
