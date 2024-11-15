@@ -37,6 +37,7 @@ services:
       args:
         DOMAIN_EMAIL: ${DOMAIN_EMAIL}
         DOMAIN_URL: ${DOMAIN_URL}
+
     env_file:
       - .env
     volumes:
