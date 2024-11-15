@@ -51,7 +51,7 @@ services:
 
   manipulator:
     image: docker:latest
-    command: ["sh", "-c", "apk add --no-cache cron && cron && tail -f /var/log/cron.log &&", "sleep", "infinity &&", "/bin/bash /scripts/certbot_schedule.sh"]
+    command: ["sh", "-c", "apk add --no-cache cron && cron && /bin/bash /scripts/certbot_schedule.sh && tail -f /var/log/cron.log"]
     working_dir: /compose_files
     networks:
       - marketplace-network
