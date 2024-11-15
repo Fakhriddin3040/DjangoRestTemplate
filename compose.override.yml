@@ -16,9 +16,9 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     volumes:
-      - ./nginx/cert.pem:/etc/cert.pem
-      - ./nginx/key.pem:/etc/key.pem
-      - ./nginx/certbot:/var/www/certbot
+      - nginx_data:/etc/nginx
+      - certbot_data:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
     ports:
       - "80:80"
       - "443:443"
@@ -27,7 +27,8 @@ services:
       - marketplace-network
     depends_on:
       - nodejs
-    
+      - certbot
+
   certbot:
     image: ghcr.io/it-lab-tj/marketplace-client-certbot
     build:
@@ -39,14 +40,18 @@ services:
     env_file:
       - .env
     volumes:
-      - ./nginx/:/etc/nginx
-      - ./nginx/certbot:/var/www/certbot
+      - certbot_data:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
     expose:
       - "80"
-      - "6000"
     networks:
       - marketplace-network
 
 networks:
   marketplace-network:
     driver: bridge
+
+volumes:
+  nginx_data:
+  certbot_data:
+  certbot_www:
