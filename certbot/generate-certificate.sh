@@ -17,11 +17,6 @@ certbot certonly --webroot -w /var/www/certbot \
     -d "$DOMAIN_URL" \
     --agree-tos
 
-# Проверка успешности выполнения certbot
-if [ $? -ne 0 ]; then
-    echo "Не удалось сгенерировать сертификат"
-    exit 1
-fi
 
 # Возвращаем ssl.conf, если он был перемещён
 if [ ! -f "$NGINX_CONF_DIR/ssl.conf" ]; then

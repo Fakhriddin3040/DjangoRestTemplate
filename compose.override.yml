@@ -37,7 +37,6 @@ services:
       args:
         DOMAIN_EMAIL: ${DOMAIN_EMAIL}
         DOMAIN_URL: ${DOMAIN_URL}
-    command: ["sleep", "infinity"]
 
     env_file:
       - .env
