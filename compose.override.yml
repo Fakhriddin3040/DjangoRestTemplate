@@ -28,7 +28,6 @@ services:
       - marketplace-network
     depends_on:
       - nodejs
-      - cert
 
   cert:
     image: ghcr.io/it-lab-tj/marketplace-client-cert
@@ -78,6 +77,9 @@ services:
       - CERTBOT_CONTAINER_NAME=cert
       - DOMAIN_URL=${DOMAIN_URL}
       - NGINX_CONF_D=/etc/nginx/conf.d
+    
+    depends_on:
+      - cert
 
 networks:
   marketplace-network:
