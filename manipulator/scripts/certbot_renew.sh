@@ -13,3 +13,4 @@ if docker ps --filter "name=$CERTBOT_CONTAINER_NAME" \
 else
     echo "Nginx container is not running. Certificates not updated."
     exit 1
+fi

@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: nodejs
     expose:
       - "4200"
       - "3000"
@@ -19,6 +20,7 @@ services:
       - nginx_data:/etc/nginx
       - certbot_data:/etc/letsencrypt
       - certbot_www:/var/www/certbot
+    container_name: proxy
 
     ports:
       - "80:80"
@@ -28,30 +30,32 @@ services:
       - marketplace-network
     depends_on:
       - nodejs
+      - manipulator
 
   cert:
-    image: ghcr.io/it-lab-tj/marketplace-client-cert
-    build:
-      context: ./certbot
-      dockerfile: Dockerfile
-      args:
-        DOMAIN_EMAIL: ${DOMAIN_EMAIL}
-        DOMAIN_URL: ${DOMAIN_URL}
-
+    image: certbot/certbot:latest
+    container_name: cert
     env_file:
       - .env
     volumes:
       - certbot_www:/var/www/certbot
       - certbot_data:/etc/letsencrypt
-      - nginx_data:/etc/nginx
-    expose:
-      - "80"
+    command: certonly --webroot --webroot-path=/var/www/certbot --email ${DOMAIN_EMAIL} --agree-tos --no-eff-email -d ${DOMAIN_URL}
     networks:
       - marketplace-network
+    profiles:
+      - certbot_profile
 
   manipulator:
     image: docker:latest
-    command: ["sh", "-c", "/scripts/entrypoint.sh"]
+    build:
+      context: ./manipulator
+      dockerfile: Dockerfile
+      args:
+        - DOMAIN_URL=${DOMAIN_URL}
+    env_file:
+      - .env
+    container_name: manipulator
     working_dir: /compose_files
     networks:
       - marketplace-network
@@ -59,28 +63,22 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-
       # From here, will manipulate with nginx container
       # configurations from this container.
       - nginx_data:/etc/nginx
+      - certbot_data:/etc/letsencrypt
 
       # Mount compose files for composing containers.
       - ./compose.yml:/compose_files/compose.yml
       - ./compose.override.yml:/compose_files/compose.override.yml
       - .env:/compose_files/.env
-      - ./certbot/certbot_schedule.sh:/scripts/certbot_schedule.sh
-      - ./scripts/certbot_renew.sh:/scripts/certbot_renew.sh
-      - ./scripts/entrypoint.sh:/scripts/entrypoint.sh
 
     environment:
-      - NGINX_CONTAINER_NAME=proxy
-      - CERTBOT_CONTAINER_NAME=cert
+      - NGINX_CONTAINER=proxy
+      - CERTBOT_CONTAINER=cert
       - DOMAIN_URL=${DOMAIN_URL}
       - NGINX_CONF_D=/etc/nginx/conf.d
     
-    depends_on:
-      - cert
-
 networks:
   marketplace-network:
     driver: bridge
@@ -89,3 +87,4 @@ volumes:
   nginx_data:
   certbot_data:
   certbot_www:
+  certbot_scripts:
