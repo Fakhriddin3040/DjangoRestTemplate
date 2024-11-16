@@ -19,6 +19,7 @@ services:
       - nginx_data:/etc/nginx
       - certbot_data:/etc/letsencrypt
       - certbot_www:/var/www/certbot
+
     ports:
       - "80:80"
       - "443:443"
@@ -59,9 +60,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-      # nginx_confs_bc - Folder with nginx configs backups
-      - ./nginx/default.conf:/nginx_confs_bc/default.conf
-      - ./nginx/ssl.conf:/nginx_confs_bc/ssl.conf
 
       # From here, will manipulate with nginx container
       # configurations from this container.
