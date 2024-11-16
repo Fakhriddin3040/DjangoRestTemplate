@@ -9,6 +9,6 @@ import { ContainerComponent } from '../../../shared/container/container.componen
   styleUrl: './header-section1-banner.component.scss'
 })
 export class Section1BannerComponent {
-  imageUrl = 'assets/images/promo/promo1.jpg';
+  imageUrl = 'assets/images/promo/promo1.png';
   imageUrl2 = 'assets/images/promo/promo2.png';
 }

@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ContainerComponent } from "../../../shared/container/container.component";
-
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-section6-clothing-apparel',
   standalone: true,
-  imports: [ContainerComponent],
+  imports: [ContainerComponent, TranslateModule],
   templateUrl: './section6-clothing-apparel.component.html',
   styleUrl: './section6-clothing-apparel.component.scss'
 })
@@ -15,8 +15,15 @@ export class Section6ClothingApparelComponent implements OnInit, AfterViewInit {
 
   constructor(
     private renderer: Renderer2,
+    private translate: TranslateService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) {
+    this.translate.setDefaultLang('ru'); // Установите язык по умолчанию
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language); // Метод для смены языка
+  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
