@@ -17,7 +17,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - nginx_data:/etc/nginx
-      - ./certbot_data:/etc/letsencrypt
+      - certbot_data:/etc/letsencrypt
       - certbot_www:/var/www/certbot
 
     ports:
