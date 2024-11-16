@@ -20,7 +20,7 @@
     fetchData(): Observable<any> {
       return this.http.get<any>(this.apiUrl).pipe(
         tap(data => {
-          console.log('Полученные данные:', data); // Лог данных в консоль браузера
+          //console.log('Полученные данные:', data); // Лог данных в консоль браузера
           this.updateData(data); // Обновляем BehaviorSubject
         })
       );
@@ -28,7 +28,7 @@
 
     // Метод для обновления данных в BehaviorSubject
     updateData(data: any[]) {
-      console.log('MoyskladService - Сохранение данных в сервисе:', data); // Лог для проверки данных
+      //console.log('MoyskladService - Сохранение данных в сервисе:', data); // Лог для проверки данных
       this.dataSubject.next(data);
     }
 

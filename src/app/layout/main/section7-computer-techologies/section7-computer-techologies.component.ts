@@ -2,12 +2,12 @@ import { Component, OnInit, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from
 import { isPlatformBrowser } from '@angular/common';
 import { ContainerComponent } from "../../../shared/container/container.component";
 import { ButtonShopNowComponent } from "../../../shared/components/buttons/button-shop-now/button-shop-now.component";
-
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-section7-computer-techologies',
   standalone: true,
-  imports: [ContainerComponent, ButtonShopNowComponent],
+  imports: [ContainerComponent, ButtonShopNowComponent, TranslateModule],
   templateUrl: './section7-computer-techologies.component.html',
   styleUrl: './section7-computer-techologies.component.scss'
 })
@@ -16,8 +16,14 @@ export class Section7ComputerTechologiesComponent implements OnInit, AfterViewIn
 
   constructor(
     private renderer: Renderer2,
+    private translate: TranslateService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) {
+    this.translate.setDefaultLang('ru'); // Установите язык по умолчанию
+  }
+  switchLanguage(language: string) {
+    this.translate.use(language); // Метод для смены языка
+  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
