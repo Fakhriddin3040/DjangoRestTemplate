@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Any, Dict, List, Union
 from dataclasses import asdict
 from django.db.models import QuerySet
 from src.base import types
@@ -38,6 +38,9 @@ class AbstractService(types.AbstractGenericClass[types.TModel]):
 
     def get_queryset(self) -> Union[QuerySet[types.TModel], None]:
         return self._repository.all()
+
+    def create_or_update(self, defaults: Dict[str, Any], **kwargs) -> types.TModel:
+        return self._repository.create_or_update(defaults=defaults, **kwargs)
 
     def filter(self, **kwargs) -> Union[QuerySet[types.TModel], None]:
         return self.model.objects.filter(**kwargs)

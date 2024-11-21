@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     "src.apps.api",
     "src.apps.gallery",
     "src.apps.common",
+    "src.apps.category",
 ]
 
 

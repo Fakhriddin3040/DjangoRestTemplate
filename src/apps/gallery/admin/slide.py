@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from src.apps.gallery.data_structiors import LinkedListQueue
+from src.utils.data_structures.linked_list_queu import LinkedListQueue
 from src.apps.gallery.models.slide import Slide
 
 from src.apps.gallery.utils import add_end_queue
