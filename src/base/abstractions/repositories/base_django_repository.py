@@ -1,4 +1,4 @@
-from typing import Any, Union
+from typing import Any, Dict, Tuple, Union
 from django.db import models
 from src.base import types
 
@@ -23,6 +23,12 @@ class AbstractDjangoRepository(types.AbstractGenericClass[types.TModel]):
 
     def get_by_lookup(self, lookup: str, value: Any) -> Union[types.TModel, None]:
         return self.model.objects.filter(**{lookup: value}).first()
+
+    def create_or_update(
+        self, defaults: Dict[str, Any], **kwargs
+    ) -> Tuple[types.TModel, bool]:
+        obj, created = self.model.objects.update_or_create(defaults=defaults, **kwargs)
+        return obj, created
 
     def exists(self, **kwargs) -> bool:
         return self.all().filter(**kwargs).exists()

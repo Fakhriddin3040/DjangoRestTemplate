@@ -60,7 +60,6 @@ target/
 
 *.lock
 .vscode
-.env
 *.db
 db*
 .python-version
