@@ -16,6 +16,7 @@ MK_PRODUCT_FIELD_MAP = {
     "productFolder__meta__href__get_product_folder_ext_id*": "ext_cat_id",
     "name": "title",
     "description": "description",
+    "salePrices__value__get_sell_price*": "price",
 }
 
 MK_CATEGORY_FIELD_MAP = {

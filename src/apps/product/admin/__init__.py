@@ -1,6 +1,6 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# from .product import ProductAdmin
-# from ..models import Product
+from .product import ProductAdmin
+from ..models import Product
 
-# admin.site.register(Product, ProductAdmin)
+admin.site.register(Product, ProductAdmin)

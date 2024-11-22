@@ -19,8 +19,6 @@ class MKBaseMapper(FieldMapper):
             return data.get(key)
 
         elif len(parts) == 2 and parts[1].endswith("*"):
-            if data.get(parts[0]) is None:
-                return None
             target_key = parts[0]
             method_name = parts[1][:-1]
             try:
