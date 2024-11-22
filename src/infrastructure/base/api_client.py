@@ -11,14 +11,15 @@ class BaseApiClient:
 
     """Native url for getting entities. For example:
     if get product url is: api/v1/entity/product/......
-    Then OBJECT_URL will: api/v1/entity/"""
-    OBJECTS_URL: str = None
+    Then OBJECT_URL will: entity"""
+    OBJECTS_PATH: str = None
     FILTERS_MAP: Dict[str, str]
+    ORDER_MAP: Dict[str, str]
 
     def __init__(self, api_key: str) -> None:
         if not self.BASE_URL:
             raise ValueError("BASE_URL must be set.")
-        if not self.OBJECTS_URL:
+        if not self.OBJECTS_PATH:
             raise ValueError("OBJECTS_URL must be set.")
         if not self.FILTERS_MAP:
             raise ValueError("FILTERS_MAP must be set.")
@@ -62,14 +63,16 @@ class BaseApiClient:
             response.raise_for_status()
             return response
         except requests.RequestException as e:
-            raise RuntimeError(f"Error during GET request to {url}: {e}")
+            raise RuntimeError(f"Error during GET request to {url}: Detail error: {e}")
 
     def fetch_objects(
         self,
         entity_url: str,
         headers: Optional[Dict[str, str]] = None,
         params: Optional[Dict[str, str]] = None,
-        **filters,
+        filters: Optional[Dict[str, Any]] = None,
+        orders: Optional[Dict[str, Any]] = None,
+        **kwargs,
     ) -> Dict[str, str]:
         """
         Fetch an object with optional filters and parameters.
@@ -82,10 +85,12 @@ class BaseApiClient:
             params = {}
         if filters:
             params["filter"] = self.parse_filters(**filters)
+        if orders:
+            params["order"] = self.parse_orders(**orders)
 
-        url = f"{self.OBJECTS_URL}/{entity_url}"
+        endpoint = f"{self.OBJECTS_PATH}/{entity_url}"
 
-        response = self.get(endpoint=url, params=params, headers=headers)
+        response = self.get(endpoint=endpoint, params=params, headers=headers, **kwargs)
         try:
             return response.json()
         except ValueError:
@@ -118,3 +123,26 @@ class BaseApiClient:
                 )
 
         return ";".join(parsed_filters)
+
+    def parse_orders(self, **orders) -> str:
+        """
+        This method for parsing request orders from keyword
+        args(**kwargs). It generates the order query parameters
+        for api.moysklad.ru service.
+
+        Example:
+        For input orders:
+        parse_orders(weighed="desc", weight="desc", name="asc")
+        it will return:
+        'weighed,desc;weight,desc;name,asc'
+        """
+        parsed_orders = []
+
+        for field, lookup in orders.items():
+            if lookup not in ["asc", "desc"]:
+                raise ValueError(
+                    f"Unsupported lookup '{lookup}' in order field '{field}'"
+                )
+            parsed_orders.append(f"{field},{lookup}")
+
+        return ";".join(parsed_orders)

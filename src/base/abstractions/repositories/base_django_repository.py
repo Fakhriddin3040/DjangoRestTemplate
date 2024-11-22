@@ -27,7 +27,7 @@ class AbstractDjangoRepository(types.AbstractGenericClass[types.TModel]):
     def create_or_update(
         self, defaults: Dict[str, Any], **kwargs
     ) -> Tuple[types.TModel, bool]:
-        obj, created = self.model.objects.update_or_create(default=defaults, **kwargs)
+        obj, created = self.model.objects.update_or_create(defaults=defaults, **kwargs)
         return obj, created
 
     def exists(self, **kwargs) -> bool:

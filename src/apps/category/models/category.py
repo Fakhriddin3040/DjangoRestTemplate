@@ -10,11 +10,10 @@ class Category(models.Model):
     """External service id"""
     ext_id = models.CharField(max_length=50, unique=True)
     ext_parent_title = models.CharField(max_length=50, null=True, blank=True)
-    title = models.CharField(max_length=120, unique=True)
+    title = models.CharField(max_length=120)
     parent = models.ForeignKey(
         "category.Category",
         on_delete=models.CASCADE,
-        to_field="ext_parent_title",
         null=True,
         blank=True,
     )

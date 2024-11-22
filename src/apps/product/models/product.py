@@ -15,9 +15,9 @@ class Product(models.Model):
         verbose_name="ID во внешнем сервисе",
         unique=True,
     )
-    ext_parent_title = models.CharField(
+    ext_cat_id = models.CharField(
         max_length=50,
-        verbose_name="Название родительской категории во внешнем сервисе",
+        verbose_name="ID категории во внешнем сервисе",
         null=True,
         blank=True,
     )
@@ -27,19 +27,26 @@ class Product(models.Model):
     )
     description = models.TextField(
         verbose_name="Описание",
+        null=True,
+        blank=True,
     )
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         verbose_name="Цена",
+        null=True,
+        blank=True,
     )
-    images = models.JSONField(
-        verbose_name="Изображения",
-    )
+    # images = models.ManyToManyField(
+    #     to="gallery.Image",
+    #     verbose_name="Изображения",
+    #     related_name="product_images"
+    # )
     category = models.ForeignKey(
         "category.Category",
         on_delete=models.CASCADE,
         verbose_name="Категория",
+        null=True,
     )
     on_sale = models.BooleanField(
         default=False,
@@ -73,11 +80,12 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
-    model = models.CharField(
-        max_length=255,
-        verbose_name="Модель",
+    model = models.JSONField(
+        verbose_name="Модели",
         null=True,
         blank=True,
+        encoder=None,
+        decoder=None,
     )
     colors = models.JSONField(
         verbose_name="Цвета",

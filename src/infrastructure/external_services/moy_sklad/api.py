@@ -11,29 +11,35 @@ from src.infrastructure.base import api_client as base_api_client
 class MoySkladAPI(base_api_client.BaseApiClient):
     BASE_URL = moy_sklad_const.BASE_URL
     FILTERS_MAP = moy_sklad_const.LOOKUP_MAP
-    OBJECTS_URL = f"{BASE_URL}/{moy_sklad_const.ENTITY_PATH}"
+    OBJECTS_PATH = moy_sklad_const.ENTITY_PATH
     PRODUCT_FOLDER_PATH = "productfolder"
     PRODUCT_PATH = "product"
 
-    def get_prod_groups(
+    def get_prod_folders(
         self,
         headers: Optional[Dict[str, str]] = None,
         params: Optional[Dict[str, str]] = None,
-        **filters,
+        filters: Optional[Dict[str, str]] = None,
+        orders: Optional[Dict[str, str]] = None,
+        **kwargs,
     ) -> Dict[str, str]:
         return self.fetch_objects(
             entity_url=self.PRODUCT_FOLDER_PATH,
             headers=headers,
             params=params,
-            **filters,
+            filters=filters,
+            orders=orders,
+            **kwargs,
         )
 
-    def get_updated_prod_groups(
+    def get_updated_prod_folders(
         self,
         headers: Optional[Dict[str, str]],
         params: Optional[Dict[str, str]],
+        filters: Optional[Dict[str, str]],
+        orders: Optional[Dict[str, str]],
         updated: datetime.datetime,
-        **filters,
+        **kwargs,
     ) -> Dict[str, str]:
         ms_formatted_updated = datetime_to_moy_sklad_format(updated)
 
@@ -42,17 +48,26 @@ class MoySkladAPI(base_api_client.BaseApiClient):
             headers=headers,
             params=params,
             updated__gt=ms_formatted_updated,
-            **filters,
+            filters=filters,
+            orders=orders,
+            **kwargs,
         )
 
     def get_products(
         self,
         headers: Optional[Dict[str, str]] = None,
         params: Optional[Dict[str, str]] = None,
-        **filters,
+        orders: Optional[Dict[str, str]] = None,
+        filters: Optional[Dict[str, str]] = None,
+        **kwargs,
     ) -> Dict[str, str]:
         return self.fetch_objects(
-            entity_url=self.PRODUCT_PATH, headers=headers, params=params, **filters
+            entity_url=self.PRODUCT_PATH,
+            headers=headers,
+            params=params,
+            orders=orders,
+            filters=filters,
+            **kwargs,
         )
 
     def get_updated_products(
@@ -60,13 +75,17 @@ class MoySkladAPI(base_api_client.BaseApiClient):
         headers: Optional[Dict[str, str]],
         params: Optional[Dict[str, str]],
         updated: datetime.datetime,
-        **filters,
+        orders: Optional[Dict[str, str]],
+        filters: Optional[Dict[str, str]],
+        **kwargs,
     ) -> Dict[str, str]:
         ms_formatted_updated = datetime_to_moy_sklad_format(updated)
         return self.fetch_objects(
             entity_url=self.PRODUCT_PATH,
             headers=headers,
             params=params,
+            filters=filters,
+            orders=orders,
             updated__gt=ms_formatted_updated,
             **filters,
         )

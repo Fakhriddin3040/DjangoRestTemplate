@@ -9,6 +9,8 @@ urlpatterns = [
     path("authentication/", include(auth_urls), name="authentication"),
     path("gallery/", include(gallery_urls), name="gallery"),
     path("common/", include(organization_urls), name="common"),
+    path("products/", include("src.apps.product.urls"), name="products"),
+    path("categories/", include("src.apps.category.urls"), name="categories"),
     path(
         "docs/",
         include(docs_url),

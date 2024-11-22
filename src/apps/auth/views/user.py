@@ -1,5 +1,9 @@
 from django.db.models.base import Model as Model
+from rest_framework import views
 from src.base.views import generics, use_case_generics
+from src.infrastructure.external_services.moy_sklad.sync.moy_sklad_sync import (
+    MoySkladSync,
+)
 from ..serializers import user as user_serializers
 from ..use_cases import user as user_use_cases
 from ..params import params
@@ -81,3 +85,10 @@ class CreateProfileAPIView(use_case_generics.UseCaseCreateAPIView):
     create_params_class = params.ProfileParams
     create_use_case_class = user_use_cases.ProfileUseCase
     list_serializer_class = user_serializers.ProfileSerializer
+
+
+class TmpMKSyncAPIView(views.APIView):
+    def get(self, request, *args, **kwargs):
+        sync = MoySkladSync()
+        sync.sync()
+        return Response(status=status.HTTP_200_OK)
