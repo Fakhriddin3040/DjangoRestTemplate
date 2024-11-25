@@ -11,3 +11,5 @@ class CategoryService(base_service.AbstractService[Category]):
         super().__init__(
             repository=repository or category_repository.CategoryRepository()
         )
+
+    def get_last_synced(self) 

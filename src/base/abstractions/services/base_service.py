@@ -30,6 +30,9 @@ class AbstractService(types.AbstractGenericClass[types.TModel]):
             },
         )
 
+    def get_by_id(self, pk: int) -> Union[types.TModel, None]:
+        return self._repository.get_by_lookup(lookup="id", value=pk)
+
     def delete(self, pk: int) -> None:
         _ = self._repository.delete(pk=pk)
 

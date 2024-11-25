@@ -17,3 +17,4 @@ class Category(models.Model):
         null=True,
         blank=True,
     )
+    synced = models.DateTimeField(null=True)

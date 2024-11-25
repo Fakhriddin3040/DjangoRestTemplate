@@ -1,21 +1,25 @@
-from django.db import models
-from typing import Tuple
+from typing import Any, Dict, List, Tuple
 from src.base.abstractions.services import base_service
 from src.utils.mapping.field_mapper import FieldMapper
 
 
 class MKParserBase:
     def __init__(
-        self, mapper: FieldMapper = None, service: base_service.AbstractService = None
+        self, mapper: FieldMapper, service: base_service.AbstractService
     ):
         self.mapper = mapper
         self.service = service
 
-    def parse_entity(self, data) -> Tuple[models.Model, bool]:
-        mapped_data = self.mapper.map_fields(data)
+    def map_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        return self.mapper.map_fields(data)
+
+    def parse_entity(self, data: Dict[str, Any]) -> int:
+        mapped_data = self.map_data(data)
         defaults = {"ext_id": mapped_data["ext_id"]}
         return self.service.create_or_update(defaults=defaults, **mapped_data)
 
-    def parse_entities(self, data):
+    def parse_entities(self, data: List[Dict[str, Any]]) -> int:
+        updated_count = 0
         for entity in data:
-            self.parse_entity(entity)
+            updated_count += self.parse_entity(entity)[1]
+        return updated_count
