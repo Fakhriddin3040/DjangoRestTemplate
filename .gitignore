@@ -70,3 +70,4 @@ db.sql*
 static/
 media/
 .env
+.DS*
