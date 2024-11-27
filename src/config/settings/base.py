@@ -48,13 +48,13 @@ USE_TZ = True
 # CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS").split(",")
 CORS_ALLOW_ALL_ORIGINS = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://62.113.110.170:8090",
-    "http://62.113.110.170.7000",
-    "http://localhost:8090",
-    "http://localhost:80",
-    "http://localhsot",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://62.113.110.170:8090",
+#     "http://62.113.110.170.7000",
+#     "http://localhost:8090",
+#     "http://localhost:80",
+#     "http://localhsot",
+# ]
 
 
 #! ========== DJANGO SETTINGS ==========
@@ -74,12 +74,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     # Third-party apps
     "rest_framework",
     "drf_spectacular",
     "django",
     "rest_framework_simplejwt",
     "corsheaders",
+    "django_filters",
+
     # Local apps
     "src.apps.auth",
     "src.apps.api",
@@ -172,6 +175,7 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": "django_filters.rest_framework.DjangoFilterBackend"
 }
 
 

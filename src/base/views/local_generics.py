@@ -24,30 +24,11 @@ class ModelDetailAPIView(views.APIView):
         )
 
 
-class PaginatedAPIViewBase(views.APIView):
-    pagination_class = api_settings.DEFAULT_PAGINATION_CLASS
-    filter_backends = api_settings.DEFAULT_FILTER_BACKENDS
-    _repository: base_django_repository.AbstractDjangoRepository
-
-    @property
-    def paginator(self):
-        if not hasattr(self, "_paginator"):
-            if self.pagination_class is None:
-                self._paginator = None
-            else:
-                self._paginator = self.pagination_class()
-        return self._paginator
-
-    def paginate_queryset(self, queryset):
-        if self.paginator is None:
-            return None
-        return self.paginator.paginate_queryset(queryset, self.request, view=self)
-
-    def get_paginated_response(self, data):
-        return self.paginator.get_paginated_response(data)
+class GenericAPIView(generics.GenericAPIView):
+    pass
 
 
-class ListAPIViewBase(PaginatedAPIViewBase):
+class ListAPIViewBase(GenericAPIView):
     http_method_names = [HTTPMethod.GET.lower()]
 
     def get_queryset(self) -> models.QuerySet:

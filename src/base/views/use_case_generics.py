@@ -1,11 +1,11 @@
 from rest_framework.response import Response
 
 from src.base.mixins import mixins
-from src.base.views import generics
+from src.base.views import local_generics
 
 
 class UseCaseCreateAPIView(
-    generics.CreateAPIViewBase,
+    local_generics.CreateAPIViewBase,
     mixins.UseCaseCreateModelMixin,
 ):
     def post(self, request, *args, **kwargs) -> Response:
@@ -13,7 +13,7 @@ class UseCaseCreateAPIView(
 
 
 class UseCaseUpdateAPIView(
-    generics.UpdateAPIViewBase,
+    local_generics.UpdateAPIViewBase,
     mixins.UseCaseUpdateModelMixin,
 ):
     def put(self, request, *args, **kwargs) -> Response:
@@ -21,7 +21,7 @@ class UseCaseUpdateAPIView(
 
 
 class GenericGenericUseCaseAPIView(
-    generics.ListAPIViewBase,
+    local_generics.ListAPIViewBase,
     UseCaseCreateAPIView,
     UseCaseUpdateAPIView,
 ):

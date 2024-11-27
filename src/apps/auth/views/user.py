@@ -1,6 +1,6 @@
 from django.db.models.base import Model as Model
 from rest_framework import views
-from src.base.views import generics, use_case_generics
+from src.base.views import local_generics, use_case_generics
 from src.infrastructure.external_services.moy_sklad.sync.moy_sklad_sync import (
     MoySkladSync,
 )
@@ -26,7 +26,7 @@ class RegistrationFinishAPIView(use_case_generics.UseCaseCreateAPIView):
     list_serializer_class = user_serializers.UserLoginResponseSerializer
 
 
-class RetrieveMeAPIView(generics.RetrieveAPIView):
+class RetrieveMeAPIView(local_generics.RetrieveAPIView):
     retrieve_serializer_class = user_serializers.UserListSerializer
 
     def get_object(self):
