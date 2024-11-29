@@ -1,1 +1,3 @@
-PRODUCT_IMAGES_PATH: str = "media/images/products"
+PRODUCT_IMAGES_PATH: str = "products"
+
+DEFAULT_IMG_EXT = "png"

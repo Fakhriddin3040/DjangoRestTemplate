@@ -37,11 +37,11 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
-    # images = models.ManyToManyField(
-    #     to="gallery.Image",
-    #     verbose_name="Изображения",
-    #     related_name="product_images"
-    # )
+    images = models.ManyToManyField(
+        to="gallery.Image",
+        verbose_name="Изображения",
+        related_name="product_images",
+    )
     category = models.ForeignKey(
         "category.Category",
         on_delete=models.CASCADE,
@@ -103,4 +103,3 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
-    synced = models.DateTimeField(null=True)

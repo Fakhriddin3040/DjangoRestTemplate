@@ -23,15 +23,4 @@ urlpatterns = [
     path("oauth2/", user_views.OAuthAPIView.as_view(), name="oauth2"),
     path("users/me", user_views.RetrieveMeAPIView.as_view(), name="get-me"),
     path("profile/", user_views.CreateProfileAPIView.as_view(), name="profile"),
-    path(
-        "external_services/moy_sklad/products/sync/",
-        user_views.ProductSyncAPIView.as_view(),
-        name="product-sync",
-        ),
-    path(
-        "external_services/moy_sklad/categories/sync/",
-        user_views.CategorySyncAPIView.as_view(),
-        name="category-sync"
-    )
-    
 ]

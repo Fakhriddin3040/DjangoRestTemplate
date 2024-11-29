@@ -86,7 +86,6 @@ INSTALLED_APPS = [
     "src.apps.common",
     "src.apps.category",
     "src.apps.product",
-
     # Infrastructure apps
     "src.infrastructure.external_services.moy_sklad",
 ]

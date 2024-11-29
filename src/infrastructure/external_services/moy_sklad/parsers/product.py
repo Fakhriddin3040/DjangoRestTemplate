@@ -17,14 +17,16 @@ class MKProductParser(MKParserBase):
         service: base_service.AbstractService = None,
         category_service: base_service.AbstractService = None,
     ):
-        self.mapper = mapper or MKProductMapper(const.PRODUCT_FIELD_MAP)
-        self.product_service = service or product_services.ProductService()
+        super().__init__(
+            mapper=mapper or MKProductMapper(const.PRODUCT_FIELD_MAP),
+            model_service=service or product_services.ProductService(),
+        )
         self.category_service = category_service or category_services.CategoryService()
 
-    def parse_entity(self, data: Dict[str, Any]) -> bool:
+    def map_and_parse_entity(self, data: Dict[str, Any]) -> bool:
         mapped_data = self.map_data(data=data)
-        defaults = {"ext_id": mapped_data["ext_id"]}
-        instance, _ = self.product_service.create_or_update(
+        defaults = self.get_defaults(mapped_data)
+        instance, _ = self.model_service.create_or_update(
             defaults=defaults, **mapped_data
         )
         self._set_category(instance)
@@ -36,4 +38,4 @@ class MKProductParser(MKParserBase):
             )
             if category:
                 instance.category = category
-                self.product_service.save(instance)
+                self.model_service.save(instance)

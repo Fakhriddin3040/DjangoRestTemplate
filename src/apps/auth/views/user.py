@@ -1,10 +1,5 @@
 from django.db.models.base import Model as Model
-from rest_framework import views
 from src.base.views import generics, use_case_generics
-from src.infrastructure.external_services.moy_sklad.sync import (
-    product_sync,
-    category_sync
-)
 from ..serializers import user as user_serializers
 from ..use_cases import user as user_use_cases
 from ..params import params
@@ -86,26 +81,3 @@ class CreateProfileAPIView(use_case_generics.UseCaseCreateAPIView):
     create_params_class = params.ProfileParams
     create_use_case_class = user_use_cases.ProfileUseCase
     list_serializer_class = user_serializers.ProfileSerializer
-
-
-class ProductSyncAPIView(views.APIView):
-    def post(self, request, *args, **kwargs):
-        sync = product_sync.ProductSyncService()
-        created_count, data_len = sync.sync()
-        data = {
-            "created": created_count,
-            "data_len": data_len
-        }
-        return Response(data, status=status.HTTP_200_OK)
-
-
-class CategorySyncAPIView(views.APIView):
-    def post(self, request, *args, **kwargs) -> Response:
-        sync = category_sync.CategorySyncService()
-        sync.sync()
-        created_count, data_len = sync.sync()
-        data = {
-            "created": created_count,
-            "data_len": data_len
-        }
-        return Response(data, status=status)

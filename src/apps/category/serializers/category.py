@@ -10,4 +10,3 @@ class CategoryListSerializer(serializers.Serializer):
     parent = serializers.PrimaryKeyRelatedField(
         queryset=Category.objects.all(), required=False
     )
-    ext_parent_title = serializers.CharField()

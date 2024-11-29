@@ -86,7 +86,7 @@ class BaseApiClient:
             endpoint=self.ENTITY_PATH, params=params, headers=headers, **kwargs
         )
         try:
-            return response.json()
+            return self.get_rows(response)
         except ValueError:
             raise ValueError("Failed to parse JSON from response.")
 
@@ -157,3 +157,7 @@ class BaseApiClient:
             parsed_orders.append(f"{field},{mapped_lookup}")
 
         return ";".join(parsed_orders)
+
+    def get_rows(self, response: requests.Response) -> List[Dict[str, str]]:
+        # return response.json()["rows"] - Something like this.
+        pass

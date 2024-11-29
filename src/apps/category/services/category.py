@@ -1,3 +1,4 @@
+import datetime
 from src.apps.category.models.category import Category
 from src.apps.category.repositories import category as category_repository
 from src.base.abstractions.services import base_service
@@ -12,4 +13,5 @@ class CategoryService(base_service.AbstractService[Category]):
             repository=repository or category_repository.CategoryRepository()
         )
 
-    def get_last_synced(self) 
+    def get_last_synced(self) -> datetime.datetime:
+        return self._repository.all().order_by("-synced_at").first().synced_at

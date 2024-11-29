@@ -60,3 +60,15 @@ def send_mail(
         mail.attach_alternative(html_message, "text/html")
 
     return mail.send()
+
+
+def datetime_from_moy_sklad_format(date_str: str) -> datetime:
+    return datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f")
+
+
+def remote_timezone_info(datetime: datetime) -> datetime:
+    return datetime.replace(tzinfo=None)
+
+
+def set_timezone_info(datetime: datetime) -> datetime:
+    return tz.localize(datetime)
