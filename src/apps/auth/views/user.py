@@ -1,5 +1,6 @@
 from django.db.models.base import Model as Model
-from src.base.views import generics, use_case_generics
+from src.base.views import use_case_generics
+from src.base.views import local_generics
 from ..serializers import user as user_serializers
 from ..use_cases import user as user_use_cases
 from ..params import params
@@ -22,7 +23,7 @@ class RegistrationFinishAPIView(use_case_generics.UseCaseCreateAPIView):
     list_serializer_class = user_serializers.UserLoginResponseSerializer
 
 
-class RetrieveMeAPIView(generics.RetrieveAPIView):
+class RetrieveMeAPIView(local_generics.RetrieveAPIView):
     retrieve_serializer_class = user_serializers.UserListSerializer
 
     def get_object(self):

@@ -37,3 +37,4 @@ sqlparse==0.5.1
 uritemplate==4.1.1
 urllib3==2.2.3
 virtualenv==20.26.4
+django-filter==24.3
