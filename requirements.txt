@@ -1,17 +1,60 @@
-asgiref==3.8.1 ; python_version >= "3.12" and python_version < "4.0"
-attrs==23.2.0 ; python_version >= "3.12" and python_version < "4.0"
-django==5.0.7 ; python_version >= "3.12" and python_version < "4.0"
-djangorestframework-simplejwt==5.3.1 ; python_version >= "3.12" and python_version < "4.0"
-djangorestframework==3.15.2 ; python_version >= "3.12" and python_version < "4.0"
-drf-spectacular==0.27.2 ; python_version >= "3.12" and python_version < "4.0"
-inflection==0.5.1 ; python_version >= "3.12" and python_version < "4.0"
-jsonschema-specifications==2023.12.1 ; python_version >= "3.12" and python_version < "4.0"
-jsonschema==4.23.0 ; python_version >= "3.12" and python_version < "4.0"
-pillow==10.4.0 ; python_version >= "3.12" and python_version < "4.0"
-pyjwt==2.8.0 ; python_version >= "3.12" and python_version < "4.0"
-pyyaml==6.0.1 ; python_version >= "3.12" and python_version < "4.0"
-referencing==0.35.1 ; python_version >= "3.12" and python_version < "4.0"
-rpds-py==0.19.0 ; python_version >= "3.12" and python_version < "4.0"
-sqlparse==0.5.1 ; python_version >= "3.12" and python_version < "4.0"
-tzdata==2024.1 ; python_version >= "3.12" and python_version < "4.0" and sys_platform == "win32"
-uritemplate==4.1.1 ; python_version >= "3.12" and python_version < "4.0"
+asgiref==3.8.1
+attrs==23.2.0
+autobahn==24.4.2
+Automat==24.8.1
+black==24.10.0
+certifi==2024.12.14
+cffi==1.17.1
+cfgv==3.4.0
+charset-normalizer==3.4.1
+click==8.1.8
+constantly==23.10.4
+cryptography==44.0.0
+daphne==4.1.2
+distlib==0.3.9
+Django==5.0.7
+django-channels==0.7.0
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.3.1
+drf-spectacular==0.27.2
+filelock==3.17.0
+hyperlink==21.0.0
+identify==2.6.6
+idna==3.10
+incremental==24.7.2
+inflection==0.5.1
+jsonschema==4.23.0
+jsonschema-specifications==2023.12.1
+mypy-extensions==1.0.0
+nodeenv==1.9.1
+oauthlib==3.2.2
+packaging==24.2
+pathspec==0.12.1
+pillow==10.4.0
+platformdirs==4.3.6
+pre_commit==4.1.0
+psycopg2==2.9.10
+psycopg2-binary==2.9.10
+pyasn1==0.6.1
+pyasn1_modules==0.4.1
+pycparser==2.22
+PyJWT==2.8.0
+pyOpenSSL==25.0.0
+python-dotenv==1.0.1
+PyYAML==6.0.1
+referencing==0.35.1
+requests==2.32.3
+requests-oauthlib==2.0.0
+rpds-py==0.19.0
+ruff==0.5.7
+service-identity==24.2.0
+setuptools==75.8.0
+six==1.17.0
+sqlparse==0.5.1
+Twisted==24.11.0
+txaio==23.1.1
+typing_extensions==4.12.2
+uritemplate==4.1.1
+urllib3==2.3.0
+virtualenv==20.29.1
+zope.interface==7.2
