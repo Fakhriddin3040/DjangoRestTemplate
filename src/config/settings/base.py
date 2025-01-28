@@ -6,29 +6,51 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+#! ========== STATIC FILES ==========
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+STATIC_URL = "static/"
+MEDIA_URL = "media/"
+STATIC_ROOT = BASE_DIR / STATIC_URL
+MEDIA_ROOT = BASE_DIR / MEDIA_URL
+
+#!============ EMAIL =============
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_EMAIL")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", 587))
+EMAIL_USE_TLS = bool(os.getenv("EMAIL_USE_TLS", True))
+EMAIL_USE_SSL = bool(os.getenv("EMAIL_USE_SSL", False))
+EMAIL_TOKEN_EXPIRE_MINUTES = int(os.environ.get("EMAIL_TOKEN_EXPIRE_MINUTES", 5))
+
+
+#! ========== ENV VARIABLES ==========
+
+#! ENVIRONMENT = development | testing | production
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
-DEBUG = True
+ENVIRONMENT = os.getenv("ENVIRONMENT")
+DEBUG = ENVIRONMENT in ["development", "testing"]
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
+#! ========== LOCALIZATION ==========
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
-STATIC_URL = "static/"
 
+#! ========== DJANGO SETTINGS ==========
+WSGI_APPLICATION = "src.config.wsgi.application"
+ASGI_APPLICATION = "src.config.asgi.application"
+ROOT_URLCONF = "src.config.urls"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 AUTH_USER_MODEL = "authorization.User"
 
-
+#! ========== APPLICATIONS ==========
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -46,20 +68,25 @@ INSTALLED_APPS = [
     "src.apps.api",
 ]
 
+
+#! ========== MIDDLEWARE ==========
+
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -72,14 +99,18 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "src.config.wsgi.application"
-ASGI_APPLICATION = "src.config.asgi.application"
-ROOT_URLCONF = "src.config.urls"
+
+#! ========== DATABASES ==========
+
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
 
@@ -98,8 +129,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+#! ========== INTERNATIONALIZATION ==========
+
+
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
@@ -116,7 +151,12 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
+
+#! ========== AUTHENTICATION ==========
+
+
 SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("Bearer",),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "UPDATE_LAST_LOGIN": True,
@@ -130,9 +170,13 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": None,
 }
 
+
+#! ========== DOCS ==========
+
+
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Your API",
+    "TITLE": "Marketplace API documentation",
     "DESCRIPTION": "API schema",
-    "VERSION": "1.0.0",
+    "VERSION": "9.0.0",
     "SERVE_PUBLIC": True,
 }

@@ -1,0 +1,51 @@
+services:
+  api:
+    image: image_path
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - WORK_DIR
+    env_file:
+      - .env
+    ports:
+      - "${DJANGO_PORT}:8000"
+    networks:
+      - rest-template-default-network
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - rest-template-default-network
+
+  proxy:
+    image: image_path
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "${PROXY_PORT}:80"
+    networks:
+      - rest-template-default-network
+    depends_on:
+      - api
+
+networks:
+  rest-template-default-network:
+    driver: bridge
+
+volumes:
+  db:
+    driver: local

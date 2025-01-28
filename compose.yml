@@ -1,0 +1,12 @@
+services:
+  api:
+    image: ghcr.io/it-lab-tj/marketplace-api:latest
+    container_name: api
+
+  db:
+    image: ghcr.io/it-lab-tj/marketplace-db:latest
+    container_name: db
+
+  proxy:
+    image: ghcr.io/it-lab-tj/marketplace-proxy:latest
+    container_name: proxy
