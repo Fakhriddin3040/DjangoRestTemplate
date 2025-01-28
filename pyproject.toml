@@ -27,6 +27,7 @@ pillow = "^10.4.0"
 python-dotenv = "^1.0.1"
 ruff = "^0.5.4"
 black = "^24.4.2"
+pre-commit = "^4.1.0"
 
 
 [build-system]

@@ -63,4 +63,4 @@ target/
 *.db
 db*
 .python-version
-.ruff_cache/
+.ruff_cache/.idea/
