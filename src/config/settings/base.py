@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     # Local apps
     "src.apps.auth",
     "src.apps.api",
-    "src.apps.todo_list",
+    "src.apps.task",
 ]
 
 
