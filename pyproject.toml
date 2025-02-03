@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "django-rest"
+name = "todo-list"
 version = "0.1.0"
-description = "Template for django rest application."
+description = "Simple todo list app for learning angular"
 authors = ["Fakhriddin <fahriddin3040@gmail.com>"]
 package-mode = false
 readme = "README.md"

@@ -10,4 +10,8 @@ urlpatterns = [
         include(docs_url),
         name="docs",
     ),
+    path(
+        "tasks/",
+        include("src.apps.task.urls"),
+    )
 ]
